@@ -13,6 +13,7 @@ vendor/
 .DS_Store/
 app/.DS_Store/
 
+tests/
 
 #config/database.php
 composer.lock
