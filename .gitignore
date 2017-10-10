@@ -1,0 +1,23 @@
+# Created by .ignore support plugin (selim)
+### Laravel template
+bootstrap/
+storage/
+/bootstrap/compiled.php
+.env.*.php
+.env.php
+.env
+.idea
+vendor/
+.idea/
+.idea/workspace.xml
+.DS_Store/
+app/.DS_Store/
+
+
+#config/database.php
+composer.lock
+public/uploads
+public/uploads
+
+app/modules/user/logs/
+app/modules/accounts/logs/

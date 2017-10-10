@@ -1,0 +1,25 @@
+[20-Apr-2016 09:52:36 Asia/Dacca] PHP Fatal error:  Call to a member function delete() on null in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/ProductController.php on line 262
+[21-Apr-2016 08:32:15 Asia/Dacca] PHP Fatal error:  Call to a member function delete() on null in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/ProductController.php on line 262
+[21-Apr-2016 08:36:02 Asia/Dacca] PHP Fatal error:  Call to a member function delete() on null in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/ProductController.php on line 262
+[21-Apr-2016 08:38:50 Asia/Dacca] PHP Fatal error:  Call to a member function delete() on null in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/ProductController.php on line 262
+[21-Apr-2016 08:47:53 Asia/Dacca] PHP Fatal error:  Call to a member function delete() on null in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/ProductController.php on line 262
+[28-Apr-2016 01:18:31 Asia/Dacca] PHP Fatal error:  Class 'UR' not found in /home/vis20697/public_html/mithun/otw/storage/framework/views/6f37b340c10edbc87828fdda715a9af6 on line 208
+[07-May-2016 10:52:48 Asia/Dacca] PHP Fatal error:  Call to a member function update() on null in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/ProductController.php on line 232
+[07-May-2016 11:51:03 Asia/Dacca] PHP Fatal error:  Call to a member function delete() on null in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/SliderImageController.php on line 201
+[07-May-2016 11:51:05 Asia/Dacca] PHP Fatal error:  Call to a member function delete() on null in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/SliderImageController.php on line 201
+[28-May-2016 08:48:28 Asia/Dacca] PHP Fatal error:  Call to a member function delete() on null in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/ProductvariationController.php on line 167
+[31-May-2016 23:32:15 Asia/Dacca] PHP Fatal error:  Class 'Excel' not found in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/OrderPaymentController.php on line 155
+[31-May-2016 23:48:24 Asia/Dacca] PHP Fatal error:  Class 'Excel' not found in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/OrderPaymentController.php on line 155
+[31-May-2016 23:48:56 Asia/Dacca] PHP Fatal error:  Class 'Excel' not found in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/OrderPaymentController.php on line 155
+[21-Aug-2016 21:26:50 Asia/Dacca] PHP Fatal error:  Class 'App\DeliveryDetails' not found in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/OrderPaymentController.php on line 66
+[21-Aug-2016 21:27:10 Asia/Dacca] PHP Fatal error:  Class 'App\DeliveryDetails' not found in /home/vis20697/public_html/mithun/otw/app/Http/Controllers/OrderPaymentController.php on line 66
+[09-Sep-2016 07:04:40 Asia/Dacca] PHP Fatal error:  Class 'Excel' not found in /home1/offthewa/public_html/app/Http/Controllers/OrderPaymentController.php on line 158
+[19-Jan-2017 00:58:23 America/Chicago] PHP Warning:  POST Content-Length of 324047720 bytes exceeds the limit of 67108864 bytes in Unknown on line 0
+[02-Jun-2017 23:49:58 Asia/Dacca] PHP Fatal error:  Class 'App\ImageSize' not found in /home1/offthewa/public_html/app/Http/Controllers/AdminPhotoFrameController.php on line 19
+[02-Jun-2017 23:54:00 Asia/Dacca] PHP Fatal error:  Class 'App\ImageSize' not found in /home1/offthewa/public_html/app/Http/Controllers/AdminPhotoFrameController.php on line 19
+[07-Jul-2017 10:17:38 Asia/Dacca] PHP Fatal error:  Class 'Excel' not found in /home1/offthewa/public_html/app/Http/Controllers/OrderPaymentController.php on line 226
+[07-Jul-2017 10:17:42 Asia/Dacca] PHP Fatal error:  Class 'Excel' not found in /home1/offthewa/public_html/app/Http/Controllers/OrderPaymentController.php on line 196
+[07-Jul-2017 10:17:47 Asia/Dacca] PHP Fatal error:  Class 'Excel' not found in /home1/offthewa/public_html/app/Http/Controllers/OrderPaymentController.php on line 196
+[07-Jul-2017 10:17:54 Asia/Dacca] PHP Fatal error:  Class 'Excel' not found in /home1/offthewa/public_html/app/Http/Controllers/OrderPaymentController.php on line 255
+[13-Jul-2017 10:27:25 Asia/Dacca] PHP Fatal error:  Class 'Excel' not found in /home1/offthewa/public_html/app/Http/Controllers/OrderPaymentController.php on line 226
+[05-Oct-2017 04:31:17 Asia/Dacca] PHP Fatal error:  Class 'Excel' not found in /home1/offthewa/public_html/app/Http/Controllers/OrderPaymentController.php on line 327

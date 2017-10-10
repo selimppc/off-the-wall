@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<!-- saved from url=www/html/miracle/miracle_template.html -->
+<html class=" js canvas canvastext no-touch cssanimations csstransforms csstransforms3d csstransitions">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Page Title -->
+    <title>Miracle | Responsive Multi-Purpose HTML5 Template</title>
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="description" content="Miracle | Responsive Multi-Purpose HTML5 Template">
+    <meta name="author" content="SoapTheme">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Theme Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="css/css" rel="stylesheet" type="text/css">
+    <link href="css/css(1)" rel="stylesheet" type="text/css">
+    <link href="css/css(2)" rel="stylesheet" type="text/css">
+    <link href="css/css(3)" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/owl.transitions.css" media="screen">
+
+    <!-- Magnific Popup core CSS file -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" type="text/css" href="css/settings.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen">
+
+    <!-- Main Style -->
+    <!--<link id="main-style" rel="stylesheet" href="css/style.css">-->
+    <div class="fit-vids-style" id="fit-vids-style" style="display: none;">­<style>.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></div>
+    <script type="text/javascript">
+        var mainStyle = "style.css";
+        if (typeof localStorage != "undefined") {
+            var colorSkin = localStorage.getItem("miracleColorSkin");
+            if (colorSkin != null) {
+                mainStyle = "style-" + colorSkin + ".css";
+            }
+        }
+        document.write('<link id="main-style" rel="stylesheet" href="css/' + mainStyle + '">');
+    </script>
+    <link id="main-style" rel="stylesheet" href="css/style(1).css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Updated Styles -->
+    <link rel="stylesheet" href="css/updates.css">
+
+    <!-- Responsive Styles -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- CSS for IE -->
+    <!--[if lte IE 9]>
+    <!--<link rel="stylesheet" type="text/css" href="css/ie.css" />
+    [endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>-->
+    <script type='text/javascript' src="js/html5.js"></script>
+    <script type='text/javascript' src="js/respond.js"></script>
+    <!--[endif]-->
+
+    <!--Add for custom slider Start-->
+
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jssor.slider.mini.js"></script>
+
+    <script>
+        jQuery(document).ready(function ($) {
+
+            var jssor_1_SlideoTransitions = [
+                [{b:5500.0,d:3000.0,o:-1.0,r:240.0,e:{r:2.0}}],
+                [{b:-1.0,d:1.0,o:-1.0,c:{x:51.0,t:-51.0}},{b:0.0,d:1000.0,o:1.0,c:{x:-51.0,t:51.0},e:{o:7.0,c:{x:7.0,t:7.0}}}],
+                [{b:-1.0,d:1.0,o:-1.0,sX:9.0,sY:9.0},{b:1000.0,d:1000.0,o:1.0,sX:-9.0,sY:-9.0,e:{sX:2.0,sY:2.0}}],
+                [{b:-1.0,d:1.0,o:-1.0,r:-180.0,sX:9.0,sY:9.0},{b:2000.0,d:1000.0,o:1.0,r:180.0,sX:-9.0,sY:-9.0,e:{r:2.0,sX:2.0,sY:2.0}}],
+                [{b:-1.0,d:1.0,o:-1.0},{b:3000.0,d:2000.0,y:180.0,o:1.0,e:{y:16.0}}],
+                [{b:-1.0,d:1.0,o:-1.0,r:-150.0},{b:7500.0,d:1600.0,o:1.0,r:150.0,e:{r:3.0}}],
+                [{b:10000.0,d:2000.0,x:-379.0,e:{x:7.0}}],
+                [{b:10000.0,d:2000.0,x:-379.0,e:{x:7.0}}],
+                [{b:-1.0,d:1.0,o:-1.0,r:288.0,sX:9.0,sY:9.0},{b:9100.0,d:900.0,x:-1400.0,y:-660.0,o:1.0,r:-288.0,sX:-9.0,sY:-9.0,e:{r:6.0}},{b:10000.0,d:1600.0,x:-200.0,o:-1.0,e:{x:16.0}}]
+            ];
+
+            var jssor_1_options = {
+                $AutoPlay: true,
+                $SlideDuration: 800,
+                $SlideEasing: $Jease$.$OutQuint,
+                $CaptionSliderOptions: {
+                    $Class: $JssorCaptionSlideo$,
+                    $Transitions: jssor_1_SlideoTransitions
+                },
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$
+                },
+                $BulletNavigatorOptions: {
+                    $Class: $JssorBulletNavigator$
+                }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizing
+            function ScaleSlider() {
+                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 1920);
+                    jssor_1_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+            ScaleSlider();
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
+            //responsive code end
+        });
+    </script>
+
+    <style>
+
+        /* jssor slider bullet navigator skin 05 css */
+        /*
+        .jssorb05 div           (normal)
+        .jssorb05 div:hover     (normal mouseover)
+        .jssorb05 .av           (active)
+        .jssorb05 .av:hover     (active mouseover)
+        .jssorb05 .dn           (mousedown)
+        */
+        .jssorb05 {
+            position: absolute;
+        }
+        .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+            position: absolute;
+            /* size of bullet elment */
+            width: 16px;
+            height: 16px;
+            background: url('images/b05.png') no-repeat;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .jssorb05 div { background-position: -7px -7px; }
+        .jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
+        .jssorb05 .av { background-position: -67px -7px; }
+        .jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
+
+        /* jssor slider arrow navigator skin 22 css */
+        /*
+        .jssora22l                  (normal)
+        .jssora22r                  (normal)
+        .jssora22l:hover            (normal mouseover)
+        .jssora22r:hover            (normal mouseover)
+        .jssora22l.jssora22ldn      (mousedown)
+        .jssora22r.jssora22rdn      (mousedown)
+        */
+        .jssora22l, .jssora22r {
+            display: block;
+            position: absolute;
+            /* size of arrow element */
+            width: 40px;
+            height: 58px;
+            cursor: pointer;
+            background: url('images/a22.png') center center no-repeat;
+            overflow: hidden;
+        }
+        .jssora22l { background-position: -10px -31px; }
+        .jssora22r { background-position: -70px -31px; }
+        .jssora22l:hover { background-position: -130px -31px; }
+        .jssora22r:hover { background-position: -190px -31px; }
+        .jssora22l.jssora22ldn { background-position: -250px -31px; }
+        .jssora22r.jssora22rdn { background-position: -310px -31px; }
+    </style>
+
+    <!--Add for custom slider End-->
+
+</head>
+<body>
+    <div id="page-wrapper">
+        <header id="header" class="header-color-white header-sticky">
+            <div class="container">
+                <div class="header-inner">
+                    <div class="branding">
+                        <h1 class="logo">
+                            <a href="index.html"><img src="images/logo@2x.png" alt="" width="25" height="26">Miracle</a>
+                        </h1>
+                    </div>
+                    <nav id="nav">
+                        <ul class="header-top-nav">
+                            <li class="mini-cart menu-item-has-children">
+                                <a href="index.html#"><i class="fa fa-shopping-cart has-circle"></i></a>
+                                <!--<div class="sub-nav cart-content">
+                                    <ul class="product-list">
+                                        <li class="empty">No products in the cart.</li>
+                                    </ul>
+                                    <hr>
+                                    <div class="st-table">
+                                        <div class="cart-action">
+                                            <a href="woocommerce-shopping-cart.html" class="btn-view-cart btn btn-sm style4"><i class="fa fa-shopping-cart"></i>View Cart</a>
+                                        </div>
+                                        <div class="cart-price">Total: <span class="total-price">$00.0</span></div>
+                                    </div>
+                                </div>-->
+                                <div class="sub-nav cart-content">
+                                    <ul class="product-list product-list-widget">
+                                        <li>
+                                            <div class="product-image">
+                                                <a href="index.html#"><img alt="" src="images/product1.jpg"></a>
+                                            </div>
+                                            <div class="product-content">
+                                                <a href="index.html#" class="product-title">Everyday Scoop Neck Cami</a>
+                                                <span class="product-price">$18.99</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="product-image">
+                                                <a href="index.html#"><img alt="" src="images/product2.jpg"></a>
+                                            </div>
+                                            <div class="product-content">
+                                                <a href="index.html#" class="product-title">Easy Draped Cardigan</a>
+                                                <span class="product-price">$23.58</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <hr>
+                                    <div class="st-table">
+                                        <div class="cart-action">
+                                            <a href="html/woocommerce-shopping-cart.html" class="btn-view-cart btn btn-sm style4"><i class="fa fa-shopping-cart"></i>View Cart</a>
+                                        </div>
+                                        <div class="cart-price">Total: <span class="total-price">$42.57</span></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="mini-search">
+                                <a href="index.html#"><i class="fa fa-search has-circle"></i></a>
+                                <div class="main-nav-search-form">
+                                    <form method="get" role="search">
+                                        <div class="search-box">
+                                            <input type="text" id="s" name="s" value="">
+                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                            <li class="visible-mobile">
+                                <a href="index.html#mobile-nav-wrapper" data-toggle="collapse"><i class="fa fa-bars has-circle"></i></a>
+                            </li>
+                        </ul>
+                        <ul id="main-nav" class="hidden-mobile">
+                            <li class="menu-item-has-children active">
+                                <a href="index.html">Home</a>
+                                <ul class="sub-nav">
+                                    <li class="active"><a href="index.html">Homepage 1</a></li>
+                                    <li><a href="#">Homepage 2</a></li>
+                                    <li><a href="#">Homepage 3</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="index.html#">Pages</a>
+                                <ul class="sub-nav">
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">About US</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">About Us 1</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Services</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Services 1</a></li>
+                                            <li><a href="#">Services 2</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Page Layouts</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Left Sidebar</a></li>
+                                            <li><a href="#">Right Sidebar</a></li>
+                                            <li><a href="#">Full Width</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">FAQS</a></li>
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="#">404 Page</a></li>
+                                    <li><a href="#">Coming Soon</a></li>
+                                    <li><a href="#">Blank Page</a></li>
+                                    <li><a href="#">Loading Page</a></li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Inner Style</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Inner Style 1</a></li>
+                                            <li><a href="#">Inner Style 2</a></li>
+                                            <li><a href="#">Inner Style 3</a></li>
+                                            <li><a href="#">Inner Style 4</a></li>
+                                            <li><a href="#">Inner Style 5</a></li>
+                                            <li><a href="#">Inner Style 6</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Footer Style</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Footer Style 1</a></li>
+                                            <li><a href="#">Footer Style 2</a></li>
+                                            <li><a href="#">Footer Style 3</a></li>
+                                            <li><a href="#">Footer Style 4</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children mega-menu-item mega-column-4">
+                                <a href="index.html#">Shortcodes</a>
+                                <ul class="sub-nav">
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Miracle Elements</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#"><i class="fa fa-caret-square-o-right"></i><span>Accordion &amp; Toggles</span></a></li>
+                                            <li><a href="#"><i class="fa fa-spinner"></i><span>Animations</span></a></li>
+                                            <li><a href="#"><i class="fa fa-file-text-o"></i><span>Blog Posts</span></a></li>
+                                            <li><a href="#"><i class="fa fa-link"></i><span>Buttons</span></a></li>
+                                            <li><a href="#"><i class="fa fa-bars"></i><span>Dropdowns</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Miracle Elements</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#"><i class="fa fa-tasks"></i><span>Form Layouts</span></a></li>
+                                            <li><a href="#"><i class="fa fa-picture-o"></i><span>Galleries</span></a></li>
+                                            <li><a href="#"><i class="fa fa-adjust"></i><span>Icon Styling</span></a></li>
+                                            <li><a href="#"><i class="fa fa-list-alt"></i><span>Interactive Banners</span></a></li>
+                                            <li><a href="#"><i class="fa fa-cog"></i><span>Process</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Miracle Elements</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#"><i class="fa fa-picture-o"></i><span>Posts Sliders</span></a></li>
+                                            <li><a href="#"><i class="fa fa-table"></i><span>Pricing Tables</span></a></li>
+                                            <li><a href="#"><i class="fa fa-bar-chart-o"></i><span>Progress Bars</span></a></li>
+                                            <li><a href="#"><i class="fa fa-exchange"></i><span>Style Changer</span></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Miracle Elements</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#"><i class="fa fa-list"></i><span>Tabs</span></a></li>
+                                            <li><a href="#"><i class="fa fa-user"></i><span>Team Members</span></a></li>
+                                            <li><a href="#"><i class="fa fa-comment"></i><span>Testimonials</span></a></li>
+                                            <li><a href="#"><i class="fa fa-print"></i><span>Typography</span></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="index.html#">Portfolio</a>
+                                <ul class="sub-nav">
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Fancy Grid</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">2 Columns</a></li>
+                                            <li><a href="#">3 Columns</a></li>
+                                            <li><a href="#">4 Columns</a></li>
+                                            <li><a href="#">5 Columns</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Fancy Wide</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">3 Columns</a></li>
+                                            <li><a href="#">4 Columns</a></li>
+                                            <li><a href="#">5 Columns</a></li>
+                                            <li><a href="#">6 Columns</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Grid</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">2 Columns</a></li>
+                                            <li><a href="#">3 Columns</a></li>
+                                            <li><a href="#">4 Columns</a></li>
+                                            <li><a href="#">5 Columns</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Masonry</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Masonry 1</a></li>
+                                            <li><a href="#">Masonry 2</a></li>
+                                            <li><a href="#">Masonry Text</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Single</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Big Slider</a></li>
+                                            <li><a href="#">Fullwidth Gallery</a></li>
+                                            <li><a href="#">Fullwidth Project</a></li>
+                                            <li><a href="#">Small Gallery</a></li>
+                                            <li><a href="#">Small Slider Project</a></li>
+                                            <li><a href="#">Vertical Gallery</a></li>
+                                            <li><a href="#">Vertical Project</a></li>
+                                            <li><a href="#">Video Project</a></li>
+                                            <li><a href="#">Wide Image Project</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children mega-menu-item mega-column-6">
+                                <a href="index.html#">Blog</a>
+                                <ul class="sub-nav">
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Masonry</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">2 Column</a></li>
+                                            <li><a href="#">3 Column</a></li>
+                                            <li><a href="#">Left Sidebar</a></li>
+                                            <li><a href="#">Right Sidebar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Grid</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">2 Column</a></li>
+                                            <li><a href="#">3 Column</a></li>
+                                            <li><a href="#">4 Columns</a></li>
+                                            <li><a href="#">Fullwidth</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Mini</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Fullwidth</a></li>
+                                            <li><a href="#">Left Sidebar</a></li>
+                                            <li><a href="#">Right Sidebar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Classic</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Fullwidth</a></li>
+                                            <li><a href="#">Left Sidebar</a></li>
+                                            <li><a href="#">Right Sidebar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Timeline</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Fullwidth</a></li>
+                                            <li><a href="#">Left Sidebar</a></li>
+                                            <li><a href="#">Right Sidebar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Single Posts</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Standard</a></li>
+                                            <li><a href="#">Right Sidebar</a></li>
+                                            <li><a href="#">Left Sidebar</a></li>
+                                            <li><a href="#">Audio</a></li>
+                                            <li><a href="#">Blockquote</a></li>
+                                            <li><a href="#">Gallery</a></li>
+                                            <li><a href="#">Video</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="index.html#">Contact</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Contact 1</a></li>
+                                    <li><a href="#">Contact 2</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="index.html#">Shop</a>
+                                <ul class="sub-nav">
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Home Pages</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Homepage 1</a></li>
+                                            <li><a href="#">Homepage 2</a></li>
+                                            <li><a href="#">Homepage 3</a></li>
+                                            <li><a href="#">Homepage 4</a></li>
+                                            <li><a href="#">Homepage 5</a></li>
+                                            <li><a href="#">Homepage 6</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Category Pages</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Grid Style</a></li>
+                                            <li><a href="#">List Style</a></li>
+                                            <li><a href="#">With Banner</a></li>
+                                            <li><a href="#">Big Header</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Product Pages</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Product Detailed</a></li>
+                                            <li><a href="#">Product Sidebar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Quick View Popup</a></li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Cart Pages</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Shopping Cart</a></li>
+                                            <li><a href="#">Checkout</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="index.html#">Page Layouts</a>
+                                        <ul class="sub-nav">
+                                            <li><a href="#">Fullwidth</a></li>
+                                            <li><a href="#">Sidebar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="#">Dashboard</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="mobile-nav-wrapper collapse visible-mobile" id="mobile-nav-wrapper">
+                <ul class="mobile-nav">
+                    <li class="menu-item-has-children active">
+                        <span class="open-subnav"></span>
+                        <a href="index.html">Home</a>
+                        <ul class="sub-nav">
+                            <li class="active"><a href="index.html">Homepage 1</a></li>
+                            <li><a href="#">Homepage 2</a></li>
+                            <li><a href="#">Homepage 3</a></li>
+                            <li><a href="#">Homepage 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <span class="open-subnav"></span>
+                        <a href="index.html#">Pages</a>
+                        <ul class="sub-nav">
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">About US</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">About Us 1</a></li>
+                                    <li><a href="#">Member Details</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Services</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Services 1</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Page Layouts</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Left Sidebar</a></li>
+                                    <li><a href="#">Right Sidebar</a></li>
+                                    <li><a href="#">Full Width</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">FAQS</a></li>
+                            <li><a href="#">Terms &amp; Conditions</a></li>
+                            <li><a href="#">404 Page</a></li>
+                            <li><a href="#">Coming Soon</a></li>
+                            <li><a href="#">Blank Page</a></li>
+                            <li><a href="#">Loading Page</a></li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Inner Style</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Inner Style 1</a></li>
+                                    <li><a href="#">Inner Style 2</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Footer Style</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Footer Style 1</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <span class="open-subnav"></span>
+                        <a href="index.html#">Shortcodes</a>
+                        <ul class="sub-nav">
+                            <li><a href="#"><i class="fa fa-caret-square-o-right"></i><span>Accordion &amp; Toggles</span></a></li>
+                            <li><a href="#"><i class="fa fa-spinner"></i><span>Animations</span></a></li>
+                            <li><a href="#"><i class="fa fa-file-text-o"></i><span>Blog Posts</span></a></li>
+                            <li><a href="#"><i class="fa fa-link"></i><span>Buttons</span></a></li>
+                            <li><a href="#"><i class="fa fa-bars"></i><span>Dropdowns</span></a></li>
+                            <li><a href="#"><i class="fa fa-tasks"></i><span>Form Layouts</span></a></li>
+                            <li><a href="#"><i class="fa fa-picture-o"></i><span>Galleries</span></a></li>
+                            <li><a href="#"><i class="fa fa-adjust"></i><span>Icon Styling</span></a></li>
+                            <li><a href="#"><i class="fa fa-list-alt"></i><span>Interactive Banners</span></a></li>
+                            <li><a href="#"><i class="fa fa-cog"></i><span>Process</span></a></li>
+                            <li><a href="#"><i class="fa fa-picture-o"></i><span>Posts Sliders</span></a></li>
+                            <li><a href="#"><i class="fa fa-table"></i><span>Pricing Tables</span></a></li>
+                            <li><a href="#"><i class="fa fa-bar-chart-o"></i><span>Progress Bars</span></a></li>
+                            <li><a href="#"><i class="fa fa-exchange"></i><span>Style Changer</span></a></li>
+                            <li><a href="#"><i class="fa fa-list"></i><span>Tabs</span></a></li>
+                            <li><a href="#"><i class="fa fa-user"></i><span>Team Members</span></a></li>
+                            <li><a href="#"><i class="fa fa-comment"></i><span>Testimonials</span></a></li>
+                            <li><a href="#"><i class="fa fa-print"></i><span>Typography</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <span class="open-subnav"></span>
+                        <a href="index.html#">Portfolio</a>
+                        <ul class="sub-nav">
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Fancy Grid</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">2 Columns</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Fancy Wide</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">3 Columns</a></li>
+                                    <li><a href="#">4 Columns</a></li>
+                                    <li><a href="#">5 Columns</a></li>
+                                    <li><a href="#">6 Columns</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Grid</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">2 Columns</a></li>
+                                    <li><a href="#">3 Columns</a></li>
+                                    <li><a href="#">4 Columns</a></li>
+                                    <li><a href="#">5 Columns</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Masonry</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Masonry 1</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Single</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Big Slider</a></li>
+                                    <li><a href="#">Fullwidth Gallery</a></li>
+                                    <li><a href="#">Fullwidth Project</a></li>
+                                    <li><a href="#">Small Gallery</a></li>
+                                    <li><a href="#">Small Slider Project</a></li>
+                                    <li><a href="#">Vertical Gallery</a></li>
+                                    <li><a href="#">Vertical Project</a></li>
+                                    <li><a href="#">Video Project</a></li>
+                                    <li><a href="#">Wide Image Project</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <span class="open-subnav"></span>
+                        <a href="index.html#">Blog</a>
+                        <ul class="sub-nav">
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Masonry</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">2 Column</a></li>
+                                    <li><a href="#">3 Column</a></li>
+                                    <li><a href="#">Left Sidebar</a></li>
+                                    <li><a href="#">Right Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Grid</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">2 Column</a></li>
+                                    <li><a href="#">3 Column</a></li>
+                                    <li><a href="#">4 Columns</a></li>
+                                    <li><a href="#">Fullwidth</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Mini</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Fullwidth</a></li>
+                                    <li><a href="#">Left Sidebar</a></li>
+                                    <li><a href="#">Right Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Classic</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Fullwidth</a></li>
+                                    <li><a href="#">Left Sidebar</a></li>
+                                    <li><a href="#">Right Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Timeline</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Fullwidth</a></li>
+                                    <li><a href="#">Left Sidebar</a></li>
+                                    <li><a href="#">Right Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Single Posts</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Standard</a></li>
+                                    <li><a href="#">Right Sidebar</a></li>
+                                    <li><a href="#">Left Sidebar</a></li>
+                                    <li><a href="#">Audio</a></li>
+                                    <li><a href="#">Blockquote</a></li>
+                                    <li><a href="#">Gallery</a></li>
+                                    <li><a href="#">Video</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <span class="open-subnav"></span>
+                        <a href="index.html#">Contact</a>
+                        <ul class="sub-nav">
+                            <li><a href="#">Contact 1</a></li>
+                            <li><a href="#">Contact 2</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <span class="open-subnav"></span>
+                        <a href="index.html#">Shop</a>
+                        <ul class="sub-nav">
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Home Pages</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Homepage 1</a></li>
+                                    <li><a href="#">Homepage 2</a></li>
+                                    <li><a href="#">Homepage 3</a></li>
+                                    <li><a href="#">Homepage 4</a></li>
+                                    <li><a href="#">Homepage 5</a></li>
+                                    <li><a href="#">Homepage 6</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Category Pages</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Grid Style</a></li>
+                                    <li><a href="#">List Style</a></li>
+                                    <li><a href="#">With Banner</a></li>
+                                    <li><a href="#">Big Header</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Product Pages</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Product Detailed</a></li>
+                                    <li><a href="#">Product Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Quick View Popup</a></li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Cart Pages</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Shopping Cart</a></li>
+                                    <li><a href="#">Checkout</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <span class="open-subnav"></span>
+                                <a href="index.html#">Page Layouts</a>
+                                <ul class="sub-nav">
+                                    <li><a href="#">Fullwidth</a></li>
+                                    <li><a href="#">Sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Dashboard</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div style="position: relative; width: 100%; height: auto; margin-top: 0px; margin-bottom: 0px; max-height: 1268px;" class="forcefullwidth_wrapper_tp_banner">
+            <!--Slider Start-->
+
+            <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden; visibility: hidden;">
+                <!-- Loading Screen -->
+                <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+                    <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+                    <div style="position:absolute;display:block;background:url('images/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+                </div>
+                <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
+                    <div data-p="225.00" style="display: none;">
+                        <img data-u="image" src="images/red.jpg" />
+                        <div style="position: absolute; top: 30px; left: 30px; width: 480px; height: 120px; font-size: 50px; color: #ffffff; line-height: 60px;">TOUCH SWIPE SLIDER</div>
+                        <div style="position: absolute; top: 300px; left: 30px; width: 480px; height: 120px; font-size: 30px; color: #ffffff; line-height: 38px;">Build your slider with anything, includes image, content, text, html, photo, picture</div>
+                        <div data-u="caption" data-t="0" style="position: absolute; top: 100px; left: 600px; width: 445px; height: 300px;">
+                            <img src="images/c-phone.png" style="position: absolute; top: 0px; left: 0px; width: 445px; height: 300px;" />
+                            <img src="images/c-jssor-slider.png" data-u="caption" data-t="1" style="position: absolute; top: 70px; left: 130px; width: 102px; height: 78px;" />
+                            <img src="images/c-text.png" data-u="caption" data-t="2" style="position: absolute; top: 153px; left: 163px; width: 80px; height: 53px;" />
+                            <img src="images/c-fruit.png" data-u="caption" data-t="3" style="position: absolute; top: 60px; left: 220px; width: 140px; height: 90px;" />
+                            <img src="images/c-navigator.png" data-u="caption" data-t="4" style="position: absolute; top: -123px; left: 121px; width: 200px; height: 155px;" />
+                        </div>
+                        <div data-u="caption" data-t="5" style="position: absolute; top: 120px; left: 650px; width: 470px; height: 220px;">
+                            <img src="images/c-phone-horizontal.png" style="position: absolute; top: 0px; left: 0px; width: 470px; height: 220px;" />
+                            <div style="position: absolute; top: 4px; left: 45px; width: 379px; height: 213px; overflow: hidden;">
+                                <img src="images/c-slide-1.jpg" data-u="caption" data-t="6" style="position: absolute; top: 0px; left: 0px; width: 379px; height: 213px;" />
+                                <img src="images/c-slide-3.jpg" data-u="caption" data-t="7" style="position: absolute; top: 0px; left: 379px; width: 379px; height: 213px;" />
+                            </div>
+                            <img src="images/c-navigator-horizontal.png" style="position: absolute; top: 4px; left: 45px; width: 379px; height: 213px;" />
+                            <img src="images/c-finger-pointing.png" data-u="caption" data-t="8" style="position: absolute; top: 740px; left: 1600px; width: 257px; height: 300px;" />
+                        </div>
+                    </div>
+                    <div data-p="225.00" style="display: none;">
+                        <img data-u="image" src="images/purple.jpg" />
+                    </div>
+                    <div data-p="225.00" style="display: none;">
+                        <img data-u="image" src="images/blue.jpg" />
+                    </div>
+                </div>
+                <!-- Bullet Navigator -->
+                <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
+                    <!-- bullet navigator item prototype -->
+                    <div data-u="prototype" style="width:16px;height:16px;"></div>
+                </div>
+                <!-- Arrow Navigator -->
+                <span data-u="arrowleft" class="jssora22l" style="top:0px;left:12px;width:40px;height:58px;" data-autocenter="2"></span>
+                <span data-u="arrowright" class="jssora22r" style="top:0px;right:12px;width:40px;height:58px;" data-autocenter="2"></span>
+                <a href="http://www.jssor.com" style="display:none">Bootstrap Carousel</a>
+            </div>
+
+            <!--Slider End-->
+        </div>
+
+        <section id="content">
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="icon-box style-side-2 animated box fadeInUp" data-animation-type="fadeInUp" data-animation-delay="0" style="animation-duration: 1s; visibility: visible;">
+                                <i class="fa fa-check"></i>
+                                <div class="box-content">
+                                    <h4 class="box-title"><a href="index.html#">Genuine Personality</a></h4>
+                                    <p>Miracle is totally hand crafted and premium wordpress theme with great, distintive and genuine personality.</p>
+                                    <a href="index.html#" class="btn btn-sm style4 hover-blue">More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="icon-box style-side-2 animated box fadeInUp" data-animation-type="fadeInUp" data-animation-delay="0.5" style="animation-duration: 1s; animation-delay: 0.5s; visibility: visible;">
+                                <i class="fa fa-eye"></i>
+                                <div class="box-content">
+                                    <h4 class="box-title"><a href="index.html#">Strong Visual Impact</a></h4>
+                                    <p>A strong visual impact is something every website needs in order to reach audiances in a better way and Miracle does it all.</p>
+                                    <a href="index.html#" class="btn btn-sm style4 hover-blue">More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="icon-box style-side-2 animated box fadeInUp" data-animation-type="fadeInUp" data-animation-delay="1" style="animation-duration: 1s; animation-delay: 1s; visibility: visible;">
+                                <i class="fa fa-tint"></i>
+                                <div class="box-content">
+                                    <h4 class="box-title"><a href="index.html#">Limitless Possibilities</a></h4>
+                                    <p>With huge collection of pre-defined layouts and supporting assets to create a breath taking new marvel of your own.</p>
+                                    <a href="index.html#" class="btn btn-sm style4 hover-blue">More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="post-wrapper">
+                <div class="owl-carousel post-slider style6" data-items="4" data-itemsperdisplaywidth="[[0, 1], [480, 1], [768, 2], [992, 3], [1200, 4]]">
+                    <article class="post">
+                        <figure><img alt="" src="images/21.jpg"></figure>
+                        <div class="portfolio-hover-holder">
+                            <div class="portfolio-text">
+                                <div class="portfolio-text-inner">
+                                    <h5 class="portfolio-title">Fullwidth Slideshow</h5> - <span class="portfolio-category">Fashion</span>
+                                </div>
+                            </div>
+                                <span class="portfolio-action">
+                                    <a href="images/21.jpg" class="soap-mfp-popup"><i class="fa fa-eye has-circle"></i></a>
+                                    <a href="#"><i class="fa fa-chain has-circle"></i></a>
+                                </span>
+                        </div>
+                    </article>
+                    <article class="post">
+                        <figure><img alt="" src="images/22.jpg"></figure>
+                        <div class="portfolio-hover-holder">
+                            <div class="portfolio-text">
+                                <div class="portfolio-text-inner">
+                                    <h5 class="portfolio-title">Fullwidth Slideshow</h5> - <span class="portfolio-category">Fashion</span>
+                                </div>
+                            </div>
+                                <span class="portfolio-action">
+                                    <a href="images/22.jpg" class="soap-mfp-popup"><i class="fa fa-eye has-circle"></i></a>
+                                    <a href="#"><i class="fa fa-chain has-circle"></i></a>
+                                </span>
+                        </div>
+                    </article>
+                    <article class="post">
+                        <figure><img alt="" src="images/25.jpg"></figure>
+                        <div class="portfolio-hover-holder">
+                            <div class="portfolio-text">
+                                <div class="portfolio-text-inner">
+                                    <h5 class="portfolio-title">Fullwidth Slideshow</h5> - <span class="portfolio-category">Fashion</span>
+                                </div>
+                            </div>
+                                <span class="portfolio-action">
+                                    <a href="images/25.jpg" class="soap-mfp-popup"><i class="fa fa-eye has-circle"></i></a>
+                                    <a href="#"><i class="fa fa-chain has-circle"></i></a>
+                                </span>
+                        </div>
+                    </article>
+                    <article class="post">
+                        <figure><img alt="" src="images/20.jpg"></figure>
+                        <div class="portfolio-hover-holder">
+                            <div class="portfolio-text">
+                                <div class="portfolio-text-inner">
+                                    <h5 class="portfolio-title">Fullwidth Slideshow</h5> - <span class="portfolio-category">Fashion</span>
+                                </div>
+                            </div>
+                                <span class="portfolio-action">
+                                    <a href="images/20.jpg" class="soap-mfp-popup"><i class="fa fa-eye has-circle"></i></a>
+                                    <a href="#"><i class="fa fa-chain has-circle"></i></a>
+                                </span>
+                        </div>
+                    </article>
+                    <article class="post">
+                        <figure><img alt="" src="images/24.jpg"></figure>
+                        <div class="portfolio-hover-holder">
+                            <div class="portfolio-text">
+                                <div class="portfolio-text-inner">
+                                    <h5 class="portfolio-title">Fullwidth Slideshow</h5> - <span class="portfolio-category">Fashion</span>
+                                </div>
+                            </div>
+                                <span class="portfolio-action">
+                                    <a href="images/24.jpg" class="soap-mfp-popup"><i class="fa fa-eye has-circle"></i></a>
+                                    <a href="#"><i class="fa fa-chain has-circle"></i></a>
+                                </span>
+                        </div>
+                    </article>
+                    <article class="post">
+                        <figure><img alt="" src="images/22.jpg"></figure>
+                        <div class="portfolio-hover-holder">
+                            <div class="portfolio-text">
+                                <div class="portfolio-text-inner">
+                                    <h5 class="portfolio-title">Fullwidth Slideshow</h5> - <span class="portfolio-category">Fashion</span>
+                                </div>
+                            </div>
+                                <span class="portfolio-action">
+                                    <a href="images/21.jpg" class="soap-mfp-popup"><i class="fa fa-eye has-circle"></i></a>
+                                    <a href="#"><i class="fa fa-chain has-circle"></i></a>
+                                </span>
+                        </div>
+                    </article>
+                </div>
+                <div class="title-section">
+                    <div class="title-section-wrapper">
+                        <div class="container">
+                            <p>Amazing Work Showcase</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section trend-section">
+                <div class="container text-center">
+                    <div class="image-container trend-image">
+                        <img src="images/man.png" alt="" class="">
+                    </div>
+                    <div class="heading-box col-md-10 col-lg-8">
+                        <h2 class="box-title">Web design trends changed our the past year</h2>
+                        <br>
+                        <p> Many of the web design trends which you saw last year are disappearing because it’s been researched that flat designs with more human centered design approach are in trend and will stay for a longer period of time.</p>
+                    </div>
+                    <div class="box">&nbsp;</div>
+                    <div class="progress-bar-container style-vertical">
+                        <div class="progress-bar-wrapper">
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>99%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="99" style="height: 99%;"><span class="progress-label"><span>Responsive designs</span></span></span></div>
+                            </div>
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>98%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="98" style="height: 98%;"><span class="progress-label"><span>human centered</span></span></span></div>
+                            </div>
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>41%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="41" style="height: 41%;"><span class="progress-label"><span>gredients</span></span></span></div>
+                            </div>
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>81%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="81" style="height: 81%;"><span class="progress-label"><span>woocommerce</span></span></span></div>
+                            </div>
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>58%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="58" style="height: 58%;"><span class="progress-label"><span>jquery</span></span></span></div>
+                            </div>
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>79%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="79" style="height: 79%;"><span class="progress-label"><span>one page</span></span></span></div>
+                            </div>
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>95%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="95" style="height: 95%;"><span class="progress-label"><span>mobile apps</span></span></span></div>
+                            </div>
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>59%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="59" style="height: 59%;"><span class="progress-label"><span>portfolio</span></span></span></div>
+                            </div>
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>90%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="90" style="height: 90%;"><span class="progress-label"><span>Retina graphics</span></span></span></div>
+                            </div>
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>63%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="63" style="height: 63%;"><span class="progress-label"><span>user interface</span></span></span></div>
+                            </div>
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>81%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="81" style="height: 81%;"><span class="progress-label"><span>wordpress</span></span></span></div>
+                            </div>
+                            <div class="progress-bar animate-progress style-colored">
+                                <span class="progress-percent"><span>99%</span></span>
+                                <div class="progress"><span class="progress-inner" data-percent="99" style="height: 99%;"><span class="progress-label"><span>Flat designs</span></span></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="container">
+                    <div class="heading-box">
+                        <h2 class="box-title">Latest News From Our Blog</h2>
+                        <p class="desc-lg">What all the fuzz is about?</p>
+                    </div>
+                    <div class="row blog-posts">
+                        <div class="col-sm-4">
+                            <article class="post post-masonry">
+                                <div class="post-image">
+                                    <div class="image">
+                                        <img src="images/21(1).jpg" alt="">
+                                        <div class="image-extras">
+                                            <a href="index.html#" class="post-gallery"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <div class="post-author">
+                                        <a href="index.html#"><img src="images/medium1.jpg" alt=""></a>
+                                    </div>
+                                    <div class="post-meta">
+                                        <span class="entry-author fn">By <a href="index.html#">Admin</a></span>
+                                        <span class="entry-time"><span class="published">12 Nov, 2014</span></span>
+                                        <span class="post-category">in <a href="index.html#">Web Design</a></span>
+                                    </div>
+                                    <h3 class="entry-title"><a href="index.html#">Sed faucibus tristique placerat</a></h3>
+                                    <p>Aliquam hendrerit a augue insuscipit. Pellentesque id erat quis sapienissim sollicitudin. Nulla mattis rsitmet dolor sollicitudin aliquam.</p>
+                                </div>
+                                <div class="post-action">
+                                    <a href="index.html#" class="btn btn-sm style3 post-comment"><i class="fa fa-comment"></i>25</a>
+                                    <a href="index.html#" class="btn btn-sm style3 post-like"><i class="fa fa-heart"></i>480</a>
+                                    <a href="index.html#" class="btn btn-sm style3 post-share"><i class="fa fa-share"></i>Share</a>
+                                    <a href="index.html#" class="btn btn-sm style3 post-read-more">More</a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-sm-4">
+                            <article class="post post-masonry">
+                                <div class="post-image">
+                                    <div class="image">
+                                        <img src="images/22(1).jpg" alt="">
+                                        <div class="image-extras">
+                                            <a href="index.html#" class="post-gallery"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-content">
+                                    <div class="post-author">
+                                        <a href="index.html#"><img src="images/medium2.jpg" alt=""></a>
+                                    </div>
+                                    <div class="post-meta">
+                                        <span class="entry-author fn">By <a href="index.html#">Admin</a></span>
+                                        <span class="entry-time"><span class="published">12 Nov, 2014</span></span>
+                                        <span class="post-category">in <a href="index.html#">Web Design</a></span>
+                                    </div>
+                                    <h3 class="entry-title"><a href="index.html#">Enean tempor tincidunt odio</a></h3>
+                                    <p>Aliquam hendrerit a augue insuscipit. Pellentesque id erat quis sapienissim sollicitudin. Nulla mattis rsitmet dolor sollicitudin aliquam.</p>
+                                </div>
+                                <div class="post-action">
+                                    <a href="index.html#" class="btn btn-sm style3 post-comment"><i class="fa fa-comment"></i>25</a>
+                                    <a href="index.html#" class="btn btn-sm style3 post-like"><i class="fa fa-heart"></i>480</a>
+                                    <a href="index.html#" class="btn btn-sm style3 post-share"><i class="fa fa-share"></i>Share</a>
+                                    <a href="index.html#" class="btn btn-sm style3 post-read-more">More</a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-sm-4">
+                            <article class="post post-masonry">
+                                <div class="post-slider style3 owl-carousel">
+                                    <img src="images/25(1).jpg" alt="">
+                                    <img src="images/5.jpg" alt="">
+                                    <img src="images/7.jpg" alt="">
+                                </div>
+                                <div class="post-content">
+                                    <div class="post-author">
+                                        <a href="index.html#"><img alt="" src="images/medium2.jpg"></a>
+                                    </div>
+                                    <div class="post-meta">
+                                        <span class="entry-author fn">By <a href="index.html#">Admin</a></span>
+                                        <span class="entry-time"><span class="published">12 Nov, 2014</span></span>
+                                        <span class="post-category">in <a href="index.html#">Web Design</a></span>
+                                    </div>
+                                    <h3 class="entry-title"><a href="index.html#">Dolor tempor diamos</a></h3>
+                                    <p>Aliquam hendrerit a augue insuscipit. Pellentesque id erat quis sapienissim sollicitudin. Nulla mattis rsitmet dolor sollicitudin aliquam.</p>
+                                </div>
+                                <div class="post-action">
+                                    <a class="btn btn-sm style3 post-comment" href="index.html#"><i class="fa fa-comment"></i>25</a>
+                                    <a class="btn btn-sm style3 post-like" href="index.html#"><i class="fa fa-heart"></i>480</a>
+                                    <a class="btn btn-sm style3 post-share" href="index.html#"><i class="fa fa-share"></i>Share</a>
+                                    <a class="btn btn-sm style3 post-read-more" href="index.html#">More</a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="parallax colors-section parallax-image1" data-stellar-background-ratio="0.5" style="background-position: 50% 518.5px;">
+                <div class="section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-5 col-md-4 animated fadeInLeft" data-animation-type="fadeInLeft" style="animation-duration: 1s; visibility: visible;">
+                                <span class="logo-icon"><span class="logo-icon-inner"><img src="images/blank.png" alt=""></span></span>
+                            </div>
+                            <div class="col-sm-7 pull-right animated fadeInRight" data-animation-type="fadeInRight" style="animation-duration: 1s; visibility: visible;">
+                                <div class="heading-box">
+                                    <h2 class="box-title color-white">Miracle Comes with Unlimited Colorschemes</h2>
+                                    <p>Proin et convallis nulla. In lacus velit, venenatis at volutpat congue, sollicitudin ut lorem. Pellentesque blandit libero ac eleifend tempor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris lectus felis congue ut convallis ac, tempor sit amet urna. </p>
+                                </div>
+                                <div class="colors-container">
+                                    <a href="index.html#" class="skin-color-navy"><span></span></a>
+                                    <a href="index.html#" class="skin-color-red"><span></span></a>
+                                    <a href="index.html#" class="skin-color-sea"><span></span></a>
+                                    <a href="index.html#" class="skin-color-purple"><span></span></a>
+                                    <a href="index.html#" class="skin-color-blue"><span></span></a>
+                                    <a href="index.html#" class="skin-color-green"><span></span></a>
+                                    <a href="index.html#" class="skin-color-gold"><span></span></a>
+                                    <a href="index.html#" class="skin-color-gray"><span></span></a>
+                                </div>
+                                <div class="">
+                                    <a class="btn style4" href="index.html#">know more</a>
+                                    <a class="btn style4" href="index.html#">purchase</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="callout-box style3">
+                <div class="container">
+                    <div class="callout-content">
+                        <div class="callout-text">
+                            <h2>Miracle will make you fall in love again!</h2>
+                        </div>
+                        <div class="callout-action">
+                            <a class="btn style3" href="index.html#">Purchase Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="parallax has-caption parallax-image4" data-stellar-background-ratio="0.5" style="background-position: 50% 853.5px;">
+                <div class="caption-wrapper">
+                    <h2 class="caption animated size-lg fadeInLeft" data-animation-type="fadeInLeft" data-animation-duration="2" data-animation-delay="0" style="animation-duration: 2s; visibility: visible;">Whatever You Do Give Your Best!</h2>
+                    <br>
+                    <h3 class="caption animated size-md fadeInLeft" data-animation-type="fadeInLeft" data-animation-duration="2" data-animation-delay="1" style="animation-duration: 2s; animation-delay: 1s; visibility: visible;">welcome to parallax scrolling</h3>
+                </div>
+            </div>
+            <div class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="icon-box style-side-1 box animated fadeInUp" data-animation-type="fadeInUp" data-animation-delay="0" style="animation-duration: 1s; visibility: visible;">
+                                <i class="fa fa-eye"></i>
+                                <div class="box-content">
+                                    <h4 class="box-title"><a href="index.html#">Retina Ready</a></h4>
+                                    <p>Class aptent taciti sociosqu ad litora torqent conubia nostra, per inceptos himenaeos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="icon-box style-side-1 box animated fadeInUp" data-animation-type="fadeInUp" data-animation-delay="0.25" style="animation-duration: 1s; animation-delay: 0.25s; visibility: visible;">
+                                <i class="fa fa-laptop"></i>
+                                <div class="box-content">
+                                    <h4 class="box-title"><a href="index.html#">Multi-Purpose</a></h4>
+                                    <p>Class aptent taciti sociosqu ad litora torqent conubia nostra, per inceptos himenaeos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="icon-box style-side-1 box animated fadeInUp" data-animation-type="fadeInUp" data-animation-delay="0.5" style="animation-duration: 1s; animation-delay: 0.5s; visibility: visible;">
+                                <i class="fa fa-shopping-cart"></i>
+                                <div class="box-content">
+                                    <h4 class="box-title"><a href="index.html#">WooCommerce Ready</a></h4>
+                                    <p>Class aptent taciti sociosqu ad litora torqent conubia nostra, per inceptos himenaeos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="icon-box style-side-1 box animated fadeInUp" data-animation-type="fadeInUp" data-animation-delay="0.75" style="animation-duration: 1s; animation-delay: 0.75s; visibility: visible;">
+                                <i class="fa fa-umbrella"></i>
+                                <div class="box-content">
+                                    <h4 class="box-title"><a href="index.html#">Awesome Support</a></h4>
+                                    <p>Class aptent taciti sociosqu ad litora torqent conubia nostra, per inceptos himenaeos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="icon-box style-side-1 box animated fadeInUp" data-animation-type="fadeInUp" data-animation-delay="1" style="animation-duration: 1s; animation-delay: 1s; visibility: visible;">
+                                <i class="fa fa-thumbs-o-up"></i>
+                                <div class="box-content">
+                                    <h4 class="box-title"><a href="index.html#">Modern Design</a></h4>
+                                    <p>Class aptent taciti sociosqu ad litora torqent conubia nostra, per inceptos himenaeos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="icon-box style-side-1 box animated fadeInUp" data-animation-type="fadeInUp" data-animation-delay="1.25" style="animation-duration: 1s; animation-delay: 1.25s; visibility: visible;">
+                                <i class="fa fa-star"></i>
+                                <div class="box-content">
+                                    <h4 class="box-title"><a href="index.html#">Weekly Updates</a></h4>
+                                    <p>Class aptent taciti sociosqu ad litora torqent conubia nostra, per inceptos himenaeos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="responsive-section">
+                <div data-stellar-background-ratio="0.5" class="callout-box style1 parallax parallax-image1" style="background-position: 50% 1287.5px;">
+                    <div class="callout-box-wrapper no-bg">
+                        <div class="container">
+                            <div class="row same-height">
+                                <div class="col-md-6 callout-content-container animated fadeInLeft" data-animation-type="fadeInLeft" style="animation-duration: 1s; visibility: visible;">
+                                    <div class="callout-content">
+                                        <div class="heading-box">
+                                            <h2 class="box-title color-white">Miracle is Responsive Wordpress Theme</h2>
+                                            <p>Mircale is a Hand Crafted Pexil Perfect - Responsive - Multi-Purpose &amp; Retina Ready Premium Wordpress Theme which sets new standards for the web design in 2014.</p>
+                                            <p>Each and every aspect / part of the theme has been designed for Retina Ready and Pixel Perfect graphics / display so you  get extremely clear visibility even on different mobile devices which makes Miracle a truly responsive theme.</p>
+                                        </div>
+                                        <div class="responsive-button">
+                                            <a href="index.html#" class="btn-tablet-view"><i class="fa fa-tablet"></i>Tablet View</a><a href="index.html#" class="btn-mobile-view active"><i class="fa fa-mobile"></i>Mobile View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 animated fadeInRight" data-animation-type="fadeInRight" style="animation-duration: 1s; visibility: visible;">
+                                    <div class="callout-image-container">
+                                        <div class="callout-image hide-children">
+                                            <img class="responsive-tablet" alt="" src="images/ipad(2).png">
+                                            <img class="responsive-mobile active" alt="" src="images/iphone(2).png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="container">
+                    <div class="heading-box">
+                        <h2 class="box-title">What Customers Are Saying?</h2>
+                        <p class="desc-lg">Hand picked customer feedbacks</p>
+                    </div>
+                    <div class="testimonials style1 owl-carousel box-lg" data-transitionstyle="fade">
+                        <div class="testimonial style1">
+                            <div class="testimonial-image">
+                                <img src="images/1.jpg" alt="">
+                            </div>
+                            <div class="testimonial-content fontsize-lg">
+                                So clean and to the point, love it!
+                            </div>
+                            <div class="testimonial-author">
+                                <span class="testimonial-author-name">John Doe</span> - <span class="testimonial-author-job">CEO</span>
+                            </div>
+                        </div>
+                        <div class="testimonial style1">
+                            <div class="testimonial-image">
+                                <img src="images/2.jpg" alt="">
+                            </div>
+                            <div class="testimonial-content fontsize-lg">
+                                These guys surprise me everytime!
+                            </div>
+                            <div class="testimonial-author">
+                                <span class="testimonial-author-name">Jessica Martin</span> - <span class="testimonial-author-job">CEO</span>
+                            </div>
+                        </div>
+                        <div class="testimonial style1 box-lg">
+                            <div class="testimonial-image">
+                                <img src="images/3.jpg" alt="">
+                            </div>
+                            <div class="testimonial-content fontsize-lg">
+                                Incredibly awesome &amp; clean interface!
+                            </div>
+                            <div class="testimonial-author">
+                                <span class="testimonial-author-name">John Doe</span> - <span class="testimonial-author-job">CEO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="footer" class="style4">
+            <div class="callout-box style2">
+                <div class="container">
+                    <div class="callout-content">
+                        <div class="callout-text">
+                            <h4>Miracle is premium hand-crafted, pixel perfect and responsive wordpress theme</h4>
+                        </div>
+                        <div class="callout-action">
+                            <a href="index.html#" class="btn style4">Purchase</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-wrapper">
+                <div class="container">
+                    <div class="row add-clearfix same-height">
+                        <div class="col-sm-6 col-md-3">
+                            <h5 class="section-title box">Recent Posts</h5>
+                            <ul class="recent-posts">
+                                <li>
+                                    <a href="index.html#" class="post-author-avatar"><span><img src="images/small1.jpg" alt=""></span></a>
+                                    <div class="post-content">
+                                        <a href="index.html#" class="post-title">Website design trends for 2014</a>
+                                        <p class="post-meta">By <a href="index.html#">Admin</a>  .  12 Nov, 2014</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="index.html#" class="post-author-avatar"><span><img src="images/small2.jpg" alt=""></span></a>
+                                    <div class="post-content">
+                                        <a href="index.html#" class="post-title">UI experts and modern designs</a>
+                                        <p class="post-meta">By <a href="index.html#">Admin</a>  .  12 Nov, 2014</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="index.html#" class="post-author-avatar"><span><img src="images/small3.jpg" alt=""></span></a>
+                                    <div class="post-content">
+                                        <a href="index.html#" class="post-title">Mircale is available in wordpress</a>
+                                        <p class="post-meta">By <a href="index.html#">Admin</a>  .  12 Nov, 2014</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <h5 class="section-title box">Popular Tags</h5>
+                            <div class="tags">
+                                <a href="index.html#" class="tag">masonry</a>
+                                <a href="index.html#" class="tag">responsive</a>
+                                <a href="index.html#" class="tag">Ecommerce</a>
+                                <a href="index.html#" class="tag">web design</a>
+                                <a href="index.html#" class="tag">wordpres</a>
+                                <a href="index.html#" class="tag">mobile</a>
+                                <a href="index.html#" class="tag">retina</a>
+                                <a href="index.html#" class="tag">multi-purpose</a>
+                                <a href="index.html#" class="tag">blog posts</a>
+                                <a href="index.html#" class="tag">new sliders</a>
+                                <a href="index.html#" class="tag">popular</a>
+                                <a href="index.html#" class="tag">recent</a>
+                                <a href="index.html#" class="tag">modern</a>
+                                <a href="index.html#" class="tag">themeforest</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <h5 class="section-title box">Useful Links</h5>
+                            <ul class="arrow useful-links">
+                                <li><a href="index.html#">About SoapTheme</a></li>
+                                <li><a href="index.html#">Video Overview</a></li>
+                                <li><a href="index.html#">Customer Support</a></li>
+                                <li><a href="index.html#">Theme Features</a></li>
+                                <li><a href="index.html#">Breaking News</a></li>
+                                <li><a href="index.html#">Upcoming Updates</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <h5 class="section-title box">About Miracle</h5>
+                            <p>Mircale is a Hand Crafted Pexil Perfect - Responsive - Multi-Purpose &amp; Retina Ready Premium Wordpress Theme which sets new standards for the web design in 2014.</p>
+                            <div class="social-icons">
+                                <a href="index.html#" class="social-icon"><i class="fa fa-twitter has-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter"></i></a>
+                                <a href="index.html#" class="social-icon"><i class="fa fa-facebook has-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"></i></a>
+                                <a href="index.html#" class="social-icon"><i class="fa fa-google-plus has-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="GooglePlus"></i></a>
+                                <a href="index.html#" class="social-icon"><i class="fa fa-linkedin has-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="LinkedIn"></i></a>
+                                <a href="index.html#" class="social-icon"><i class="fa fa-skype has-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype"></i></a>
+                                <a href="index.html#" class="social-icon"><i class="fa fa-dribbble has-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble"></i></a>
+                                <a href="index.html#" class="social-icon"><i class="fa fa-tumblr has-circle" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tumblr"></i></a>
+                            </div>
+                            <a href="index.html#" class="btn btn-sm style4">Contact Us</a>
+                            <a href="index.html#" class="btn btn-sm style4">Purchase</a>
+                            <a href="index.html#" class="back-to-top"><span></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom-area">
+                <div class="container">
+                    <div class="copyright-area">
+                        <nav class="secondary-menu">
+                            <ul class="nav nav-pills">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="index.html#">Pages</a></li>
+                                <li><a href="index.html#">Shortcodes</a></li>
+                                <li><a href="index.html#">Portfolio</a></li>
+                                <li><a href="index.html#">Blog</a></li>
+                                <li><a href="index.html#">Contact</a></li>
+                                <li><a href="index.html#">Shop</a></li>
+                            </ul>
+                        </nav>
+                        <div class="copyright">
+                            © 2014 Miracle <em>by</em> <a href="http://www.soaptheme.net/">SoapTheme</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="style-changer" class="style-changer style-dark visible-md visible-lg">
+        <div class="style-toggle action-open"><span></span></div>
+        <form class="style-changer-form">
+            <h3 class="style-changer-title">Customize Miracle</h3>
+            <div class="form-group menu-style">
+                <label>Menu style</label>
+                <select class="selector default-style full-width hasCustomSelect" style="-webkit-appearance: menulist-button; position: absolute; opacity: 0; height: 28px; width: 210px; font-size: 12px;">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="colored">Colored</option>
+                </select><span class="customSelect selector default-style full-width" style="display: inline-block;"><span class="customSelectInner" style="width: 173px; display: inline-block;">Light</span></span>
+            </div>
+            <div class="form-group footer-style">
+                <label>Footer style</label>
+                <select class="selector default-style full-width hasCustomSelect" style="-webkit-appearance: menulist-button; position: absolute; opacity: 0; height: 28px; width: 210px; font-size: 12px;">
+                    <option value="style1">Style 1</option>
+                    <option value="style2">Style 2</option>
+                    <option value="style3">Style 3</option>
+                    <option value="style4" selected="selected">Style 4</option>
+                </select><span class="customSelect selector default-style full-width" style="display: inline-block;"><span class="customSelectInner" style="width: 173px; display: inline-block;">Style 4</span></span>
+            </div>
+            <div class="form-group theme-skin">
+                <label>Theme skins</label>
+                <a href="index.html#" class="skin-color-orange active" data-skin="orange">orange</a>
+                <a href="index.html#" class="skin-color-green" data-skin="green">green</a>
+                <a href="index.html#" class="skin-color-purple" data-skin="purple">purple</a>
+                <a href="index.html#" class="skin-color-blue" data-skin="blue">blue</a>
+                <a href="index.html#" class="skin-color-yellow" data-skin="yellow">yellow</a>
+                <a href="index.html#" class="skin-color-gray" data-skin="gray">gray</a>
+                <a href="index.html#" class="skin-color-navy" data-skin="navy">navy</a>
+                <a href="index.html#" class="skin-color-sea" data-skin="sea">sea</a>
+                <a href="index.html#" class="skin-color-red" data-skin="red">red</a>
+                <a href="index.html#" class="skin-color-gold" data-skin="gold">gold</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.noconflict.js"></script>
+    <script type="text/javascript" src="js/modernizr.2.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.1.11.2.min.js"></script>
+
+    <!-- Twitter Bootstrap -->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <!-- Magnific Popup core JS file -->
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+
+    <!-- parallax -->
+    <script type="text/javascript" src="js/jquery.stellar.min.js"></script>
+
+    <!-- waypoint -->
+    <script type="text/javascript" src="js/waypoints.min.js"></script>
+
+    <!-- Owl Carousel -->
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+
+    <!-- load revolution slider scripts -->
+    <script type="text/javascript" src="js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
+
+    <!-- plugins -->
+    <script type="text/javascript" src="js/jquery.plugins.js"></script>
+
+    <!-- load page Javascript -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+    <script type="text/javascript" src="js/revolution-slider.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+/* LayerSlider Styles */
+
+
+
+.ls-inner {
+	position: relative;
+}
+
+.ls-inner,
+.ls-layer {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.ls-layer {
+	position: absolute;
+	display: none;
+	background-position: center center;
+}
+
+.ls-active,
+.ls-animating {
+	display: block !important;
+}
+
+.ls-layer > * {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.ls-layer .ls-bg {
+	left: 50%;
+	top: 50%;
+}
+
+
+
+.ls-vpcontainer {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.ls-videopreview {
+	width : 100%;
+	height : 100%;
+	position : absolute;
+	left : 0px;
+	top : 0px;
+	cursor : pointer;
+}
+
+.ls-playvideo {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	cursor: pointer;
+}
+
+
+
+/* WP plugin forceResponsive */
+
+.ls-wp-forceresponsive-container {
+	width: 100%;
+	position: relative;
+}
+
+.ls-wp-forceresponsive-helper {
+	position: absolute;
+	margin-left: 50%;
+}
+
+#main {
+	overflow: visible !important;	
+}
+
+
+
+.ls-bottom-nav-wrapper {
+	z-index: 2;
+	height: 0px;
+}
+
+.ls-nav-prev,
+.ls-nav-next {
+	display: block;
+	width: 43px;
+	height: 43px;
+	position: absolute;
+	top: 44%;
+	text-decoration: none;
+	z-index: 5;
+	background-repeat: no-repeat;
+	background-color: rgba(0,0,0,.5);
+}
+
+.ls-nav-next {
+	background-image: url(../../images/slider-right-arrow.png);
+	right: 0px;
+	background-position: 17px 10px;
+}
+
+.ls-nav-prev {
+	background-image: url(../../images/slider-left-arrow.png);
+	left: 0px;
+	background-position: 13px 10px;
+}

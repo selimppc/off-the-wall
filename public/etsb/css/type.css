@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Dosis";
+    src: local("Dosis Regular"),
+    /*url("font/Dosis-ExtraLight.ttf") format("truetype"),*/
+    url("font/Dosis-Light.ttf")     format("truetype"),
+   url("font/Dosis-Light.otf")     format("otf");
+    font-weight: normal; font-style: normal; }
+
+
+body { font-family: "Dosis Regular"; }
+h1 { font-weight: bold; font-family: "Dosis Bold"; }
