@@ -29,9 +29,19 @@ Route::any('canvas-print',[
 		'uses' => 'PhotoFrameController@canvas_print'
 	]);
 
+Route::any('only-printing',[
+		'as' => 'only-printing',
+		'uses' => 'PhotoFrameController@only_printing'
+	]);
+
 Route::post('add-to-cart-canvas-print',[
 		'as' => 'add-to-cart-canvas-print',
 		'uses' => 'PhotoFrameController@canvas_print_add_to_cart'
+	]);
+
+Route::post('add-to-cart-only-print',[
+		'as' => 'add-to-cart-only-print',
+		'uses' => 'PhotoFrameController@only_printing_add_to_cart'
 	]);
 
 Route::any('plain-mirror-add-to-cart',[

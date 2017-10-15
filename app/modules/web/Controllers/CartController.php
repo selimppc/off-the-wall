@@ -25,6 +25,8 @@ echo $mac;
 
         $canvas_print = DB::table('frame_session_data')->where('mac_address',$mac)->where('type','canvas_print')->orderBy('id','desc')->first();
 
+        $only_printing = DB::table('frame_session_data')->where('mac_address',$mac)->where('type','only_printing')->orderBy('id','desc')->first();
+
         $plain_mirror = DB::table('frame_session_data')->where('mac_address',$mac)->where('type','plain_mirror')->orderBy('id','desc')->first();
 
         if(count($canvas_print) > 0){
@@ -50,6 +52,32 @@ echo $mac;
         }else{
             $photo_frame_canvas_print_cart = $request->session()->get('photo_frame_canvas_print_cart');
         }
+
+
+
+        if(count($only_printing) > 0){
+
+            $canvas_array = array(
+                'type' => $only_printing->type,
+                'width' => $only_printing->width,
+                'height' => $only_printing->height,
+                'edge_type' => $only_printing->edge_type,
+                'total_price' => $only_printing->total_price
+            );
+
+            // Set Session
+            $request->session()->set('photo_frame_only_printing_cart', $canvas_array);
+
+            $photo_frame_only_printing_cart = $request->session()->get('photo_frame_only_printing_cart');
+
+            // Delete Data
+            DB::table('frame_session_data')->where('mac_address', $mac)->where('type','only_printing')->delete(); 
+          
+
+        }else{
+            $photo_frame_only_printing_cart = $request->session()->get('photo_frame_only_printing_cart');
+        }
+
 
 
         if (count($plain_mirror) > 0) {
@@ -95,7 +123,8 @@ echo $mac;
                 'product_cart_r' => $product_cart,
                 'photo_frame_cart' => $photo_frame_cart,
                 'photo_frame_canvas_print_cart' => $photo_frame_canvas_print_cart,
-                'photo_frame_plain_mirror_cart' => $photo_frame_plain_mirror_cart
+                'photo_frame_plain_mirror_cart' => $photo_frame_plain_mirror_cart,
+                'photo_frame_only_printing_cart' => $photo_frame_only_printing_cart
             ]);
 	}
 }

@@ -17,7 +17,14 @@ use Illuminate\Support\Facades\DB;
 
 class PhotoFrameController extends Controller{
 
-	public function photo_frame(){
+	public function photo_frame(Request $request){
+
+		// Remove Session
+        $request->session()->forget('product_cart');
+        $request->session()->forget('photo_frame_cart');
+        $request->session()->forget('photo_frame_plain_mirror_cart');
+        $request->session()->forget('photo_frame_canvas_print_cart');
+        $request->session()->forget('photo_frame_only_printing_cart');
 
 		$title = "Photo Frame";
 
@@ -120,7 +127,33 @@ class PhotoFrameController extends Controller{
 
 	}
 
-	public function canvas_print(){
+	public function only_printing_add_to_cart(Request $request){
+
+			
+		
+			$string=exec('getmac');
+			$mac=substr($string, 0, 17);
+
+			DB::table('frame_session_data')->insert([
+				'type' => 'only_printing',
+				'width' =>  $_POST['w'],
+				'height' =>  $_POST['h'],
+				'edge_type' =>  $_POST['tr'],
+				'total_price' =>  $_POST['tp'],
+				'mac_address' => $mac
+			]);
+
+
+	}
+
+	public function canvas_print(Request $request){
+
+		// Remove Session
+        $request->session()->forget('product_cart');
+        $request->session()->forget('photo_frame_cart');
+        $request->session()->forget('photo_frame_plain_mirror_cart');
+        $request->session()->forget('photo_frame_canvas_print_cart');
+        $request->session()->forget('photo_frame_only_printing_cart');
 
 		$title = 'Canvas Print';
 		$discounts_value = CentralSettings::where('id','2')->first();
@@ -133,7 +166,34 @@ class PhotoFrameController extends Controller{
             ]); 
 	}
 
-	public function plain_mirror(){
+	public function only_printing(Request $request){
+
+		// Remove Session
+        $request->session()->forget('product_cart');
+        $request->session()->forget('photo_frame_cart');
+        $request->session()->forget('photo_frame_plain_mirror_cart');
+        $request->session()->forget('photo_frame_canvas_print_cart');
+        $request->session()->forget('photo_frame_only_printing_cart');
+
+		$title = 'Canvas Print';
+		$discounts_value = CentralSettings::where('id','2')->first();
+		$canvas_edge_r = CanvasEdge::where('status','active')->orderBy('sort_order','asc')->get();
+
+		return view('web::photo_frame.only_printing.main',[
+                'title' => $title,
+                'discounts_value' => $discounts_value,
+                'canvas_edge_r' => $canvas_edge_r
+            ]); 
+	}
+
+	public function plain_mirror(Request $request){
+
+		// Remove Session
+        $request->session()->forget('product_cart');
+        $request->session()->forget('photo_frame_cart');
+        $request->session()->forget('photo_frame_plain_mirror_cart');
+        $request->session()->forget('photo_frame_canvas_print_cart');
+        $request->session()->forget('photo_frame_only_printing_cart');
 
 		$title = 'Plain Mirror';
 

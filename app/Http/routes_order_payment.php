@@ -40,6 +40,11 @@ Route::any("order_paid/canvas-print", [
     "uses" => "OrderPaymentController@order_paid_canvas_print"
 ]);
 
+Route::any("order_paid/only-print", [
+    "as"   => "order-paid-only-print",
+    "uses" => "OrderPaymentController@order_paid_only_print"
+]);
+
 Route::any("order_paid/plain-mirror", [
     "as"   => "order-paid-plain-mirror",
     "uses" => "OrderPaymentController@order_paid_plain_mirror"
@@ -63,6 +68,11 @@ Route::any("order_paid/show_photo_frame/{id}", [
 Route::any("order_paid/show_canvas_print/{id}", [
     "as"   => "order-paid-show-canvas-print",
     "uses" => "OrderPaymentController@order_show_canvas_print"
+]);
+
+Route::any("order_paid/show_only_print/{id}", [
+    "as"   => "order-paid-show-only-print",
+    "uses" => "OrderPaymentController@order_show_only_print"
 ]);
 
 Route::any("order_paid/show_plain_mirror/{id}", [

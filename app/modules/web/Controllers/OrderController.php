@@ -299,8 +299,13 @@ class OrderController extends Controller
 
         $photo_frame_cart = $request->session()->get('photo_frame_cart');
 
+        // Streatching & Printing
         $photo_frame_canvas_print_cart = $request->session()->get('photo_frame_canvas_print_cart');
 
+        // Only Printing
+        $photo_frame_only_printing_cart = $request->session()->get('photo_frame_only_printing_cart');
+
+        // Plain Mirror
         $photo_frame_plain_mirror_cart = $request->session()->get('photo_frame_plain_mirror_cart');
 
         return view('web::cart.finalcart',[
@@ -310,7 +315,8 @@ class OrderController extends Controller
                 'delivery_data' => $delivery_data,
                 'photo_frame_cart' => $photo_frame_cart,
                 'photo_frame_canvas_print_cart' => $photo_frame_canvas_print_cart,
-                'photo_frame_plain_mirror_cart' => $photo_frame_plain_mirror_cart
+                'photo_frame_plain_mirror_cart' => $photo_frame_plain_mirror_cart,
+                'photo_frame_only_printing_cart' => $photo_frame_only_printing_cart
             ]);
     }
 
@@ -368,10 +374,15 @@ class OrderController extends Controller
     }
 
     public function saveorder(Request $request){
-
+        // main site
         $product_cart_r = $request->session()->get('product_cart');
+        // photo frame
         $photo_frame_cart = $request->session()->get('photo_frame_cart');
+        // canvas print
         $photo_frame_canvas_print_cart = $request->session()->get('photo_frame_canvas_print_cart');
+        // only printing
+        $photo_frame_only_printing_cart = $request->session()->get('photo_frame_only_printing_cart');
+        // plain mirror
         $photo_frame_plain_mirror_cart = $request->session()->get('photo_frame_plain_mirror_cart');
         
         $user_id = $request->session()->get('billing_id');
@@ -400,6 +411,8 @@ class OrderController extends Controller
                 $modal->type = 'frame';
             }elseif(count($photo_frame_canvas_print_cart) > 0 ) {
                 $modal->type = 'canvas_print';
+            }elseif(count($photo_frame_only_printing_cart) > 0 ) {
+                $modal->type = 'only_printing';
             }else{
                 $modal->type = 'plain_mirror';
             }
@@ -455,7 +468,46 @@ class OrderController extends Controller
 
                     $deliver_modal->save();
 
-                }elseif(count($photo_frame_plain_mirror_cart) > 0){
+                }elseif (count($photo_frame_canvas_print_cart) > 0) {
+                    
+                    $details_message = 'Width: '.$photo_frame_canvas_print_cart['width'].'===Height: '.$photo_frame_canvas_print_cart['height'].'===Edge Type: '.$photo_frame_canvas_print_cart['edge_type'].'===Price:'.$photo_frame_canvas_print_cart['total_price'];
+
+                    $deliver_modal = new Orderdetails();
+
+                    $deliver_modal->order_head_id =$modal->id;
+                    $deliver_modal->qty = 1;
+                    $deliver_modal->price = $photo_frame_canvas_print_cart['total_price'];
+                    $deliver_modal->details = $details_message;
+
+                    if(!empty($photo_frame_canvas_print_cart['image'])){
+                        $deliver_modal->image_link = $photo_frame_canvas_print_cart['image'];
+                    }else{
+                        $deliver_modal->image_link = '';
+                    }
+
+                    $deliver_modal->status= 0;
+
+                    $deliver_modal->save();
+
+                }elseif (count($photo_frame_only_printing_cart) > 0) {
+                    
+                    $details_message = 'Width: '.$photo_frame_only_printing_cart['width'].'===Height: '.$photo_frame_only_printing_cart['height'].'===Edge Type: '.$photo_frame_only_printing_cart['edge_type'].'===Price:'.$photo_frame_only_printing_cart['total_price'];
+
+                    $deliver_modal = new Orderdetails();
+
+                    $deliver_modal->order_head_id =$modal->id;
+                    $deliver_modal->qty = 1;
+                    $deliver_modal->price = $photo_frame_only_printing_cart['total_price'];
+                    $deliver_modal->details = $details_message;
+
+
+                    $deliver_modal->status= 0;
+
+                    $deliver_modal->save();
+
+                }
+
+                elseif(count($photo_frame_plain_mirror_cart) > 0){
 
                     $details_message = 'Width: '.$photo_frame_plain_mirror_cart['width'].'===Height: '.$photo_frame_plain_mirror_cart['height'].'===Total Price: '.$photo_frame_plain_mirror_cart['total_price'].'===Product Type: '.$photo_frame_plain_mirror_cart['product_type'].'===Frame Code: '.$photo_frame_plain_mirror_cart['frame_code'].'===Frame Price: '.$photo_frame_plain_mirror_cart['frame_price'].'===Backing Type: '.$photo_frame_plain_mirror_cart['backing_type'].'===Backing Type Price: '.$photo_frame_plain_mirror_cart['backing_type_price'];
 
