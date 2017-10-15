@@ -337,6 +337,47 @@
 					</table>
 
 
+			   <!-- Only Streaching -->		
+
+			   @elseif(!empty($photo_frame_only_stretching_cart))
+
+				<table class="table table-striped cart-table">
+
+					<thead>
+						<tr>
+							<td>Type</td>
+							<td>Width</td>
+							<td>Height</td>
+							<td>Quantity</td>
+							<td class="text-align-right">Frame Price</td>
+							<td class="text-align-right">Total Price</td>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>Canvas Stretching Only</td>
+							<td>
+								{{$photo_frame_only_stretching_cart->width}}
+							</td>
+							<td>
+								{{$photo_frame_only_stretching_cart->height}}
+							</td>
+							<td>
+								1
+							</td>
+							<td class="text-align-right">
+								{{$photo_frame_only_stretching_cart->total_price}}
+							</td>
+							<td class="text-align-right">
+								{{$photo_frame_only_stretching_cart->total_price}}
+							</td>
+						</tr>
+					</tbody>
+					
+				</table>
+
+
 				@elseif(!empty($photo_frame_plain_mirror_cart))
 
 					<table class="table table-striped cart-table">
@@ -427,6 +468,10 @@
 					@elseif(Session::has('photo_frame_only_printing_cart') && count(Session::get('photo_frame_only_printing_cart')) > 0)	
 					
 						<a href="{{URL::to('')}}/order/billingaddress" class="cart-checkout">Checkout</a>	
+
+					@elseif(Session::has('photo_frame_only_stretching_cart') && count(Session::get('photo_frame_only_stretching_cart')) > 0)	
+					
+						<a href="{{URL::to('')}}/order/billingaddress" class="cart-checkout">Checkout</a>		
 
 					@elseif(Session::has('photo_frame_plain_mirror_cart') && count(Session::get('photo_frame_plain_mirror_cart')) > 0)	
 					

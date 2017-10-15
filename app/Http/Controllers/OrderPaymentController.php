@@ -76,6 +76,21 @@ class OrderPaymentController extends Controller{
         return view('order_payment.order_paid_only_print',['pageTitle' => $pageTitle,'data' => $data]);
     }
 
+    public function order_paid_canvas_stretching()
+    {
+
+        $pageTitle = "Order";
+
+        $data = Orderoverhead::with('relCustomer')
+            ->where('status', 'open')
+            ->where('type','stretching')
+            ->orderBy('order_overhead.id','desc')
+            ->get();
+
+
+        return view('order_payment.order_paid_stretching',['pageTitle' => $pageTitle,'data' => $data]);
+    }
+
     public function order_paid_plain_mirror()
     {
 
@@ -194,6 +209,28 @@ class OrderPaymentController extends Controller{
         $title = 'Invoice Detail';
 
         return view('order_payment.order_details_only_print',[
+            'order_data' => $order,
+            'title' => $title,         
+            'order_head_id'=>$order_head_id,
+            'customer_data' => $customer_data,
+            'delivery_data' => $delivery_data
+        ]);
+
+
+    }
+
+
+    public function order_show_stretching($order_head_id){
+
+        $order = Orderoverhead::with('relOrderDetail')->where('id', $order_head_id)->get();
+       
+        $customer_data = Customer::where('id',$order[0]->user_id)->first();
+        
+        $delivery_data = DB::table('deliverydetails')->where('user_id',$order[0]->user_id )->orderBy('id','desc')->first();
+
+        $title = 'Invoice Detail';
+
+        return view('order_payment.order_details_stretching',[
             'order_data' => $order,
             'title' => $title,         
             'order_head_id'=>$order_head_id,

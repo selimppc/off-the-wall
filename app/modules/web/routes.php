@@ -34,6 +34,11 @@ Route::any('only-printing',[
 		'uses' => 'PhotoFrameController@only_printing'
 	]);
 
+Route::any('canvas-stretching',[
+		'as' => 'canvas-stretching',
+		'uses' => 'PhotoFrameController@canvas_stretching'
+	]);
+
 Route::post('add-to-cart-canvas-print',[
 		'as' => 'add-to-cart-canvas-print',
 		'uses' => 'PhotoFrameController@canvas_print_add_to_cart'
@@ -42,6 +47,11 @@ Route::post('add-to-cart-canvas-print',[
 Route::post('add-to-cart-only-print',[
 		'as' => 'add-to-cart-only-print',
 		'uses' => 'PhotoFrameController@only_printing_add_to_cart'
+	]);
+
+Route::post('add-to-cart-only-streaching',[
+		'as' => 'add-to-cart-only-streaching',
+		'uses' => 'PhotoFrameController@only_streaching_add_to_cart'
 	]);
 
 Route::any('plain-mirror-add-to-cart',[

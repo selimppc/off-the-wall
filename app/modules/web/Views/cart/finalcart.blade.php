@@ -325,6 +325,63 @@
 					</table>
 
 
+				<!-- Canvas Stretching Only -->	
+
+				@elseif(!empty($photo_frame_only_stretching_cart))
+				
+					<table class="table table-striped cart-table">
+						<thead>
+							<tr>
+								<td>Type</td>
+								<td>Width</td>
+								<td>Height</td>
+								<td>Quantity</td>
+								<td class="text-align-right">Frame Price</td>
+								<td class="text-align-right">Total Price</td>
+							</tr>
+						</thead>
+
+						<tbody>
+							
+								<tr>
+									<td>
+										Canvas Stretching Only
+									</td>
+									<td>
+										{{$photo_frame_only_stretching_cart->width}}
+									</td>
+									<td>
+										{{$photo_frame_only_stretching_cart->height}}
+									</td>
+									<td>
+										1
+									</td>
+									<td class="text-align-right">
+										{{$photo_frame_only_stretching_cart->total_price}}
+									</td>
+									<td class="text-align-right">
+										{{$photo_frame_only_stretching_cart->total_price}}
+									</td>
+
+								
+								</tr>
+
+								<tr class="sub-total-tr">
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+									<td>Total:</td>
+									<td class="text-align-right">${{$photo_frame_only_stretching_cart->total_price}}</td>
+									
+								</tr>
+
+							
+							
+						</tbody>
+					</table>
+
+
 				@elseif(!empty($photo_frame_plain_mirror_cart))
 
 					<table class="table table-striped cart-table">
@@ -541,6 +598,34 @@
               					
 							<input type="hidden" name="item_name_1" value="Canvas Print">
 							<input type="hidden" name="amount_1" value="{{$photo_frame_only_printing_cart['total_price']}}">
+									
+		                  		
+							<input type="hidden" name="return" value="{{URL::to('')}}/order/thank-you">
+					
+							<!-- <input style="float:right;" class="paynowbutton" type="image" src="{{URL::to('')}}/web/images/paynow.png" border="0" name="submit" width="120" alt="Make payments with PayPal - it's fast, free and secure!"> -->
+						
+					</form>
+					<div class="loading" style="color: #ff7722;display:none;text-align: right;">Please wait a moment</div>
+					<div id="paynowbutton_btn"><img style="float: right;width: 120px; cursor:pointer;" src="{{URL::to('')}}/web/images/paynow.png"></div>
+
+
+					<!-- Canvas Stretching Only -->
+					@elseif(Session::has('photo_frame_only_stretching_cart') && count(Session::get('photo_frame_only_stretching_cart')) > 0)
+
+						<form id="submit_payment" method="post" action="https://www.paypal.com/cgi-bin/webscr">
+							<input type="hidden" name="address_override" value="1">
+							<input type="hidden" name="cmd" value="_cart">
+							<input type="hidden" name="upload" value="1">
+							<input type="hidden" name="business" value="offthewallframing@gmail.com">
+							<input type="hidden" name="currency_code" value="AUD">
+							<!-- <input type="hidden" name="invoice" value="10" > -->
+
+							<input type="hidden" name="shipping" value="0.00">
+							<input type="hidden" name="shipping2" value="20.00">
+
+              					
+							<input type="hidden" name="item_name_1" value="Canvas Print">
+							<input type="hidden" name="amount_1" value="{{$photo_frame_only_stretching_cart->total_price}}">
 									
 		                  		
 							<input type="hidden" name="return" value="{{URL::to('')}}/order/thank-you">

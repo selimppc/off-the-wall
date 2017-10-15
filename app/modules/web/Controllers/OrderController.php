@@ -305,6 +305,9 @@ class OrderController extends Controller
         // Only Printing
         $photo_frame_only_printing_cart = $request->session()->get('photo_frame_only_printing_cart');
 
+        // Canvas Stretching Only
+        $photo_frame_only_stretching_cart = $request->session()->get('photo_frame_only_stretching_cart');
+
         // Plain Mirror
         $photo_frame_plain_mirror_cart = $request->session()->get('photo_frame_plain_mirror_cart');
 
@@ -316,7 +319,8 @@ class OrderController extends Controller
                 'photo_frame_cart' => $photo_frame_cart,
                 'photo_frame_canvas_print_cart' => $photo_frame_canvas_print_cart,
                 'photo_frame_plain_mirror_cart' => $photo_frame_plain_mirror_cart,
-                'photo_frame_only_printing_cart' => $photo_frame_only_printing_cart
+                'photo_frame_only_printing_cart' => $photo_frame_only_printing_cart,
+                'photo_frame_only_stretching_cart' => $photo_frame_only_stretching_cart
             ]);
     }
 
@@ -382,6 +386,8 @@ class OrderController extends Controller
         $photo_frame_canvas_print_cart = $request->session()->get('photo_frame_canvas_print_cart');
         // only printing
         $photo_frame_only_printing_cart = $request->session()->get('photo_frame_only_printing_cart');
+        // Canvas Stretching Only
+        $photo_frame_only_stretching_cart = $request->session()->get('photo_frame_only_stretching_cart');
         // plain mirror
         $photo_frame_plain_mirror_cart = $request->session()->get('photo_frame_plain_mirror_cart');
         
@@ -413,7 +419,10 @@ class OrderController extends Controller
                 $modal->type = 'canvas_print';
             }elseif(count($photo_frame_only_printing_cart) > 0 ) {
                 $modal->type = 'only_printing';
-            }else{
+            }elseif (count($photo_frame_only_stretching_cart) > 0) {
+                $modal->type = 'stretching';
+            }
+            else{
                 $modal->type = 'plain_mirror';
             }
             
@@ -499,6 +508,28 @@ class OrderController extends Controller
                     $deliver_modal->qty = 1;
                     $deliver_modal->price = $photo_frame_only_printing_cart['total_price'];
                     $deliver_modal->details = $details_message;
+
+
+                    $deliver_modal->status= 0;
+
+                    $deliver_modal->save();
+
+                }elseif (count($photo_frame_only_stretching_cart) > 0) {
+                    
+                    $details_message = 'Width: '.$photo_frame_only_stretching_cart->width.'===Height: '.$photo_frame_only_stretching_cart->height.'===Price:'.$photo_frame_only_stretching_cart->total_price;
+
+                    $deliver_modal = new Orderdetails();
+
+                    $deliver_modal->order_head_id =$modal->id;
+                    $deliver_modal->qty = 1;
+                    $deliver_modal->price = $photo_frame_only_stretching_cart->total_price;
+                    $deliver_modal->details = $details_message;
+
+                    if(!empty($photo_frame_only_stretching_cart->image)){
+                        $deliver_modal->image_link = $photo_frame_only_stretching_cart->image;
+                    }else{
+                        $deliver_modal->image_link = '';
+                    }
 
 
                     $deliver_modal->status= 0;
