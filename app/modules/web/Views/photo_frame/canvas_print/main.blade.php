@@ -78,17 +78,14 @@
                 <div class="row">
                     <ul class="main-menu">
                         <li>
-                            <a href="#">Custom Picture Framing</a>
+                            <a href="{{URL::to('')}}/only-printing">Canvas Printing Only</a>
                         </li>
                          <li>
-                            <a class="active" href="#">Canvas Prints</a>
-                        </li>
-                        <!--<li>
-                            <a href="#">Framed Plain Mirrors</a>
+                            <a href="{{URL::to('')}}/canvas-stretching">Canvas Stretching Only</a>
                         </li>
                         <li>
-                            <a href="#">Photo Frame</a>
-                        </li> -->
+                            <a class="active" href="{{URL::to('')}}/canvas-print">Canvas Print and Stretch</a>
+                        </li>                        
                     </ul>
                 </div>
             </div> 

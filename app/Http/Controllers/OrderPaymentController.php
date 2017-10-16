@@ -68,7 +68,7 @@ class OrderPaymentController extends Controller{
 
         $data = Orderoverhead::with('relCustomer')
             ->where('status', 'open')
-            ->where('type','only_printing')
+            ->where('type','stretching')
             ->orderBy('order_overhead.id','desc')
             ->get();
 
@@ -83,7 +83,7 @@ class OrderPaymentController extends Controller{
 
         $data = Orderoverhead::with('relCustomer')
             ->where('status', 'open')
-            ->where('type','stretching')
+            ->where('type','only_printing')
             ->orderBy('order_overhead.id','desc')
             ->get();
 

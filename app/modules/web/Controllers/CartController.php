@@ -25,9 +25,9 @@ echo $mac;
 
         $canvas_print = DB::table('frame_session_data')->where('mac_address',$mac)->where('type','canvas_print')->orderBy('id','desc')->first();
 
-        $only_printing = DB::table('frame_session_data')->where('mac_address',$mac)->where('type','only_printing')->orderBy('id','desc')->first();
+        $only_printing = DB::table('frame_session_data')->where('mac_address',$mac)->where('type','stretching')->orderBy('id','desc')->first();
 
-        $only_stretching = DB::table('frame_session_data')->where('mac_address',$mac)->where('type','stretching')->orderBy('id','desc')->first();
+        $only_stretching = DB::table('frame_session_data')->where('mac_address',$mac)->where('type','only_printing')->orderBy('id','desc')->first();
 
         $plain_mirror = DB::table('frame_session_data')->where('mac_address',$mac)->where('type','plain_mirror')->orderBy('id','desc')->first();
 
@@ -72,7 +72,7 @@ echo $mac;
             $photo_frame_only_stretching_cart = $request->session()->get('photo_frame_only_stretching_cart');
 
             // Delete Data
-            DB::table('frame_session_data')->where('mac_address', $mac)->where('type','stretching')->delete(); 
+            DB::table('frame_session_data')->where('mac_address', $mac)->where('type','only_printing')->delete(); 
           
 
         }else{
@@ -97,7 +97,7 @@ echo $mac;
             $photo_frame_only_printing_cart = $request->session()->get('photo_frame_only_printing_cart');
 
             // Delete Data
-            DB::table('frame_session_data')->where('mac_address', $mac)->where('type','only_printing')->delete(); 
+            DB::table('frame_session_data')->where('mac_address', $mac)->where('type','stretching')->delete(); 
           
 
         }else{

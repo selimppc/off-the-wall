@@ -133,7 +133,7 @@ class PhotoFrameController extends Controller{
 			$mac=substr($string, 0, 17);
 
 			DB::table('frame_session_data')->insert([
-				'type' => 'only_printing',
+				'type' => 'stretching',
 				'width' =>  $_POST['w'],
 				'height' =>  $_POST['h'],
 				'edge_type' =>  $_POST['tr'],
@@ -150,7 +150,7 @@ class PhotoFrameController extends Controller{
 			$mac=substr($string, 0, 17);
 
 			DB::table('frame_session_data')->insert([
-				'type' => 'stretching',
+				'type' => 'only_printing',
 				'width' =>  $_POST['w'],
 				'height' =>  $_POST['h'],
 				'image' =>  $_POST['i'],				
@@ -183,7 +183,7 @@ class PhotoFrameController extends Controller{
 	}
 
 
-	public function canvas_stretching(Request $request){
+	public function only_printing(Request $request){
 
 		// Remove Session
         $request->session()->forget('product_cart');
@@ -204,7 +204,7 @@ class PhotoFrameController extends Controller{
 
 	}
 
-	public function only_printing(Request $request){
+	public function canvas_stretching(Request $request){
 
 		// Remove Session
         $request->session()->forget('product_cart');

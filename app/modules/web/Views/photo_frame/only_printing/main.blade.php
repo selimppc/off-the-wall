@@ -80,11 +80,14 @@
                     <div class="row">
                         <ul class="main-menu">
                             <li>
-                                <a href="#">Custom Picture Framing</a>
+                                <a href="{{URL::to('')}}/only-printing">Canvas Printing Only</a>
+                            </li>
+                             <li>
+                                <a class="active" href="{{URL::to('')}}/canvas-stretching">Canvas Stretching Only</a>
                             </li>
                             <li>
-                                <a class="active" href="#">Only Printing</a>
-                            </li>
+                                <a href="{{URL::to('')}}/canvas-print">Canvas Print and Stretch</a>
+                            </li>                        
                             
                         </ul>
                     </div>
@@ -736,7 +739,7 @@
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <span id="label-total">Total Price: </span>
-                                                    <span style="font-size: 3rem;">$</span>
+                                                    <span style="font-size: 3rem;">AUD</span>
                                                     <span id="price"></span>
                                                 </div>
                                                 <div id="pricerow" class="col-xs-12">

@@ -418,9 +418,9 @@ class OrderController extends Controller
             }elseif(count($photo_frame_canvas_print_cart) > 0 ) {
                 $modal->type = 'canvas_print';
             }elseif(count($photo_frame_only_printing_cart) > 0 ) {
-                $modal->type = 'only_printing';
-            }elseif (count($photo_frame_only_stretching_cart) > 0) {
                 $modal->type = 'stretching';
+            }elseif (count($photo_frame_only_stretching_cart) > 0) {
+                $modal->type = 'only_printing';
             }
             else{
                 $modal->type = 'plain_mirror';

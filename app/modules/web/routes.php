@@ -29,14 +29,14 @@ Route::any('canvas-print',[
 		'uses' => 'PhotoFrameController@canvas_print'
 	]);
 
-Route::any('only-printing',[
-		'as' => 'only-printing',
-		'uses' => 'PhotoFrameController@only_printing'
-	]);
-
 Route::any('canvas-stretching',[
 		'as' => 'canvas-stretching',
 		'uses' => 'PhotoFrameController@canvas_stretching'
+	]);
+
+Route::any('only-printing',[
+		'as' => 'only-printing',
+		'uses' => 'PhotoFrameController@only_printing'
 	]);
 
 Route::post('add-to-cart-canvas-print',[

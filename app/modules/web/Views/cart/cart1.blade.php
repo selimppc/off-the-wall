@@ -301,7 +301,7 @@
 						<tbody>
 							
 								<tr>
-									<td>Only Printing ({{$photo_frame_only_printing_cart['edge_type']}})</td>
+									<td>Canvas Stretching Only ({{$photo_frame_only_printing_cart['edge_type']}})</td>
 									<td>
 										{{$photo_frame_only_printing_cart['width']}}
 									</td>
@@ -356,7 +356,7 @@
 
 					<tbody>
 						<tr>
-							<td>Canvas Stretching Only</td>
+							<td>Canvas Printing Only</td>
 							<td>
 								{{$photo_frame_only_stretching_cart->width}}
 							</td>
