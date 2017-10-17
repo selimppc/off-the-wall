@@ -800,15 +800,13 @@ var canvasFrame = new CanvasFrameImage('#draw_frame');
  left: 1.4,
  right: 1.4
  });*/
-
- console.log('hello 3');
+console.log('hi');
 var prodsize = $('#prodsize'),
     frame = $('.frame');
-$.get('./web/photo_frame/plain_mirror/static/json/price-list.json', function (data) {
+$.get('./static/json/price-list.json', function (data) {
     var total_prodsize = parseFloat(prodsize.attr('data-total-size')),
         priceRanges = [];
-        console.log('helllo 2');
-   // console.log(total_prodsize);
+    console.log(total_prodsize);
     $.each(data, function (index, item) {
         priceRanges.push({
             index: parseFloat(index),
@@ -816,7 +814,7 @@ $.get('./web/photo_frame/plain_mirror/static/json/price-list.json', function (da
         });
         // console.log(index);
     });
-   // console.log(priceRanges);
+    console.log(priceRanges);
     frame.each(function () {
         var $this = $(this),
             fprice = $this.find('.fprice').first(),
@@ -824,16 +822,15 @@ $.get('./web/photo_frame/plain_mirror/static/json/price-list.json', function (da
             frateVal = parseFloat(frate.text());
         for (var i = 0; i < priceRanges.length; i++) {
             if (total_prodsize <= priceRanges[i].index && total_prodsize < priceRanges[i + 1].index) {
-                //console.log(priceRanges[i].item.index);
-               // console.log(priceRanges[i].item.rate[frateVal]);
-                //console.log('--------------------');
+                console.log(priceRanges[i].item.index);
+                console.log(priceRanges[i].item.rate[frateVal]);
+                console.log('--------------------');
                 fprice.text(priceRanges[i].item.rate[frateVal]);
                 break;
             }
         }
     });
 });
-
 $(".selectframe").live('click', function () {
     var $this = $(this),
         wrapperParent = $this.parents('.ui-tabs-inner-content-frame').first(),
@@ -1504,11 +1501,11 @@ function add2cart() {
     }
 
 
-    /*    var furl = "plain-mirror-add-to-cart?a=p" + dourl() + "&prod_id=" + $("#iproduct_id").val();
+    /*    var furl = "/frame-preview.html?a=p" + dourl() + "&prod_id=" + $("#iproduct_id").val();
         furl += '&out=/' + $("#sess").val() + '/prod_images/final_lrg_print_' + $("#iproduct_id").val() + '.jpg';*/
 
 
-    var furl = "plain-mirror-add-to-cart-2?a=p" + "&product_type=" + $("#product_type").val() + "&total_price_amount=" + $("#total_price_amount").val();
+    var furl = "plain-mirror-add-to-cart?a=p" + "&product_type=" + $("#product_type").val() + "&total_price_amount=" + $("#total_price_amount").val();
     furl += "&original_price=" + $("#original_price").val() + "&frame_code=" + $("#framez").find('.code').text() + "&frame_price=" + $("#framez").find('.price').text();
     furl += "&backing_type=" + $("#backing_type").val() + "&backing_type_price=" + parseFloat($("#backing_type")[0].children[$("#backing_type")[0].selectedIndex].getAttribute('data-price'));
     // furl += "&canvas_img=" + canvasFrame.elem.toDataURL() ;
@@ -1525,8 +1522,9 @@ function add2cart() {
         backing_type: $("#backing_type").val(),
         backing_type_price: parseFloat($("#backing_type")[0].children[$("#backing_type")[0].selectedIndex].getAttribute('data-price')),
         photo: canvasFrame.elem.toDataURL('image/jpeg', 1.0),
+        width: $('#inner_width').val(),
+        height: $('#inner_height').val()
     };
-
 
 
     var prod_type = document.getElementById('product_type');
@@ -1550,8 +1548,7 @@ function add2cart() {
             url += '&swid=' + $("#slipz > .size").html() + "&islip_id=" + $("#islip_id").val() + "&scode=" + scode;
             url += '&fiwid=' + $("#filletz > .size").html() + '&ifillet_id=' + $("#ifillet_id").val() + "&ficode=" + ficode;
             url += prodstring;
-           // window.location = url;
-           window.location = "mycart";
+            window.location = "mycart";
         }
     });
 

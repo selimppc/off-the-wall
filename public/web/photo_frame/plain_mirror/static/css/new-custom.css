@@ -10,12 +10,21 @@
     /*width: 100%;*/
     /*height: 100%;*/
     z-index: 2;
+
 }
 .frame img.dropshadow {
     max-height: 135px;
 }
 #framedimg {
     display: block;
+    /*max-width: 90%;*/
+    /*max-height: 600px;*/
+    margin: 0 auto;
+    vertical-align: top;
+    /*box-shadow: 0 10px 20px -10px black;*/
+    font-family: 'Open sans', Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 600;
+    background-color: #fff;
 }
 #framedimg.activated {
     visibility: hidden;

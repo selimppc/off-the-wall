@@ -2432,7 +2432,7 @@ body {
     display: block;
     margin: 0 auto;
     vertical-align: top;
-    box-shadow: 0 10px 20px -10px black;
+    /*box-shadow: 0 10px 20px -10px black;*/
     font-family: 'Open sans', Arial, "Helvetica Neue", Helvetica, sans-serif;
     font-weight: 600;
     background-color: #fff;
@@ -2718,4 +2718,11 @@ body {
     opacity: 0;
     cursor: pointer;
     display: block !important;
+}
+
+.lightcase-inlineWrap {
+    padding: 0 !important;
+}
+.lightcase-inlineWrap canvas {
+    margin: 0 auto !important;
 }

@@ -1,9 +1,9 @@
 /*Added from internal script start*/
-$(document).ready(function () {
+/*$(document).ready(function () {
     $('[data-toggle="popover"]').popover({
         trigger: 'focus'
     });
-});
+});*/
 // Polyfills for people running bad browsers in 2015
 if (!String.prototype.startsWith) {
     String.prototype.startsWith = function (searchString, position) {
@@ -46,8 +46,8 @@ function getContrastYIQ(e) {
     return (299 * parseInt(e.substr(0, 2), 16) + 587 * parseInt(e.substr(2, 2), 16) + 114 * parseInt(e.substr(4, 2), 16)) / 1e3 >= 128 ? "black" : "white"
 }
 function validateDimensions() {
-    var e = document.querySelector("#dimensions-width"),
-        t = document.querySelector("#dimensions-height"),
+    var e = document.querySelector("#imgwidth"),
+        t = document.querySelector("#imgheight"),
         a = document.querySelector("#dimensions-unit-selection input[name=unit-type]:checked")
             .value;
     e.value < 0 && (e.value = 1), t.value < 0 && (t.value = 1), "cm" == a ? (e.value, t.value) : (e.value > 60 && (e.value = 60), t.value > 60 && (t.value = 60));
@@ -58,10 +58,10 @@ function maintainRatio() {
             .attr("data-is-locked")) {
         var e = product.printing.image.aspectRatio;
         "width" == $(this)
-            .attr("data-for") ? $("#dimensions-height")
+            .attr("data-for") ? $("#imgheight")
             .val(($(this)
                 .val() / e)
-                .toFixed(1)) : $("#dimensions-width")
+                .toFixed(1)) : $("#imgwidth")
             .val(($(this)
                 .val() * e)
                 .toFixed(1))
@@ -101,10 +101,10 @@ function assessQuality() {
     var e = image_width / 300;
     if ("cm" == $("span.inch-cm")
             .html()) {
-        var t = Math.min(e / ($("#dimensions-width")
+        var t = Math.min(e / ($("#imgwidth")
                 .val() / 2.54) * 100, 100);
     } else {
-        var t = Math.min(e / $("#dimensions-width")
+        var t = Math.min(e / $("#imgwidth")
                 .val() * 100, 100);
     }
     t <= 0 ? ($("#print-quality-progress")
@@ -258,7 +258,7 @@ var product = {
         frameMin: 10,
         frameRate: 2,
         frameRebate: .5,
-        frameTile: "top_frame_238.jpg",
+        frameTile: "",
         frameWidth: 2
     },
     slip: {
@@ -335,8 +335,8 @@ var ProductManager = function () {
             t = !1,
             a = [],
             i = [],
-            r = $("#dimensions-width"),
-            o = $("#dimensions-height"),
+            r = $("#imgwidth"),
+            o = $("#imgheight"),
             n = !1,
             s = !1,
             d = !0,
@@ -351,7 +351,7 @@ var ProductManager = function () {
                 }
                 $.ajax({
                     type: "GET",
-                    url: "static/json/price-list.json",
+                    url: "web/photo_frame/plain_mirror/static/json/price-list.json",
                     success: function (a) {
                         e = a, t = !0, H();
                     },
@@ -366,9 +366,9 @@ var ProductManager = function () {
                         .addClass("disabled")
                         .prop("disabled", !0), $(".ratio-lock.fa-lock")
                         .removeClass("hidden"), $(".ratio-lock.fa-unlock")
-                        .addClass("hidden"), $("#dimensions-width")
+                        .addClass("hidden"), $("#imgwidth")
                         .val((.015 * e.width)
-                            .toFixed(2)), $("#dimensions-height")
+                            .toFixed(2)), $("#imgheight")
                         .val((.015 * e.height)
                             .toFixed(2)), t && "function" == typeof t && t(), H()
                 })
@@ -541,10 +541,10 @@ var ProductManager = function () {
                 })
             },
             F = function () {
-                var e = parseFloat(parseFloat($("#dimensions-width")
+                var e = parseFloat(parseFloat($("#imgwidth")
                         .val())
                         .toFixed(2)),
-                    t = parseFloat(parseFloat($("#dimensions-height")
+                    t = parseFloat(parseFloat($("#imgheight")
                         .val())
                         .toFixed(2)),
                     a = .12,
@@ -555,7 +555,9 @@ var ProductManager = function () {
                         .toFixed(2)),
                     n = parseFloat(parseFloat(t - r)
                         .toFixed(2)),
-                    s = ["Image Size:", e, "x", t, currentUnits, "\n", "Visible (approx):", o, "x", n, currentUnits, "\n", "Outer Size (approx):", product.outerWidth, "x", product.outerHeight, "cm"].join(" ");
+                    // s = ["Image Size:", e, "x", t, currentUnits, "\n", "Visible (approx):", o, "x", n, currentUnits, "\n", "Outer Size (approx):", product.outerWidth, "x", product.outerHeight, "cm"].join(" ");
+                    // s = ["Image Size:", e, "x", t, currentUnits].join(" ");
+                    s = ["Please Note: Hangers and Chains", "\n", "will be fitted to the width of your Framed Mirror", "\n\n", "Plain Mirror thickness", "\n", "4mm"].join(" ");
                 fc.setPlaceholderText(s)
             },
             I = function () {
@@ -846,7 +848,7 @@ for (var unitRadioButtons = document.querySelectorAll("#dimensions-unit-selectio
         unitConverter.convertUnits()
     });
 }
-$("#dimensions-width, #dimensions-height")
+$("#imgwidth, #imgheight")
     .on("input change", maintainRatio), fc.init("canvas"), $(".frame-selection-container")
     .mousewheel(function (e, t) {
         this.scrollLeft -= 45 * t, e.preventDefault()
@@ -919,18 +921,18 @@ for (var buttons = document.querySelectorAll("[name=unit-type]"), i = 0; i < but
                 }
             }))
         }
-    }), $(window)
+    }),/* $(window)
     .width() >= 768 && $("#stick-wrapper")
     .stick_in_parent({
         parent: "#product-focus"
-    }), $(window)
+    }),*/ $(window)
     .on("resize", function () {
-        $(this)
+       /* $(this)
             .width() < 768 ? $("#stick-wrapper")
             .trigger("sticky_kit:detach") : $("#stick-wrapper")
             .stick_in_parent({
                 parent: "#product-focus"
-            })
+            })*/
     }), $("#stick-wrapper")
     .on("sticky_kit:bottom", function (e) {
         $(this)
@@ -1043,12 +1045,12 @@ var gallery = {
                     .click(), $("a[href=#tab-printing]")
                     .click(), $("#preset-size-list")
                     .val("-"), "cm" == $("span.inch-cm")
-                    .html() ? ($("#dimensions-width")
-                    .val(i / 60), $("#dimensions-height")
+                    .html() ? ($("#imgwidth")
+                    .val(i / 60), $("#imgheight")
                     .val((r / 60)
                         .toFixed(1))
-                    .change()) : ($("#dimensions-width")
-                    .val(i / 60 / 2.54), $("#dimensions-height")
+                    .change()) : ($("#imgwidth")
+                    .val(i / 60 / 2.54), $("#imgheight")
                     .val((r / 60 / 2.54)
                         .toFixed(1))
                     .change()), "function" == typeof t && t()
@@ -1058,124 +1060,13 @@ var gallery = {
     imageUrl: "",
     imageId: -1
 };
-$("#dimensions-width, #dimensions-height")
+$("#imgwidth, #imgheight")
     .on("input change", assessQuality), $("[name=printing-type]")
     .on("change", function () {
         "none" != $(this)
             .val() ? disableMDF(!0) : disableMDF()
     });
-var tour = new Tour({
-    onStart: function () {
-        var e = document.getElementById("canvas");
-        e.style.zIndex = "1101", e.style.background = "inherit", e.style.position = "relative", e.style.cursor = null
-    },
-    onEnd: function () {
-        var e = document.getElementById("canvas");
-        e.style.zIndex = null, e.style.background = null, e.style.position = null, e.style.cursor = "zoom-in"
-    }
-});
-tour.addStep({
-    element: "body",
-    title: "Let's Get Started!",
-    content: "This 3 minute tour will guide you through making your own custom picture frame for your photos. You can skip steps, return to previous steps or quit the tour at any time. Click 'Next' to get started! You'll be able to change any of the selections you made once you are finished. We'll be skipping 'Slips' and 'Fillets' throughout this tour.",
-    placement: "top",
-    backdropContainer: "body",
-    backdrop: !0
-}), tour.addStep({
-    element: "#tab-dimensions",
-    title: "Choose Your Size or Upload an Image",
-    content: "If you're framing a print or photo you already have, you can simply enter the size below. If you'd like to get your digital images printed, click on the 'Upload' button and follow the prompts. Once you're ready click 'Next'.",
-    placement: "top",
-    backdrop: !0,
-    backdropContainer: "body"
-}), tour.addStep({
-    element: "#ui-id-1",
-    title: "Let's Look at Frames",
-    content: "We'll continue by checking out some frames, click on the 'Frames' tab to continue.",
-    placement: "bottom",
-    reflex: !0,
-    backdropContainer: "body",
-    backdrop: !0,
-    onNext: function (e) {
-        $("#ui-id-1")
-            .click()
-    }
-}), tour.addStep({
-    element: "#frame-category-tabs",
-    title: "Choose a Frame",
-    content: "Click on one of the many frame categories below to view the range. Then browse through and click on your favourite frame below. You can try as many as you like!",
-    placement: "top",
-    backdrop: !0,
-    backdropContainer: "body"
-}), tour.addStep({
-    element: "#ui-id-2",
-    title: "Let's Look at Mat Boards (Optional)",
-    content: "Click on the 'Mats' tab to view our range of matting options.",
-    reflex: !0,
-    placement: "bottom",
-    backdropContainer: "body",
-    backdrop: !0,
-    onNext: function (e) {
-        $("#ui-id-2")
-            .click()
-    },
-    onPrev: function (e) {
-        $("#ui-id-1")
-            .click()
-    }
-}), tour.addStep({
-    element: "#tab-mats",
-    title: "Choose a Mat Colour (Optional)",
-    content: "A mat board sits between your photo and the frame. Choose your favourite colour to match your frame and image, be creative! Don't forget to try a double mat too for that special touch. Click 'Next' to continue.",
-    placement: "top",
-    backdropContainer: "body",
-    backdrop: !0
-}), tour.addStep({
-    element: "#ui-id-3",
-    title: "Glass and Backings (Optional)",
-    content: "Let's choose the 'Glass & Backing' tab to finish off our frame.",
-    reflex: !0,
-    placement: "bottom",
-    backdropContainer: "body",
-    backdrop: !0,
-    onNext: function (e) {
-        $("#ui-id-3")
-            .click()
-    },
-    onPrev: function (e) {
-        $("#ui-id-2")
-            .click()
-    }
-}), tour.addStep({
-    element: "#glass-type-row",
-    title: "Choose Your Type of Glass (Optional)",
-    content: "We recommend 'Clear Perspex' as it is durable, light, UV resistant and as clear as glass! When you click on an option, you'll get to see some extra details on the right hand side.",
-    placement: "top",
-    backdropContainer: "body",
-    backdrop: !0
-}), tour.addStep({
-    element: "#backing-type-row",
-    title: "Select a Backing (Optional)",
-    content: "For acid-free mounting (which will protect your images from fading for longer) choose one of the foam core options. Click on each option to learn more about the different types of backings we offer.",
-    placement: "top",
-    backdropContainer: "body",
-    backdrop: !0
-}), tour.addStep({
-    element: "#quantity-container",
-    title: "Change Your Quantity (Optional)",
-    content: "You can order as many custom picture frames as you'd like!",
-    backdropContainer: "body",
-    placement: "top",
-    backdrop: !0
-}), tour.addStep({
-    element: "#fs-addToCartButton",
-    title: "And We're Done!",
-    content: "Click the Add to cart button and you are done! Click on 'End Tour' to see the masterpiece you've created! You can adjust anything you like as you are now a professional online custom picture framer! However, if you feel you need extra help or suggestions, please don't hesitate to <a href=\"/contact-us/\" rel=\"nofollow\">contact us!</a>",
-    backdropContainer: "body",
-    placement: "top",
-    reflex: !0,
-    backdrop: !0
-}), tour.init(), $("#fillet-no-mat-warning a")
+$("#fillet-no-mat-warning a")
     .on("click", function (e) {
         e.preventDefault(), $("[href=#tab-mats]")
             .click()
@@ -1221,8 +1112,8 @@ tour.addStep({
     .on("change", function () {
         if ("-" != $(this)
                 .val()) {
-            var e = $("#dimensions-width"),
-                t = $("#dimensions-height"),
+            var e = $("#imgwidth"),
+                t = $("#imgheight"),
                 a = $("[data-value=" + $(this)
                         .val() + "]"),
                 i = "inch" === currentUnits ? "inch" : "cm";
@@ -1259,7 +1150,7 @@ tour.addStep({
                 frameMin: 10,
                 frameRate: 2,
                 frameRebate: .5,
-                frameTile: "top_frame_238.jpg",
+                frameTile: "",
                 frameWidth: 2
             },
             slip: {

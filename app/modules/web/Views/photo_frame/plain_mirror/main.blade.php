@@ -1,473 +1,357 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/mstile-144x144.png?v=kPPlxk2lY8">
     <meta name="theme-color" content="#e2e4ff">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
     <meta name="csrf_token" content="e2555755-9d35-490a-9a83-abc401c5c629">
-
     <title>Custom Plain Mirrors & Framing | Off The Wall</title>
-
-    <meta name="description" content="Plain mirrors cut to size and framed to your designs." />
-
-
-    <link rel="stylesheet" href="{{ URL::asset('web/photo_frame/plain_mirror/static/css/bootstrap.min.css') }}" />
-  
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('web/photo_frame/plain_mirror/static/css/frameshop-w.css') }}" />
+    <meta name="description" content="Plain mirrors cut to size and framed to your designs."/>
+    
+    <link rel="stylesheet" href="{{ URL::asset('web/photo_frame/plain_mirror/static/css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ URL::asset('web/photo_frame/plain_mirror/static/css/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('web/photo_frame/plain_mirror/static/css/lightcase/font-lightcase.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('web/photo_frame/plain_mirror/static/css/lightcase/lightcase.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('web/photo_frame/plain_mirror/static/css/frameshop-w.css?v=1.0.3d') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('web/photo_frame/plain_mirror/static/css/flaticon/flaticon.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('web/photo_frame/static/css/custom.css') }}">
-   
-
+    
     <script src="{{ URL::asset('web/photo_frame/plain_mirror/static/js/jquery-2.1.3.min.js') }}"></script>
     <script src="{{ URL::asset('web/photo_frame/plain_mirror/static/js/bootstrap.min.js') }}"></script>
+    <script src="{{ URL::asset('web/photo_frame/plain_mirror/static/js/lodash.min.js') }}"></script>
+    <script src="{{ URL::asset('web/photo_frame/plain_mirror/static/js/jquery-ui.min.js') }}"></script>
+    <script src="{{ URL::asset('web/photo_frame/plain_mirror/static/js/jquery.mousewheel.min.js') }}"></script>
+    <script src="{{ URL::asset('web/photo_frame/plain_mirror/static/js/PxLoader.js') }}"></script>
+    <script src="{{ URL::asset('web/photo_frame/plain_mirror/static/js/PxLoaderImage.js') }}"></script>
+    <script src="{{ URL::asset('web/photo_frame/plain_mirror/static/js/lightcase.js') }}"></script>
     <script src="{{ URL::asset('web/photo_frame/plain_mirror/static/js/shoppingCart.min.js') }}"></script>
-    
+    <script>
+        $(document).ready(function () {
+            $.getScript('static/js/multiple-file.min.js');
 
+            $('.input-row input, .input-row textarea').on('change input', function () {
+                if ($(this).val() == '') {
+                    $(this).prev().attr('data-empty-input', true);
+                    $(this).attr('data-empty-input', true);
+                } else {
+                    $(this).prev().attr('data-empty-input', false);
+                    $(this).attr('data-empty-input', false);
+                }
+            }).on('focus', function () {
+                $(this).prev().attr('data-sibling-focus', true);
+            }).on('blur', function () {
+                $(this).prev().attr('data-sibling-focus', false);
+            }).each(function () {
+                if ($(this).attr('required')) {
+                    $(this).prev('label').attr('data-input-required', '');
+                }
+            });
 
+            $('.input-row input, .input-row textarea').change();
+
+        });
+    </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
 </head>
+<body>
+    <div id="body-flex-wrapper" class="body-flex-wrapper-style">
+        
+        <div id="body-wrapper" class="container-fluid body-wrapper-style">
 
-    <body>
 
-        <div id="body-flex-wrapper" class="body-flex-wrapper-style">
-       
-            <div id="body-wrapper" class="container-fluid body-wrapper-style">
+            <div class="header_container">
 
-                <div class="header_container">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="logo_container">
+                            <a href="{{URL::to('')}}">
+                                <img src="{{URL::to('')}}/web/images/logo.png">
+                            </a>
+                        </div>
+                        <div class="hot_line">
+                            <a href="tel:02-95672422">02-95672422</a>
 
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="row">
-                            <div class="logo_container">
-                                <a href="{{URL::to('')}}">
-                                    <img src="{{URL::to('')}}/web/images/logo.png">
+                            <div class="header_address">
+                                425 Princess Highway<br/>ROCKDALE NSW 2216
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="row">
+                        <div class="upper_section">
+                            
+                            <ul class="top_menu">
+                                                       
+                                <li>
+                                    <a href="{{URL::to('')}}">Home</a>
+                                </li>
+                                <li>
+                                    <a href="{{URL::to('')}}/picture-framing-rockdale">Contact us</a>
+                                </li>
+                            </ul>
+                            <div class="my_bag_container">
+                                <a href="{{URL::to('')}}/mycart">
+                                    <span class="text">Cart</span>
+                                    <span class="wishlist_amount">(
+                                        @if(Session::has('product_cart'))
+                                            {{count(Session::get('product_cart'))}}
+                                        @else
+                                            0
+                                        @endif
+                                        )</span>
                                 </a>
                             </div>
-                            <div class="hot_line">
-                                <a href="tel:02-95672422">02-95672422</a>
-
-                                <div class="header_address">
-                                    425 Princess Highway<br/>ROCKDALE NSW 2216
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="row">
-                            <div class="upper_section">
-                                
-                                <ul class="top_menu">
-                                                           
-                                    <li>
-                                        <a href="{{URL::to('')}}">Home</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{URL::to('')}}/picture-framing-rockdale">Contact us</a>
-                                    </li>
-                                </ul>
-                                <div class="my_bag_container">
-                                    <a href="{{URL::to('')}}/mycart">
-                                        <span class="text">Cart</span>
-                                        <span class="wishlist_amount">(
-                                            @if(Session::has('product_cart'))
-                                                {{count(Session::get('product_cart'))}}
-                                            @else
-                                                0
-                                            @endif
-                                            )</span>
-                                    </a>
-                                </div>
-                            </div>
 
-                            
-                        </div>
+                        
                     </div>
-
                 </div>
 
-                <div class="col-sm-11 col-sm-offset-1">
-                    <div class="row">
-                        <ul class="main-menu">
-                            <li>
-                                <a href="#">Custom Picture Framing</a>
-                            </li>
-                             <li>
-                                <a class="active" href="#">Plain Mirror</a>
-                            </li>
-                            <!--<li>
-                                <a href="#">Framed Plain Mirrors</a>
-                            </li>
-                            <li>
-                                <a href="#">Photo Frame</a>
-                            </li> -->
-                        </ul>
-                    </div>
-                </div> 
+            </div>
 
-                <div class="main-container">
+            <div class="col-sm-11 col-sm-offset-1">
+                <div class="row">
+                    <ul class="main-menu">
+                        <li>
+                            <a href="#">Custom Picture Framing</a>
+                        </li>
+                         <li>
+                            <a class="active" href="#">Plain Mirror</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-                    <div class="col-xs-12 col-sm-10 col-sm-push-1 col-md-9 col-md-push-1">
+           
+                    <div class="main-container" id="custom-framing-wrapper">
+                        
+                        <div class="col-xs-12 col-sm-10 col-sm-push-1 col-md-9 col-md-push-1">
+                            <form name="userupload" action="frame-it-plain-mirror" method="post" enctype="multipart/form-data">
 
-                        <form name="userupload" action="frame-it-plain-mirror" method="post" onSubmit="return checkFormField(this);" enctype="multipart/form-data">
+                                <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
 
-                            <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
+                                <input type="hidden" name="file" value="Plain_Mirror">
+                                <input type="hidden" name="url_action" id="url_action" value=""/>
+                                <input type="hidden" name="action" value="add">
+                                <input type="hidden" id="baseWidth" value="10">
+                                <input type="hidden" id="baseHeight" value="10">
+                                <input type="hidden" id="basePrice" value="7">
+                                <input type="hidden" id="stepPrice" value="0.2">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!--<div id="plain-mirror-image">
+                                            <img border="0" src="static/images/Plain-Mirror-2.jpg" class="dropshadow">
+                                        </div>-->
+                                        <div style="margin-top: 0;" id="canvas-container" class="left-side-bar">
+                                            <canvas id="canvas" width="500" height="500" data-rel="lightcase" href="#canvas-lightcase" style="cursor:zoom-in;">This text is displayed if your
+                                                browser does
+                                                not
+                                                support
+                                                canvas. Please update your browser to the latest version.
+                                            </canvas>
+                                            <div id="canvas-lightcase" style="display:none;"></div>
 
-                            <input type="hidden" name="file" value="Plain_Mirror">
-                            <input type="hidden" name="url_action" id="url_action" value=""/>
-                            <input type="hidden" name="action" value="add">
-                            <input type="hidden" id="baseWidth" value="{{$discounts_value->canvas_default_width}}">
-                            <input type="hidden" id="baseHeight" value="{{$discounts_value->canvas_default_height}}">
-                            <input type="hidden" id="basePrice" value="{{$discounts_value->canvas_base_price}}">
-                            <input type="hidden" id="stepPrice" value="{{$discounts_value->canvas_step_price}}">
-
-                            <div class="col-sm-6">
-                                <div id="plain-mirror-image" class="left-side-bar">
-
-                                    <h1 class="main-title">Framed Plain Mirrors</h1>
-
-                                    <h3 class="sub-heading">Custom cut mirrors, framed to fit any decor.</h3>
-                                    
-                                    <img style="width: 100%;" border="0" src="{{ URL::asset('web/photo_frame/plain_mirror/static/images/Plain-Mirror-2.jpg') }}" class="dropshadow">
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <div class="right-side-bar">
-                                    <p>High quality 4mm plain mirrors, cleanly cut to size and professionally framed.</p>
-                                    <h3>Enter Mirror Size</h3>
-                                    <p style="width: 50%;float: left;">Width:
-                                        <input style="    padding: 5px;" type="number" name="imgwidth" value="50" size="3" maxlength="5" step="0.1"> cm</p>
-                                    <p style="width: 50%;float: left;">Height:
-                                        <input style="    padding: 5px;" type="number" name="imgheight" value="50" size="3" maxlength="5" step="0.1"> cm</p>
-                                    <div class="alert alert-danger" role="alert" id="dimension-alert" style="display:none;">
-                                        <p>Sizes must be between:</p>
-                                        <p> Min <b>10 x 10 cm</b> , Max <b>152 x 101.5 cm</b></p>
-                                        <p>For larger sizes please <a rel="nofollow" href="/contact-us/"><b>contact
-                                                    us.</b></a></p>
+                                        </div>
                                     </div>
-                                    <h3>Choose Your Frame</h3>
-                                    <p>Click on the 'Add a Frame' button to head to our online framing section. Choose your favourite frame to suit your decor.</p>
-                                    <button id="cart-button" type="image" onclick="addcartframe(this);" name="frameitImg" class="button fat-button add-to-cart-button">Add a Frame
-                                    </button>
-                                    <p align="center">
-                                        <!-- BOF: Show Price -->
-                                        <script type="text/javascript">
-                                                        var pricingArray = [{
-                                                            min: 20,
-                                                            max: 37,
-                                                            price: 3
-                                                        }, {
-                                                            min: 38,
-                                                            max: 42,
-                                                            price: 4
-                                                        }, {
-                                                            min: 43,
-                                                            max: 47,
-                                                            price: 5
-                                                        }, {
-                                                            min: 48,
-                                                            max: 52,
-                                                            price: 6
-                                                        }, {
-                                                            min: 53,
-                                                            max: 57,
-                                                            price: 7
-                                                        }, {
-                                                            min: 58,
-                                                            max: 62,
-                                                            price: 8
-                                                        }, {
-                                                            min: 63,
-                                                            max: 67,
-                                                            price: 9
-                                                        }, {
-                                                            min: 68,
-                                                            max: 72,
-                                                            price: 10
-                                                        }, {
-                                                            min: 73,
-                                                            max: 77,
-                                                            price: 12
-                                                        }, {
-                                                            min: 78,
-                                                            max: 82,
-                                                            price: 14
-                                                        }, {
-                                                            min: 83,
-                                                            max: 87,
-                                                            price: 16
-                                                        }, {
-                                                            min: 88,
-                                                            max: 92,
-                                                            price: 18
-                                                        }, {
-                                                            min: 93,
-                                                            max: 97,
-                                                            price: 20
-                                                        }, {
-                                                            min: 98,
-                                                            max: 102,
-                                                            price: 22
-                                                        }, {
-                                                            min: 103,
-                                                            max: 107,
-                                                            price: 24
-                                                        }, {
-                                                            min: 108,
-                                                            max: 112,
-                                                            price: 26
-                                                        }, {
-                                                            min: 113,
-                                                            max: 117,
-                                                            price: 28
-                                                        }, {
-                                                            min: 118,
-                                                            max: 122,
-                                                            price: 30
-                                                        }, {
-                                                            min: 123,
-                                                            max: 127,
-                                                            price: 32
-                                                        }, {
-                                                            min: 128,
-                                                            max: 132,
-                                                            price: 34
-                                                        }, {
-                                                            min: 133,
-                                                            max: 137,
-                                                            price: 36
-                                                        }, {
-                                                            min: 138,
-                                                            max: 142,
-                                                            price: 38
-                                                        }, {
-                                                            min: 143,
-                                                            max: 147,
-                                                            price: 40
-                                                        }, {
-                                                            min: 148,
-                                                            max: 152,
-                                                            price: 41
-                                                        }, {
-                                                            min: 153,
-                                                            max: 157,
-                                                            price: 42
-                                                        }, {
-                                                            min: 158,
-                                                            max: 162,
-                                                            price: 43
-                                                        }, {
-                                                            min: 163,
-                                                            max: 167,
-                                                            price: 44
-                                                        }, {
-                                                            min: 168,
-                                                            max: 172,
-                                                            price: 45
-                                                        }, {
-                                                            min: 173,
-                                                            max: 177,
-                                                            price: 46
-                                                        }, {
-                                                            min: 178,
-                                                            max: 182,
-                                                            price: 47
-                                                        }, {
-                                                            min: 183,
-                                                            max: 187,
-                                                            price: 48
-                                                        }, {
-                                                            min: 188,
-                                                            max: 192,
-                                                            price: 49
-                                                        }, {
-                                                            min: 193,
-                                                            max: 197,
-                                                            price: 50
-                                                        }, {
-                                                            min: 198,
-                                                            max: 202,
-                                                            price: 55
-                                                        }, {
-                                                            min: 203,
-                                                            max: 207,
-                                                            price: 60
-                                                        }, {
-                                                            min: 208,
-                                                            max: 212,
-                                                            price: 65
-                                                        }, {
-                                                            min: 213,
-                                                            max: 217,
-                                                            price: 70
-                                                        }, {
-                                                            min: 218,
-                                                            max: 222,
-                                                            price: 75
-                                                        }, {
-                                                            min: 223,
-                                                            max: 227,
-                                                            price: 80
-                                                        }, {
-                                                            min: 228,
-                                                            max: 232,
-                                                            price: 85
-                                                        }, {
-                                                            min: 233,
-                                                            max: 237,
-                                                            price: 90
-                                                        }, {
-                                                            min: 238,
-                                                            max: 242,
-                                                            price: 95
-                                                        }, {
-                                                            min: 243,
-                                                            max: 247,
-                                                            price: 100
-                                                        }, {
-                                                            min: 248,
-                                                            max: 252,
-                                                            price: 105
-                                                        }];
+                                    <div class="col-sm-6">
+                                        <div class="right-side-bar">
+                                            <p>High quality 4mm plain mirrors, cleanly cut to size and professionally framed.</p>
+                                            <h3>Enter Mirror Size</h3>
+                                            
+                                            <div id="dimensions-unit-selection" hidden>
+                                                <fieldset id="unit-choice-radio">
+                                                    <label for="unit-cm" class="material-radio">
+                                                        <input name="unit-type" id="unit-cm" value="cm" checked="checked" type="radio">
+                                                        <span class="outer"><span class="inner"></span></span>
+                                                        cm
+                                                    </label>
+                                                </fieldset>
+                                            </div>
+                                            <form>
+                                                <div class="row">
+                                                    <fieldset>
+                                                        <input type="hidden" id="image-ratio" data-is-locked="false" value="0.015">
+                                                        <div class="col-xs-12" id="dimensions-input-wrapper">
+                                                            <div class="dimensions-container">
+                                                                <p style="width: 50%;float: left;">Width:
+                                                                    <input style="padding: 0 5px;" type="number" name="imgwidth" id="imgwidth" value="35" size="3" maxlength="5" min="10" max="152.5" step="0.1" class="inch-cm" data-cm-min="10" data-cm-max="152.5" data-redraw data-calc-product data-for="width"/>
+                                                                    cm
+                                                                </p>
+                                                            </div>
+                                                            <!--                                                            <div id="multiply-dimensions-sign">X</div>-->
+                                                            <div class="dimensions-container">
+                                                                <p style="width: 50%;float: left;">Height:
+                                                                    <input style="padding: 0 5px;" type="number" name="imgheight" id="imgheight" value="50" size="3" maxlength="5" min="10" max="152.5" step="0.1" class="inch-cm" data-cm-min="10" data-cm-max="152.5" data-inch-min="4" data-inch-max="60" data-cm-step="0.1" data-inch-step="0.25" data-redraw data-calc-product data-for="height"/> &nbsp;
+                                                                    cm
+                                                                </p>
+                                                            </div>
+                                                            <!--                                                            <div class="preset-size-container visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">-->
+                                                            <div class="preset-size-container hidden">
+                                                                <select name="Preset Size" id="preset-size-list">
+                                                                    <option value="-">Standard Sizes</option>
+                                                                    <option value="4x6in" data-value="4x6in" data-width-inch="4" data-height-inch="6" data-width-cm="10.2" data-height-cm="15.2">4 x 6 inches
+                                                                    </option>
+                                                                    <option value="5x7in" data-value="5x7in" data-width-inch="5" data-height-inch="7" data-width-cm="12.7" data-height-cm="17.8">5 x 7 inches
+                                                                    </option>
+                                                                    <option value="6x8in" data-value="6x8in" data-width-inch="6" data-height-inch="8" data-width-cm="15.2" data-height-cm="20.3">6 x 8 inches
+                                                                    </option>
+                                                                    <option value="8x10in" data-value="8x10in" data-width-inch="8" data-height-inch="10" data-width-cm="20.3" data-height-cm="25.4">8 x 10 inches
+                                                                    </option>
+                                                                    <option value="11x14in" data-value="11x14in" data-width-inch="11" data-height-inch="14" data-width-cm="27.9" data-height-cm="35.6">11 x 14 inches
+                                                                    </option>
+                                                                    <option value="12x16in" data-value="12x16in" data-width-inch="12" data-height-inch="16" data-width-cm="30.5" data-height-cm="40.6">12 x 16 inches
+                                                                    </option>
+                                                                    <option value="A4" data-value="A4" data-width-inch="8.3" data-height-inch="11.7" data-width-cm="21.0" data-height-cm="29.7">A4
+                                                                    </option>
+                                                                    <option value="A3" data-value="A3" data-width-inch="11.7" data-height-inch="16.5" data-width-cm="29.7" data-height-cm="42.0">A3
+                                                                    </option>
+                                                                    <option value="A2" data-value="A2" data-width-inch="23.4" data-height-inch="23.4" data-width-cm="42.0" data-height-cm="59.4">A2
+                                                                    </option>
+                                                                    <option value="A1" data-value="A1" data-width-inch="23.4" data-height-inch="33.1" data-width-cm="59.4" data-height-cm="84.1">A1
+                                                                    </option>
+                                                                    <option value="A0" data-value="A0" data-width-inch="33.1" data-height-inch="46.8" data-width-cm="84.1" data-height-cm="118.9">A0
+                                                                    </option>
+                                                                </select>
+                                                                <i class="fa fa-unlock ratio-lock hidden-xs hidden-sm" aria-hidden="true" title="Ratio is unlocked, you can enter any size."></i>
+                                                                <i class="fa fa-lock ratio-lock hidden hidden-xs hidden-sm" aria-hidden="true" title="Size ratio is now locked to your uploaded image's dimensions. To unlock the ratio, select 'Remove Image'"></i>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </form>
+                                            <div class="alert alert-danger" role="alert" id="dimension-alert" style="display:none;">
+                                                <p>Sizes must be between:</p>
+                                                <p> Min <b>10 x 10 cm</b> , Max <b>152 x 101.5 cm</b></p>
+                                                <p>For larger sizes please
+                                                    <a rel="nofollow" href="/contact-us/"><b>contact
+                                                            us.</b></a>
+                                                </p>
+                                            </div>
+                                            <h3>Choose Your Frame</h3>
+                                            <p>Click on the 'Add a Frame' button to head to our online framing section. Choose your favourite frame to suit your decor.</p>
+                                            <input type="hidden" name="frameitCanvasImg" id="frameitCanvasImg" value="">
+                                            <button id="cart-button" type="image" name="frameitImg" class="btn btn-primary btn-lg">Add a Frame
+                                            </button>
+                                            <p align="center">
+                                              
+                                                <script type="text/javascript">
+                                                    function drawPresetImage(target, src) {
+                                                        target = document.getElementById(target);
+                                                        targetCtx = target.getContext('2d');
+                                                        var img = new Image();
+                                                        img.src = "http://offthewallframing.com.au/web/photo_frame/plain_mirror/static/images/Plain-Mirror-2.jpg";
+                                                        img.onload = function() {
+                                                            setTimeout(function(){
+                                                                targetCtx.drawImage(img, 0, 0, target.width, target.height);
+                                                            }, 150);
+                                                        };
+                                                    }
+                                                    $(document).ready(function () {
+                                                        var userUploadForm = $('form[name="userupload"]');
+                                                        userUploadForm.on('submit', function (e) {
+                                                         
+                                                            var canvasImage = $('#canvas'),
+                                                                cv = canvasImage[0],
+                                                                canvasImageW = canvasImage.outerWidth(),
+                                                                canvasImageH = canvasImage.outerHeight();
 
-                                                        function filterdPrice(totalDimention, arr) {
-                                                            arr = arr || pricingArray;
-                                                            totalDimention = parseInt(totalDimention);
-                                                            for (var i = 0, l = arr.length; i < l; i++) {
-                                                                var item = arr[i],
-                                                                    min = item.min,
-                                                                    max = item.max;
-                                                                if (totalDimention >= min && totalDimention <= max) {
-                                                                    return item.price;
-                                                                } else {}
-                                                            }
-                                                        }
+                                                            var frameitCanvasImg = $('#frameitCanvasImg');
 
-                                                        function totalDimention() {
-                                                            return (!Number.isNaN(parseFloat($("[name=imgwidth]").val())) ? parseFloat($("[name=imgwidth]").val()) : 0) + (!Number.isNaN(parseFloat($("[name=imgheight]").val())) ? parseFloat($("[name=imgheight]").val()) : 0);
-                                                        }
+                                                            var newCanvas = document.createElement('canvas'),
+                                                                ctx = newCanvas.getContext('2d');
+                                                            newCanvas.width = canvasImageW;
+                                                            newCanvas.height = canvasImageH;
 
-                                                        $(document).ready(function() {
+                                                            ctx.drawImage(cv, 0, 0, canvasImageW, canvasImageH);
 
-                                                            var totalVal = totalDimention();
-
-
-                                                            $("[name=imgwidth]").on('input', function() {
-                                                                setTimeout('get_price();', 750);
-                                                                if (isValidSize()) {
-                                                                    $('#cart-button').prop('disabled', false);
-                                                                } else {
-                                                                    $('#cart-button').prop('disabled', 'disabled');
-                                                                }
-                                                            });
-
-                                                            $("[name=imgheight]").on('input', function() {
-                                                                setTimeout('get_price();', 750);
-                                                                if (isValidSize()) {
-                                                                    $('#cart-button').prop('disabled', false);
-                                                                } else {
-                                                                    $('#cart-button').prop('disabled', 'disabled');
-                                                                }
-                                                            });
-
-                                                            get_price();
+                                                            frameitCanvasImg.val(newCanvas.toDataURL());
 
                                                         });
 
-                                                        function isValidSize() {
-                                                            var t = ((function isValidSize() {
-                                                                var w = $("[name=imgwidth]").val();
-                                                                var h = $("[name=imgheight]").val();
-                                                                return !(w < 10 || h < 10 || w > 152 || h > 152 || (w > 101.5 && h > 101.5));
-                                                            })());
-                                                            if (t) {
-                                                                $('#dimension-alert').fadeOut(150);
+
+                                                        $("[name=imgwidth]").on('input', function () {
+                                                            setTimeout('get_price()', 750);
+                                                            if (isValidSize()) {
+                                                                $('#cart-button').prop('disabled', false);
                                                             } else {
-                                                                $('#dimension-alert').fadeIn(150);
+                                                                $('#cart-button').prop('disabled', 'disabled');
                                                             }
-                                                            return t;
-                                                        }
+                                                        });
 
-                                                        /*function get_price() {
-
-                                                            w = $("[name=imgwidth]").val();
-                                                            h = $("[name=imgheight]").val();
-                                                            c = $("[name=userupload] > [name=file]").val();
-
-                                                            $("#errtr").remove();
-
-                                                            if (w < 10 || h < 10 || w > 183 || h > 183 || (w > 122 && h > 122)) {
-
-                                                                $("#price").html("N/A");
-
-                                                                $("#table10").children().append('<tr id="errtr"><td align="center" style="color:red;font-weight: bold;"><span id="error"></span></td></tr>');
-
-                                                                $("#error").html("Minimum size: 10x10 cm  Maximum size: 183x122 cm. <br /><br />");
-
-                                                                return;
-
+                                                        $("[name=imgheight]").on('input', function () {
+                                                            setTimeout('get_price()', 750);
+                                                            if (isValidSize()) {
+                                                                $('#cart-button').prop('disabled', false);
+                                                            } else {
+                                                                $('#cart-button').prop('disabled', 'disabled');
                                                             }
+                                                        });
 
-                                                            /!*$.get("static/json/gcp.txt?w=" + w + "&h=" + h + "&c=" + c, function (data) {
-                                                             $('#price').html(data);
-                                                             });*!/
+                                                        get_price();
 
-                                                            /!*This is only for testing purpose to show different prices. please comment it and uncomment above commented block*!/
-                                                            $.getScript("static/json/gcp.js?w=" + w + "&h=" + h + "&c=" + c, function (data) {
-                                                                $('#price').html($item_price);
-                                                                $('#price_val').val($item_price);
-                                                                console.log(data);
-                                                            });
+                                                    });
 
-                                                        }*/
-
-                                                        function get_price() {
-                                                            w = $("[name=imgwidth]").val();
-                                                            h = $("[name=imgheight]").val();
-                                                            c = $("#file").val();
-                                                            var baseWidth = Number($('#baseWidth').val()),
-                                                                baseHeight = Number($('#baseHeight').val()),
-                                                                basePrice = Number($('#basePrice').val()),
-                                                                stepPrice = Number($('#stepPrice').val());
-
-                                                            var wPrice = w > baseWidth ? ((w - baseWidth) * stepPrice) : 0,
-                                                                hPrice = h > baseHeight ? ((h - baseHeight) * stepPrice) : 0;
-
-                                                            //                                                        var totalPrice = Number((basePrice + wPrice + hPrice).toFixed(2));
-
-
-                                                            var totalPrice = typeof(filterdPrice(totalDimention())) !== 'undefined' ? filterdPrice(totalDimention()) : pricingArray[0].price;
-                                                            $('#price').html(totalPrice).data('totalPrice', totalPrice);
-
-                                                            $('#price_val').val(totalPrice);
-
-                                                            //                                                        $('#price_val').val(totalPrice);
-                                                            //                                                        $('#price').html(totalPrice).data('totalPrice', totalPrice);
+                                                    function isValidSize() {
+                                                        var t = ((function isValidSize() {
+                                                            var w = $("[name=imgwidth]").val();
+                                                            var h = $("[name=imgheight]").val();
+                                                            return !(w < 10 || h < 10 || w > 152 || h > 152 || (w > 101.5 && h > 101.5));
+                                                        })());
+                                                        if (t) {
+                                                            $('#dimension-alert').fadeOut(150);
+                                                        } else {
+                                                            $('#dimension-alert').fadeIn(150);
                                                         }
-                                                    </script>
+                                                        return t;
+                                                    }
+                                                   
 
-                                    </p>
-                                    <input type="hidden" name="price_val" id="price_val">
-                                    <input type="hidden" name="initial_default_img" id="initial_default_img" value="{{ URL::asset('web/photo_frame/plain_mirror/static/images/Plain-Mirror-2.jpg') }}">
-                                    <span style="font-size: 22px;" id="label-total">Total Price: </span><span id="price" style="font-size: 22px;"></span>
-                                </div>
-                                <div style="margin-top: 30px;" class="right-side-bar">
-                                    <p>Customise your own decor with a cut to size framed mirror. Firstly choose a size, then simply 'Add a Frame'. You'll get a mirror professionally cut and framed to your designs. Please note that the price above does not include the frame, the cost of framing will vary based on your selection and will be instantly quoted to you in the next section.</p>
-                                    <p>Our mirrors are only available as <strong>framed</strong> mirrors when purchasing online. We can only provide unframed plain, polished or bevelled mirrors for delivery within the Sydney metro area, or as a pick-up order from our store. Please <a href="/contact-us/">contact us</a> for more information or for custom mirror requests.</p>
-                                </div>
-                            </div>
+                                                    function get_price() {
+                                                        w = $("[name=imgwidth]").val();
+                                                        h = $("[name=imgheight]").val();
+                                                        c = $("#file").val();
+                                                        var baseWidth = Number($('#baseWidth').val()),
+                                                            baseHeight = Number($('#baseHeight').val()),
+                                                            basePrice = Number($('#basePrice').val()),
+                                                            stepPrice = Number($('#stepPrice').val());
 
-                            
+                                                        var wPrice = w > baseWidth ? ((w - baseWidth) * stepPrice) : 0,
+                                                            hPrice = h > baseHeight ? ((h - baseHeight) * stepPrice) : 0;
 
-                        </form>
-                    </div>    
+                                                        var totalPrice = Number((basePrice + wPrice + hPrice).toFixed(2));
+                                                        $('#price_val').val(totalPrice);
+                                                        $('#price').html(totalPrice).data('totalPrice', totalPrice);
+                                                    }
+                                                </script>
+                                            </p>
+                                            <input type="hidden" name="price_val" id="price_val">
+                                            <input type="hidden" name="initial_default_img" id="initial_default_img" value="static/images/Plain-Mirror-2.jpg">
+                                            <span style="font-size: 20px;" id="label-total">Total Price: </span>
+                                            <span style="font-size: 20px;" id="price"></span>
+                                        </div>
+                                        <div class="right-side-bar" style="margin-top: 30px;">
+                                            <p>Customise your own decor with a cut to size framed mirror. Firstly choose a size, then simply 'Add a Frame'. You'll get a mirror professionally cut and framed to your designs. Please note that the price above does not include the frame, the cost of framing will vary based on your selection and will be instantly quoted to you in the next section.</p>
+                                            <p>Our mirrors are only available as
+                                                <strong>framed</strong>
+                                                mirrors when purchasing online. We can only provide unframed plain, polished or bevelled mirrors for delivery within the Sydney metro area, or as a pick-up order from our store. Please
+                                                <a href="/contact-us/">contact us</a>
+                                                for more information or for custom mirror requests.
+                                            </p>
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
 
-                </div>
-
-                <div style="background-color: #2b2b2b;margin-top: -10px;" class="col-md-12">
+                    <div style="background-color: #2b2b2b;margin-top: 30px;" class="col-md-12">
                 <div class="row">
 
                     <div class="footer_container">
@@ -503,35 +387,35 @@
 
                 </div>
             </div>
+                
+        </div>
+        
+    </div>
 
-            </div>
+    <style type="text/css">
+        .left-side-bar {
+            background: #fff;
+            padding: 15px;
+        }
+        .right-side-bar {
+            background: #fff;
+            padding: 15px;
+        }
+        h1,h3{
+        font-size: 20px !important;
+        padding: 0 !important;
+        margin-bottom: 10px !important;
+            width: 100%;
+display: inline-block;
+        }
 
-        </div>   
+        h3{
+            font-size: 16px !important;
+            margin-bottom: 20px !important;
+        }
+    </style> 
 
-
-        <style type="text/css">
-            .left-side-bar {
-                background: #fff;
-                padding: 15px;
-            }
-            .right-side-bar {
-                background: #fff;
-                padding: 15px;
-            }
-            h1,h3{
-            font-size: 20px !important;
-            padding: 0 !important;
-            margin-bottom: 10px !important;
-                width: 100%;
-    display: inline-block;
-            }
-
-            h3{
-                font-size: 16px !important;
-                margin-bottom: 20px !important;
-            }
-        </style> 
-
-    </body>
-
+    <script src="{{ URL::asset('web/photo_frame/plain_mirror/static/js/FrameCreator.min.js') }}"></script>
+    <script src="{{ URL::asset('web/photo_frame/plain_mirror/static/js/customFraming-1.0.min-photo-frame.js') }}"></script>
+</body>
 </html>
