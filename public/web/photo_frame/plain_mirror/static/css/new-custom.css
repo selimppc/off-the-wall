@@ -1,4 +1,9 @@
-
+#prodzerror {
+    display: none !important;
+}
+#prodzinfo {
+    display: table !important;
+}
 #print {
     position: relative;
 }

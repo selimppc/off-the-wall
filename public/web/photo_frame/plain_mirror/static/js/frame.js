@@ -803,7 +803,7 @@ var canvasFrame = new CanvasFrameImage('#draw_frame');
 console.log('hi');
 var prodsize = $('#prodsize'),
     frame = $('.frame');
-$.get('./static/json/price-list.json', function (data) {
+$.get('web/photo_frame/plain_mirror/static/json/price-list.json', function (data) {
     var total_prodsize = parseFloat(prodsize.attr('data-total-size')),
         priceRanges = [];
     console.log(total_prodsize);
