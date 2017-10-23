@@ -351,7 +351,7 @@ var ProductManager = function () {
                 }
                 $.ajax({
                     type: "GET",
-                    url: "web/photo_frame/plain_mirror/static/json/price-list.json",
+                    url: "static/json/price-list.json",
                     success: function (a) {
                         e = a, t = !0, H();
                     },
@@ -557,7 +557,8 @@ var ProductManager = function () {
                         .toFixed(2)),
                     // s = ["Image Size:", e, "x", t, currentUnits, "\n", "Visible (approx):", o, "x", n, currentUnits, "\n", "Outer Size (approx):", product.outerWidth, "x", product.outerHeight, "cm"].join(" ");
                     // s = ["Image Size:", e, "x", t, currentUnits].join(" ");
-                    s = ["Please Note: Hangers and Chains", "\n", "will be fitted to the width of your Framed Mirror", "\n\n", "Plain Mirror thickness", "\n", "4mm"].join(" ");
+                    // s = ["Please Note: Hangers and Chains", "\n", "will be fitted to the width of your Framed Mirror", "\n\n", "Plain Mirror thickness", "\n", "4mm"].join(" ");
+                    s = ["Please choose mirror size & ", "\n", " click to Add a frame to continue."].join(" ");
                 fc.setPlaceholderText(s)
             },
             I = function () {
@@ -1272,14 +1273,14 @@ function onImageUploadeSelect() {
             if (elm.files && elm.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-//		  $('#uploadForm').after('<img src="'+e.target.result+'" width="450" height="300"/>');
+//        $('#uploadForm').after('<img src="'+e.target.result+'" width="450" height="300"/>');
                     var imageURL = URL.createObjectURL(elm.files[0]);
-//		  var imageURL = e.target.result,
+//        var imageURL = e.target.result,
                     uploaded_img = new Image();
                     uploaded_img.src = imageURL;
                     uploaded_img.onload = function () {
                         if (typeof parent.gallery !== 'undefined') {
-//			 if(parent.gallery.getUrlFromIframe == true){
+//           if(parent.gallery.getUrlFromIframe == true){
                             var pixelWidth = uploaded_img.width;
                             var pixelHeight = uploaded_img.height;
                             imageURL = imageURL.replace(/^[a-z]{4}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '/$1');
@@ -1293,7 +1294,7 @@ function onImageUploadeSelect() {
                                 pixelHeight: pixelHeight
                             });
                             return;
-//			 }
+//           }
                         }
                     };
                 }

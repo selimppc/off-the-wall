@@ -416,16 +416,16 @@
                     var aspectRatio;
 
                     function maintainRatio(target) {
-                        if ("true" == $("#image-ratio").attr("data-is-locked")) {
-                            if ($(target).attr("data-for") == "width") {
-                                $("#width").val(($(target).val() / aspectRatio).toFixed(1));
-                                
-                            } else {
-                                $("#height").val(($(target).val() * aspectRatio).toFixed(1));
-                                
-                            }
+                                                    if ("true" == $("#image-ratio").attr("data-is-locked")) {
+                                                        if ($(target).attr("data-for") == "width") {
+                                                            $("#width").val(($(target).val() / aspectRatio).toFixed(1));
+                                                            //$("#width").val(parseInt($(target).val() * aspectRatio));
+                                                        } else {
+                                                            $("#height").val(($(target).val() * aspectRatio).toFixed(1));
+                                                            //$("#height").val(parseInt($(target).val() / aspectRatio));
+                                                        }
 
-                        }
+                                                    }
                     }
                     
                     $(document).ready(function () {
@@ -452,22 +452,62 @@
                                             console.log(elm.files[0]);
                                             console.log(e);
                                             console.log(e.target.result);
-
+//                                        var imageURL = URL.createObjectURL(elm.files[0]);
                                             var imageURL = e.target.result;
                                             uploaded_img = new Image();
                                             uploaded_img.src = imageURL;
                                             uploaded_img.onload = function () {
                                                 var pixelWidth = uploaded_img.width;
                                                 var pixelHeight = uploaded_img.height;
-
+//                                            imageURL = imageURL.replace(/^[a-z]{4}\:\/{2}[a-z]{1,}\:[0-9]{1,4}.(.*)/, '/$1');
+//                                            var filename = imageURL.substring(imageURL.lastIndexOf('/') + 1);
                                                 $('#result').hide();
                                                 console.log(uploaded_img.height);
                                                 console.log(uploaded_img.width);
-                                              
+                                                /*var cv = document.createElement('canvas'),
+                                                 ctx = cv.getContext('2d'),
+                                                 img = new Image();
+                                                 img.src = imageURL;
+                                                 cv.width = img.width;
+                                                 cv.height = img.height;
+                                                 img.onload = function () {
+                                                 ctx.drawImage(img, 0, 0, cv.width, cv.height);
+                                                 imageURL = cv.toDataURL();
+                                                 console.log(img.src);
+
+                                                 };*/
+
                                             $("#image-ratio").attr("data-is-locked", "false");
 
                                                 aspectRatio = parseFloat(pixelWidth) / pixelHeight;
-                                          
+                                                
+                                                 $("[name=imgwidth]").on('input change', function (e) {
+                                                    var target = e.target;
+                                                    if ("true" == $("#image-ratio").attr("data-is-locked")) {
+                                                        if ($(target).attr("data-for") == "width") {
+//                                                            $("#width").val(($(target).val() / aspectRatio).toFixed(1));
+                                                            $("#width").val(parseInt($(target).val() * aspectRatio));
+                                                        } else {
+//                                                            $("#height").val(($(target).val() * aspectRatio).toFixed(1));
+                                                            $("#height").val(parseInt($(target).val() / aspectRatio));
+                                                        }
+
+                                                    }
+//                            maintainRatio(e.target);
+                                                });
+                                                $("[name=imgheight]").on('input change', function (e) {
+                                                    var target = e.target;
+                                                    if ("true" == $("#image-ratio").attr("data-is-locked")) {
+                                                        if ($(target).attr("data-for") == "width") {
+//                                                            $("#width").val(($(target).val() / aspectRatio).toFixed(1));
+                                                            $("#width").val(parseInt($(target).val() * aspectRatio));
+                                                        } else {
+//                                                            $("#height").val(($(target).val() * aspectRatio).toFixed(1));
+                                                            $("#height").val(parseInt($(target).val() / aspectRatio));
+                                                        }
+
+                                                    }
+                                                });
                                                 console.log('assigned aspectRatio');
                                                 console.log(aspectRatio);
 
@@ -498,11 +538,11 @@
 
                         $("[name=imgwidth]").on('input change', function (e) {
                             txtWidthKeyup();
-                            maintainRatio(e.target);
+//                          maintainRatio(e.target);
                         });
                         $("[name=imgheight]").on('input change', function (e) {
                             txtHeightKeyup();
-                            maintainRatio(e.target);
+//                          maintainRatio(e.target);
                         });
                         $("#upimg").click(function () {
                             up_img();
@@ -581,7 +621,7 @@
                                 $("#wid3").html(nw / 2);
                             }
                         });
-                        $("#price").html("<img src='static/images/loading.gif' />");
+                        $("#price").html("<img src='web/photo_frame/canvas_print/static/images/loading.gif' />");
                         var totalPrice = typeof(filterdPrice(totalDimention())) !== 'undefined' ? filterdPrice(totalDimention()) : pricingArray[0].price;
                         $('#price').html(totalPrice).data('totalPrice', totalPrice);
                     }
@@ -592,7 +632,7 @@
                         c = $("#file").val();
                         var n = $("#nump").val();
                         var i = $("#imgv").html();
-                        $("#imgup").append("<div class='adding-to-cart'><br /><img src='static/images/loading.gif' /> Adding to Cart...</div>");
+                        $("#imgup").append("<div class='adding-to-cart'><br /><img src='web/photo_frame/canvas_print/static/images/loading.gif' /> Adding to Cart...</div>");
                         $.post('add-to-cart-canvas-print', {
                             action: 'add2cart',
                             "_token": "{{ csrf_token() }}",
@@ -635,6 +675,7 @@
                     });
                 }());
             </script>
+
             <style>
                 .fs-page-title {
                     text-align: center;

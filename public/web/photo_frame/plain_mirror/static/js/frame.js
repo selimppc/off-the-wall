@@ -23,14 +23,14 @@ $(function () {
         });
         //$("a.lrgimg").fancybox({'type':'iframe', 'width':'900', 'height':'800', 'autoDimensions':false});
         // $("a.lrgimg").fancybox({
-        // 	'type':'ajax',
+        //  'type':'ajax',
 
         //  'fitToView':true,
         //  'autoDimensions':false,
         //  'type':'iframe',
         //  'autoSize':false,
-        // 	'width':900,
-        // 	'height':900
+        //  'width':900,
+        //  'height':900
         //  });
         $("#add2cart").hide();
     });
@@ -88,7 +88,7 @@ $(function () {
 });
 
 function showlarger() {
-    var lrgimg = "plain-mirror-add-to-cart?sess=" + $("#sess").val() + "&show=1&a=p" + dourl() + "&prod_id=" + $("#iproduct_id").val();
+    var lrgimg = "/frame-preview.html?sess=" + $("#sess").val() + "&show=1&a=p" + dourl() + "&prod_id=" + $("#iproduct_id").val();
     lrgimg += '&out=/' + $("#sess").val() + '/prod_images/lrg_print_tmp_' + $("#iproduct_id").val() + '.jpg';
 
     // $("#largerimg").find(".lrgimg").attr("href", lrgimg);
@@ -455,7 +455,7 @@ function removefillet() {
 
 function SelectFrameCode(Obj) {
     obj_value = Obj.value;
-    /*	var code = $("#code_" + obj_value).val();
+    /*  var code = $("#code_" + obj_value).val();
      var width = $("#width_" + obj_value).val();
      var frate = $("#frate_" + obj_value).val();
      var rebate = $("#rebate_" + obj_value).val();
@@ -492,7 +492,9 @@ function CanvasFrameImage(elem) {
 
     var DEFAULT_WIDTH = 400;
     var DEFAULT_HEIGHT = 600;
-    var SCALE = 10;                 // pixel scale: 1cm = SCALE pixels wide.
+    // var SCALE = 10;
+    var SCALE = 30;
+    console.log("initial SCALE ", SCALE);
     var PIRAD = Math.PI / 180;
 
     var $elem = $(elem),
@@ -676,7 +678,13 @@ function CanvasFrameImage(elem) {
         console.log('drawImage');
         $constructor_this.setSize();
 
-
+        // var items = [32, 10, 20];
+        // SCALE = items[Math.floor(Math.random()*items.length)];
+        // SCALE = Math.min(MAX_CANVAS_WIDTH/10.20 , MAX_CANVAS_HEIGHT/15.20);
+        console.log(frame.frameWidth);
+        // SCALE = ($constructor_this.width * frame.frameWidth) / 80;
+        SCALE =  (frame.frameWidth * 8) > 40 ? (frame.frameWidth * 4) : (frame.frameWidth * 15);
+        console.log('new SCALE ', SCALE);
         var fLeft = parseFloat(frame.left) * SCALE,
             fRight = parseFloat(frame.right) * SCALE,
             fTop = parseFloat(frame.top) * SCALE,
@@ -903,7 +911,8 @@ $(".selectframe").live('click', function () {
         top: 1.4,
         bottom: 1.4,
         left: 1.4,
-        right: 1.4
+        right: 1.4,
+        frameWidth: width
     });
 });
 
@@ -962,7 +971,7 @@ $(".selectfillet").live('click', function () {
 function loading(msg) {
     if ($("#framez").css("display") != "none" || $("#slipz").css("display") != "none" || $("#filletz").css("display") != "none") {
         $("#frame").block({
-            message: '<img src="./static/images/loading.gif"><br /><br />' + msg,
+            message: '<img src="web/photo_frame/plain_mirror/static/images/loading.gif"><br /><br />' + msg,
             css: {
                 "font": "13px Arial, Helvetica, sans-serif",
                 "background": "#333",
