@@ -295,7 +295,7 @@ print_r($_SESSION);
                                                                                                 <a href="javascript: void(true);"
                                                                                                    id="add2cart" class="highlight">
                                                                                                     <img
-                                                                                                            src="static/images/cart-icon.gif"
+                                                                                                            src="web/photo_frame/plain_mirror/static/images/cart-icon.gif"
                                                                                                             border="0" width="140" height="19"
                                                                                                             alt="Add to Cart"
                                                                                                             title="Add to Cart"/>
@@ -477,7 +477,7 @@ print_r($_SESSION);
                                 </select>
                                 <div style="margin-top: 20px; padding: 0pt 0.7em;" class="ui-state-highlight ui-corner-all">
                             <p>
-                            <span style="display: none;" id="selectedframe"><strong><img src="static/images/select.GIF" border="0" width="295" alt="Empty picture frames"/>
+                            <span style="display: none;" id="selectedframe"><strong><img src="web/photo_frame/plain_mirror/static/images/select.GIF" border="0" width="295" alt="Empty picture frames"/>
                                     </a>
                                     <br><br>Selected Frame:: </strong>
                                 <input name="filtr_4" class="filtr_4" placeholder="Type to filter list">

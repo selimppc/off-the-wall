@@ -88,7 +88,7 @@ $(function () {
 });
 
 function showlarger() {
-    var lrgimg = "/frame-preview.html?sess=" + $("#sess").val() + "&show=1&a=p" + dourl() + "&prod_id=" + $("#iproduct_id").val();
+    var lrgimg = "plain-mirror-add-to-cart?sess=" + $("#sess").val() + "&show=1&a=p" + dourl() + "&prod_id=" + $("#iproduct_id").val();
     lrgimg += '&out=/' + $("#sess").val() + '/prod_images/lrg_print_tmp_' + $("#iproduct_id").val() + '.jpg';
 
     // $("#largerimg").find(".lrgimg").attr("href", lrgimg);
@@ -675,6 +675,7 @@ function CanvasFrameImage(elem) {
     };
 
     this.drawImage = function (frame) {
+        var framedimg = document.getElementById('framedimg');
         console.log('drawImage');
         $constructor_this.setSize();
 
@@ -683,7 +684,8 @@ function CanvasFrameImage(elem) {
         // SCALE = Math.min(MAX_CANVAS_WIDTH/10.20 , MAX_CANVAS_HEIGHT/15.20);
         console.log(frame.frameWidth);
         // SCALE = ($constructor_this.width * frame.frameWidth) / 80;
-        SCALE =  (frame.frameWidth * 8) > 40 ? (frame.frameWidth * 4) : (frame.frameWidth * 15);
+        //SCALE =  (frame.frameWidth * 8) > 70 ? (frame.frameWidth * 3) : (frame.frameWidth * 15);
+        SCALE = frame.frameWidth * 6
         console.log('new SCALE ', SCALE);
         var fLeft = parseFloat(frame.left) * SCALE,
             fRight = parseFloat(frame.right) * SCALE,
@@ -1557,7 +1559,8 @@ function add2cart() {
             url += '&swid=' + $("#slipz > .size").html() + "&islip_id=" + $("#islip_id").val() + "&scode=" + scode;
             url += '&fiwid=' + $("#filletz > .size").html() + '&ifillet_id=' + $("#ifillet_id").val() + "&ficode=" + ficode;
             url += prodstring;
-            window.location = "mycart";
+           /* window.location = url;*/
+           window.location = "mycart";
         }
     });
 

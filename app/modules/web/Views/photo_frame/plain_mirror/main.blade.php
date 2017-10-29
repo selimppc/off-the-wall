@@ -372,7 +372,7 @@
                                     <a href="https://plus.google.com/u/0/109347086873122701317/about" target="_blank"><img src="{{URL::to('')}}/images/google-plus.png"></a>
                                 </li>
                                 <li>
-                                    <a href="{{URL::to('')}}/about-us">About us</a>
+                                    <a href="{{URL::to('')}}/picture-framer">About us</a>
                                 </li>
                                 
                                 <li>

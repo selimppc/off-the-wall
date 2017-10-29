@@ -880,18 +880,15 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-sm-push-6">
-                        <p style="background: #fff;padding: 15px;margin-top: 30px;">Transform your photo into a piece of art for your home or a thoughtful gift for a loved one
-                            by
-                            printing on
-                            canvas. Our stretched canvas is available in square, rectangle, and panoramic shapes, in a
-                            wide
-                            selection of sizes, and in fact any canvas size you want. Both our canvas and wooden frames
-                            are
-                            of a
-                            very high quality and we also include a protective coat on your canvas to ensure the colours
-                            don't
-                            fade. It also helps keeping dirt, finger prints and moisture out.</p>
+                    <div class="col-xs-12 col-sm-12">
+                        <div style="background: #fff;padding: 15px;margin-top: 30px;">
+
+                            <p>Customise a canvas print of your favourite image or photograph and highlight your creativity. Alternatively, create a special gift that captures your important memories such as weddings or family portraits. Vibrant colours, quality materials and professional workmanship means your custom canvas print will be attractive for many years to come. </p>
+                            <p>You can personalize your canvas print to your preferred orientation or shape.  Upload your image and choose your canvas dimensions. Once we receive your order we will test your image to make sure it is high enough resolution to produce a quality print at your chosen size. </p>
+                            <p>Canvas’ can be printed up to 44inchs (1118 mm) width at any length.  We use a Canon Printer with the latest 12 colour pigment ink to create your canvas prints. This guarantees high colour vibrancy which will look as fresh as the day it was printed for a long time. </p>
+                            <p>Thank you for considering Off The Wall, experienced framers and print makers since 1988. We specialize in all areas of canvas print production including printing and stretching. Our team members are professional framers, printers and graphic designers and professional image editing services are available.  Any questions please email us to receive professional feedback:
+                            <a href="mailto:Offthewallframing@gmail.com?Subject=CANVAS PRINTING AND STRETCHING" target="_top">Offthewallframing@gmail.com</a></p>
+                        </div>
                     </div>
                 </div>
                
@@ -918,7 +915,7 @@
                                     <a href="https://plus.google.com/u/0/109347086873122701317/about" target="_blank"><img src="{{URL::to('')}}/images/google-plus.png"></a>
                                 </li>
                                 <li>
-                                    <a href="{{URL::to('')}}/about-us">About us</a>
+                                    <a href="{{URL::to('')}}/picture-framer">About us</a>
                                 </li>
                                 
                                 <li>

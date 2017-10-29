@@ -829,6 +829,17 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+                                    <div class="col-xs-12 col-sm-12">
+                                        <div style="background: #fff;padding: 15px;margin-top: 30px;">
+
+                                            <p>Canvas prints have become more popular over the past few years mainly due to their relative cost effectiveness per size compared to other photographic media and mounting processes, as well as being very light, and easily hung on walls where permanent hanging hardware is not allowed. We provide high quality canvas prints using high quality pigment inks that are fade resistant ensuring long lasting vibrant colours. </p>
+                                            <p>The process is similar to a photographic print where ink is laid on the surface of the canvas. The print boasts fine detail capabilities on our acid free, water resistant surface canvas, enabling precise reproduction of very high resolution photos. Our canvases are guaranteed not to yellow, crack, or curl and are naturally acid free due to the very high content of alpha cellulose in cotton, and are made without the use of optical brighteners which are known to affect the longevity of images. At Off The Wall Framing we provide custom size prints and stretching with vertical or horizontal hanging based on your needs, to fit anywhere you intend to place it. </p>
+                                            <p>Upload your image and choose your canvas dimensions. Once we receive your order we will test your image to make sure it is high enough resolution to produce a quality print at your chosen size. Once printed you have the option for us to arrange delivery of your canvas or to collect from our Rockdale store. </p>
+                                        </div>
+                                    </div>
+
                                 </form>
                             </div>
                         </div>
@@ -858,7 +869,7 @@
                                     <a href="https://plus.google.com/u/0/109347086873122701317/about" target="_blank"><img src="{{URL::to('')}}/images/google-plus.png"></a>
                                 </li>
                                 <li>
-                                    <a href="{{URL::to('')}}/about-us">About us</a>
+                                    <a href="{{URL::to('')}}/picture-framer">About us</a>
                                 </li>
                                 
                                 <li>
@@ -873,6 +884,9 @@
 
                 </div>
             </div>
+
+
+            
 
 
         </div>

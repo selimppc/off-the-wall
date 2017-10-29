@@ -351,7 +351,7 @@ var ProductManager = function () {
                 }
                 $.ajax({
                     type: "GET",
-                    url: "static/json/price-list.json",
+                    url: "web/photo_frame/plain_mirror/static/json/price-list.json",
                     success: function (a) {
                         e = a, t = !0, H();
                     },
