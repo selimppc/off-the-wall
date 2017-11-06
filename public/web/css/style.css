@@ -840,7 +840,7 @@ input.login_btn{
 .cart-table tbody tr td .added-item-container {
     width: 75%;
     float: left;
-    margin-top: 15px;
+    margin-top: 1%;
 }
 
 .cart-table tbody tr td input.cart-quantity {
@@ -848,17 +848,17 @@ input.login_btn{
     padding: 0px 5px;
     outline: none;
     width: 50px;
-    margin-top: 15px;
+    margin-top: 8%;
     text-align: center;
 }
 
 .cart-table tbody tr td .unit-price {
-    margin-top: 15px;
+    margin-top: 8%;
 }
 
 .cart-table tbody tr td .linetotal {
     float: right;
-    margin-top: 15px;
+    margin-top: 8%;
 }
 .cart-table tbody tr td a.remove_cart {
     float: right;
@@ -1066,7 +1066,7 @@ a.cart-checkout:hover{
     outline: none;
     height: 20px;
     cursor: pointer;
-    margin-top: 15px;
+    margin-top: 20%;
     float: right;
     margin-left: 10px;
 }
@@ -1079,7 +1079,7 @@ a.cart-checkout:hover{
     outline: none;
     height: 20px;
     cursor: pointer;
-    margin-top: 17px;
+    margin-top:8%;
     float: left;
 }
 

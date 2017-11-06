@@ -171,6 +171,56 @@ class OrderController extends Controller
 		}
 	}
 
+    public function remove_cart_canvas_print(Request $request){
+
+        if(isset($_POST)){
+            
+            $request->session()->forget('photo_frame_canvas_print_cart');
+
+            return redirect('mycart');
+        }
+    }
+
+    public function remove_cart_photo_frame(Request $request){
+
+        if(isset($_POST)){
+            
+            $request->session()->forget('photo_frame_cart');
+
+            return redirect('mycart');
+        }
+    }
+
+    public function remove_cart_canvas_stretching_only(Request $request){
+
+        if(isset($_POST)){
+            
+            $request->session()->forget('photo_frame_only_printing_cart');
+
+            return redirect('mycart');
+        }
+    }
+
+    public function remove_cart_canvas_only_print(Request $request){
+
+        if(isset($_POST)){
+            
+            $request->session()->forget('photo_frame_only_stretching_cart');
+
+            return redirect('mycart');
+        }
+    }
+
+    public function remove_cart_plain_mirror(Request $request){
+
+        if(isset($_POST)){
+            
+            $request->session()->forget('photo_frame_plain_mirror_cart');
+
+            return redirect('mycart');
+        }
+    }
+
 	public function update_cart(Request $request){
 
 		if(isset($_POST)){
@@ -206,6 +256,89 @@ class OrderController extends Controller
 			return redirect('mycart');
 		}
 	}
+
+    public function update_cart_photo_frame(Request $request){
+
+        if(isset($_POST)){
+            
+            $photo_frame_cart = $request->session()->get('photo_frame_cart');
+            $photo_frame_cart['product']['quantity'] = $_POST['product_quantity'];
+            
+            // Set Session
+            $request->session()->set('photo_frame_cart', $photo_frame_cart);
+
+            return redirect('mycart');
+        }
+
+    }
+
+    public function update_cart_canvas_print(Request $request){
+
+        if(isset($_POST)){
+
+            $canvas_array = array(
+                'qty' => $_POST['product_quantity_canvas_print'],
+                'type' => 'canvas_print',
+                'width' => $_POST['width'],
+                'height' => $_POST['height'],
+                'image' => $_POST['image'],
+                'edge_type' => $_POST['edge_type'],
+                'total_price' => $_POST['total_price']
+            );
+
+            // Set Session
+            $request->session()->set('photo_frame_canvas_print_cart', $canvas_array);
+
+            return redirect('mycart');
+        }
+
+    }
+
+    public function update_cart_canvas_stretching_only(Request $request){
+
+        if(isset($_POST)){
+
+            $photo_frame_only_printing_cart = $request->session()->get('photo_frame_only_printing_cart');
+
+            $photo_frame_only_printing_cart['qty'] = $_POST['product_quantity'];
+
+            // Set Session
+            $request->session()->set('photo_frame_only_printing_cart', $photo_frame_only_printing_cart);
+
+            return redirect('mycart');
+        }
+
+    }
+
+    public function update_cart_canvas_only_printing(Request $request){
+
+        if(isset($_POST)){
+
+            $photo_frame_only_stretching_cart = $request->session()->get('photo_frame_only_stretching_cart');
+
+            $photo_frame_only_stretching_cart['qty'] = $_POST['product_quantity'];
+
+            // Set Session
+            $request->session()->set('photo_frame_only_stretching_cart', $photo_frame_only_stretching_cart);
+
+            return redirect('mycart');
+        }
+
+    }
+
+    public function update_cart_plain_mirror(Request $request){
+
+        if(isset($_POST)){
+
+            $photo_frame_plain_mirror_cart = $request->session()->get('photo_frame_plain_mirror_cart');
+            $photo_frame_plain_mirror_cart['qty'] = $_POST['product_quantity'];
+
+            // Set Session
+            $request->session()->set('photo_frame_plain_mirror_cart', $photo_frame_plain_mirror_cart);
+
+            return redirect('mycart');
+        }
+    }
 
 	public function billingaddress(){
     	
@@ -411,7 +544,7 @@ class OrderController extends Controller
             $modal->user_id = $user_id;
             $modal->status ='open';
 
-            if(count($product_cart_r) > 0 ){
+            /*if(count($product_cart_r) > 0 ){
                 $modal->type = 'product';
             }elseif (count($photo_frame_cart) > 0 ) {
                 $modal->type = 'frame';
@@ -424,11 +557,12 @@ class OrderController extends Controller
             }
             else{
                 $modal->type = 'plain_mirror';
-            }
+            }*/
             
 
             $modal->save();
 
+            // main product cart
             if(!empty($product_cart_r)){
 
                 foreach($product_cart_r as $product_cart){
@@ -454,134 +588,149 @@ class OrderController extends Controller
                     
                 }
 
-            }else{
-                
-                if(count($photo_frame_cart) > 0){
-                
-                    $details_message = 'Image Width: '.$photo_frame_cart['product']['imageWidth'].'===Image Height: '.$photo_frame_cart['product']['imageHeight'].'===Printing Paper: '.$photo_frame_cart['product']['printing']['paper'].'===innerWidth:'.$photo_frame_cart['product']['innerWidth'].'===innerHeight:'.$photo_frame_cart['product']['innerHeight'].'===outerWidth:'.$photo_frame_cart['product']['outerWidth'].'===outerHeight'.$photo_frame_cart['product']['outerHeight'].'===Frame Title: '.$photo_frame_cart['product']['frame']['frameTile'].'===Frame Max: '.$photo_frame_cart['product']['frame']['frameMax'].'===Frame Min: '.$photo_frame_cart['product']['frame']['frameMin'].'===Frame Rate:'.$photo_frame_cart['product']['frame']['frameRate'].'===Frame Rebate: '.$photo_frame_cart['product']['frame']['frameRebate'].'===Frame Depth: '.$photo_frame_cart['product']['frame']['frameDepth'].'===Frame Width: '.$photo_frame_cart['product']['frame']['frameWidth'].'===Frame Material: '.$photo_frame_cart['product']['frame']['frameMaterial'].'===Frame Code: '.$photo_frame_cart['product']['frame']['frameCode'].'===Glass: '.$photo_frame_cart['product']['glass'].'===Backing: '.$photo_frame_cart['product']['backing'].'===Mat 1 Color Code: '.@$photo_frame_cart['product']['matboards']['mat1']['colorCode'].'===Top: '.@$photo_frame_cart['product']['matboards']['mat1']['top'].'===Left: '.@$photo_frame_cart['product']['matboards']['mat1']['left'].'===Right: '.@$photo_frame_cart['product']['matboards']['mat1']['right'].'===Bottom: '.@$photo_frame_cart['product']['mat1']['matboards']['bottom'].'===Mat Code: '.@$photo_frame_cart['product']['matboards']['mat1']['matCode'].'===Mat Name: '.@$photo_frame_cart['product']['matboards']['mat1']['matName'].'===Price: '.@$photo_frame_cart['product']['matboards']['mat1']['price'].'===Mat 2 Color Code: '.@$photo_frame_cart['product']['matboards']['mat2']['colorCode'].'===Top: '.@$photo_frame_cart['product']['matboards']['mat2']['top'].'===Left: '.@$photo_frame_cart['product']['matboards']['mat2']['left'].'===Right: '.@$photo_frame_cart['product']['matboards']['mat2']['right'].'===Bottom: '.@$photo_frame_cart['product']['mat2']['matboards']['bottom'].'===Mat Code: '.@$photo_frame_cart['product']['matboards']['mat2']['matCode'].'===Mat Name: '.@$photo_frame_cart['product']['matboards']['mat2']['matName'].'===Price: '.@$photo_frame_cart['product']['matboards']['mat2']['price'].'==='.$photo_frame_cart['product']['price'].'==='.$photo_frame_cart['product']['discountedPrice'].'=== '.$photo_frame_cart['product']['newDiscountedPrice'].'===Frame Price: '.$photo_frame_cart['product']['framePrice'].'===Glass: '.$photo_frame_cart['product']['glass'].'===Backing: '.$photo_frame_cart['product']['backing'].'==='.$photo_frame_cart['product']['quantity'];
-
-                    $deliver_modal = new Orderdetails();
-
-                    $deliver_modal->order_head_id =$modal->id;
-                    $deliver_modal->qty = $photo_frame_cart['product']['quantity'];
-                    $deliver_modal->price = $photo_frame_cart['product']['framePrice'];
-                    $deliver_modal->details = $details_message;
-
-                    if(!empty($photo_frame_cart['thumb'])){
-                        $deliver_modal->image_link = $photo_frame_cart['thumb'];
-                    }else{
-                        $deliver_modal->image_link = '';
-                    }
-
-                    $deliver_modal->status= 0;
-
-                    $deliver_modal->save();
-
-                }elseif (count($photo_frame_canvas_print_cart) > 0) {
-                    
-                    $details_message = 'Width: '.$photo_frame_canvas_print_cart['width'].'===Height: '.$photo_frame_canvas_print_cart['height'].'===Edge Type: '.$photo_frame_canvas_print_cart['edge_type'].'===Price:'.$photo_frame_canvas_print_cart['total_price'];
-
-                    $deliver_modal = new Orderdetails();
-
-                    $deliver_modal->order_head_id =$modal->id;
-                    $deliver_modal->qty = 1;
-                    $deliver_modal->price = $photo_frame_canvas_print_cart['total_price'];
-                    $deliver_modal->details = $details_message;
-
-                    if(!empty($photo_frame_canvas_print_cart['image'])){
-                        $deliver_modal->image_link = $photo_frame_canvas_print_cart['image'];
-                    }else{
-                        $deliver_modal->image_link = '';
-                    }
-
-                    $deliver_modal->status= 0;
-
-                    $deliver_modal->save();
-
-                }elseif (count($photo_frame_only_printing_cart) > 0) {
-                    
-                    $details_message = 'Width: '.$photo_frame_only_printing_cart['width'].'===Height: '.$photo_frame_only_printing_cart['height'].'===Edge Type: '.$photo_frame_only_printing_cart['edge_type'].'===Price:'.$photo_frame_only_printing_cart['total_price'];
-
-                    $deliver_modal = new Orderdetails();
-
-                    $deliver_modal->order_head_id =$modal->id;
-                    $deliver_modal->qty = 1;
-                    $deliver_modal->price = $photo_frame_only_printing_cart['total_price'];
-                    $deliver_modal->details = $details_message;
-
-
-                    $deliver_modal->status= 0;
-
-                    $deliver_modal->save();
-
-                }elseif (count($photo_frame_only_stretching_cart) > 0) {
-                    
-                    $details_message = 'Width: '.$photo_frame_only_stretching_cart->width.'===Height: '.$photo_frame_only_stretching_cart->height.'===Price:'.$photo_frame_only_stretching_cart->total_price;
-
-                    $deliver_modal = new Orderdetails();
-
-                    $deliver_modal->order_head_id =$modal->id;
-                    $deliver_modal->qty = 1;
-                    $deliver_modal->price = $photo_frame_only_stretching_cart->total_price;
-                    $deliver_modal->details = $details_message;
-
-                    if(!empty($photo_frame_only_stretching_cart->image)){
-                        $deliver_modal->image_link = $photo_frame_only_stretching_cart->image;
-                    }else{
-                        $deliver_modal->image_link = '';
-                    }
-
-
-                    $deliver_modal->status= 0;
-
-                    $deliver_modal->save();
-
-                }
-
-                elseif(count($photo_frame_plain_mirror_cart) > 0){
-
-                    $details_message = 'Width: '.$photo_frame_plain_mirror_cart['width'].'===Height: '.$photo_frame_plain_mirror_cart['height'].'===Total Price: '.$photo_frame_plain_mirror_cart['total_price'].'===Product Type: '.$photo_frame_plain_mirror_cart['product_type'].'===Frame Code: '.$photo_frame_plain_mirror_cart['frame_code'].'===Frame Price: '.$photo_frame_plain_mirror_cart['frame_price'].'===Backing Type: '.$photo_frame_plain_mirror_cart['backing_type'].'===Backing Type Price: '.$photo_frame_plain_mirror_cart['backing_type_price'];
-
-                    $deliver_modal = new Orderdetails();
-
-                    $deliver_modal->order_head_id =$modal->id;
-                    $deliver_modal->qty = 1;
-                    $deliver_modal->price = $photo_frame_plain_mirror_cart['total_price'];
-                    $deliver_modal->details = $details_message;
-
-                    if(!empty($photo_frame_plain_mirror_cart['image'])){
-                        $deliver_modal->image_link = $photo_frame_plain_mirror_cart['image'];
-                    }else{
-                        $deliver_modal->image_link = '';
-                    }
-
-                    $deliver_modal->status= 0;
-
-                    $deliver_modal->save();                    
-
-                }else{
-
-                    $details_message = 'Width: '.$photo_frame_canvas_print_cart['width'].'===Height: '.$photo_frame_canvas_print_cart['height'].'===Edge Type: '.$photo_frame_canvas_print_cart['edge_type'].'===Price:'.$photo_frame_canvas_print_cart['total_price'];
-
-                    $deliver_modal = new Orderdetails();
-
-                    $deliver_modal->order_head_id =$modal->id;
-                    $deliver_modal->qty = 1;
-                    $deliver_modal->price = $photo_frame_canvas_print_cart['total_price'];
-                    $deliver_modal->details = $details_message;
-
-                    if(!empty($photo_frame_canvas_print_cart['image'])){
-                        $deliver_modal->image_link = $photo_frame_canvas_print_cart['image'];
-                    }else{
-                        $deliver_modal->image_link = '';
-                    }
-
-                    $deliver_modal->status= 0;
-
-                    $deliver_modal->save();
-                    
-                }
             }
+             
+            // main frame    
+            if(count($photo_frame_cart) > 0){
+            
+                $details_message = 'Image Width: '.$photo_frame_cart['product']['imageWidth'].'===Image Height: '.$photo_frame_cart['product']['imageHeight'].'===Printing Paper: '.$photo_frame_cart['product']['printing']['paper'].'===innerWidth:'.$photo_frame_cart['product']['innerWidth'].'===innerHeight:'.$photo_frame_cart['product']['innerHeight'].'===outerWidth:'.$photo_frame_cart['product']['outerWidth'].'===outerHeight'.$photo_frame_cart['product']['outerHeight'].'===Frame Title: '.$photo_frame_cart['product']['frame']['frameTile'].'===Frame Max: '.$photo_frame_cart['product']['frame']['frameMax'].'===Frame Min: '.$photo_frame_cart['product']['frame']['frameMin'].'===Frame Rate:'.$photo_frame_cart['product']['frame']['frameRate'].'===Frame Rebate: '.$photo_frame_cart['product']['frame']['frameRebate'].'===Frame Depth: '.$photo_frame_cart['product']['frame']['frameDepth'].'===Frame Width: '.$photo_frame_cart['product']['frame']['frameWidth'].'===Frame Material: '.$photo_frame_cart['product']['frame']['frameMaterial'].'===Frame Code: '.$photo_frame_cart['product']['frame']['frameCode'].'===Glass: '.$photo_frame_cart['product']['glass'].'===Backing: '.$photo_frame_cart['product']['backing'].'===Mat 1 Color Code: '.@$photo_frame_cart['product']['matboards']['mat1']['colorCode'].'===Top: '.@$photo_frame_cart['product']['matboards']['mat1']['top'].'===Left: '.@$photo_frame_cart['product']['matboards']['mat1']['left'].'===Right: '.@$photo_frame_cart['product']['matboards']['mat1']['right'].'===Bottom: '.@$photo_frame_cart['product']['mat1']['matboards']['bottom'].'===Mat Code: '.@$photo_frame_cart['product']['matboards']['mat1']['matCode'].'===Mat Name: '.@$photo_frame_cart['product']['matboards']['mat1']['matName'].'===Price: '.@$photo_frame_cart['product']['matboards']['mat1']['price'].'===Mat 2 Color Code: '.@$photo_frame_cart['product']['matboards']['mat2']['colorCode'].'===Top: '.@$photo_frame_cart['product']['matboards']['mat2']['top'].'===Left: '.@$photo_frame_cart['product']['matboards']['mat2']['left'].'===Right: '.@$photo_frame_cart['product']['matboards']['mat2']['right'].'===Bottom: '.@$photo_frame_cart['product']['mat2']['matboards']['bottom'].'===Mat Code: '.@$photo_frame_cart['product']['matboards']['mat2']['matCode'].'===Mat Name: '.@$photo_frame_cart['product']['matboards']['mat2']['matName'].'===Price: '.@$photo_frame_cart['product']['matboards']['mat2']['price'].'==='.$photo_frame_cart['product']['price'].'==='.$photo_frame_cart['product']['discountedPrice'].'=== '.$photo_frame_cart['product']['newDiscountedPrice'].'===Frame Price: '.$photo_frame_cart['product']['framePrice'].'===Glass: '.$photo_frame_cart['product']['glass'].'===Backing: '.$photo_frame_cart['product']['backing'].'==='.$photo_frame_cart['product']['quantity'];
+
+                $deliver_modal = new Orderdetails();
+
+                $deliver_modal->order_head_id =$modal->id;
+                $deliver_modal->qty = $photo_frame_cart['product']['quantity'];
+                $deliver_modal->price = $photo_frame_cart['product']['framePrice'];
+                $deliver_modal->details = $details_message;
+
+                if(!empty($photo_frame_cart['thumb'])){
+                    $deliver_modal->image_link = $photo_frame_cart['thumb'];
+                }else{
+                    $deliver_modal->image_link = '';
+                }
+
+                $deliver_modal->status= 0;
+
+                $deliver_modal->save();
+
+            }
+
+            // canvas print
+            if (count($photo_frame_canvas_print_cart) > 0) {
+                
+                $details_message = 'Width: '.$photo_frame_canvas_print_cart['width'].'===Height: '.$photo_frame_canvas_print_cart['height'].'===Edge Type: '.$photo_frame_canvas_print_cart['edge_type'].'===Price:'.$photo_frame_canvas_print_cart['total_price'];
+
+                $deliver_modal = new Orderdetails();
+
+                $deliver_modal->order_head_id =$modal->id;
+                $deliver_modal->qty = 1;
+                $deliver_modal->price = $photo_frame_canvas_print_cart['total_price'];
+                $deliver_modal->details = $details_message;
+
+                if(!empty($photo_frame_canvas_print_cart['image'])){
+                    $deliver_modal->image_link = $photo_frame_canvas_print_cart['image'];
+                }else{
+                    $deliver_modal->image_link = '';
+                }
+
+                $deliver_modal->status= 0;
+
+                $deliver_modal->save();
+
+            }
+
+            // canvas stetching
+            if (count($photo_frame_only_printing_cart) > 0) {
+                
+                $details_message = 'Width: '.$photo_frame_only_printing_cart['width'].'===Height: '.$photo_frame_only_printing_cart['height'].'===Edge Type: '.$photo_frame_only_printing_cart['edge_type'].'===Price:'.$photo_frame_only_printing_cart['total_price'];
+
+                $deliver_modal = new Orderdetails();
+
+                $deliver_modal->order_head_id =$modal->id;
+                $deliver_modal->qty = 1;
+                $deliver_modal->price = $photo_frame_only_printing_cart['total_price'];
+                $deliver_modal->details = $details_message;
+
+
+                $deliver_modal->status= 0;
+
+                $deliver_modal->save();
+
+            }
+
+            // canvas print only
+            if (count($photo_frame_only_stretching_cart) > 0) {
+                
+                $details_message = 'Width: '.$photo_frame_only_stretching_cart->width.'===Height: '.$photo_frame_only_stretching_cart->height.'===Price:'.$photo_frame_only_stretching_cart->total_price;
+
+                $deliver_modal = new Orderdetails();
+
+                $deliver_modal->order_head_id =$modal->id;
+                $deliver_modal->qty = 1;
+                $deliver_modal->price = $photo_frame_only_stretching_cart->total_price;
+                $deliver_modal->details = $details_message;
+
+                if(!empty($photo_frame_only_stretching_cart->image)){
+                    $deliver_modal->image_link = $photo_frame_only_stretching_cart->image;
+                }else{
+                    $deliver_modal->image_link = '';
+                }
+
+
+                $deliver_modal->status= 0;
+
+                $deliver_modal->save();
+
+            }
+
+            // plain mirror
+            if(count($photo_frame_plain_mirror_cart) > 0){
+
+                $details_message = 'Width: '.$photo_frame_plain_mirror_cart['width'].'===Height: '.$photo_frame_plain_mirror_cart['height'].'===Total Price: '.$photo_frame_plain_mirror_cart['total_price'].'===Product Type: '.$photo_frame_plain_mirror_cart['product_type'].'===Frame Code: '.$photo_frame_plain_mirror_cart['frame_code'].'===Frame Price: '.$photo_frame_plain_mirror_cart['frame_price'].'===Backing Type: '.$photo_frame_plain_mirror_cart['backing_type'].'===Backing Type Price: '.$photo_frame_plain_mirror_cart['backing_type_price'];
+
+                $deliver_modal = new Orderdetails();
+
+                $deliver_modal->order_head_id =$modal->id;
+                $deliver_modal->qty = 1;
+                $deliver_modal->price = $photo_frame_plain_mirror_cart['total_price'];
+                $deliver_modal->details = $details_message;
+
+                if(!empty($photo_frame_plain_mirror_cart['image'])){
+                    $deliver_modal->image_link = $photo_frame_plain_mirror_cart['image'];
+                }else{
+                    $deliver_modal->image_link = '';
+                }
+
+                $deliver_modal->status= 0;
+
+                $deliver_modal->save();                    
+
+            }
+
+
+            // canvas print
+            if(count($photo_frame_canvas_print_cart) > 0){
+
+                $details_message = 'Width: '.$photo_frame_canvas_print_cart['width'].'===Height: '.$photo_frame_canvas_print_cart['height'].'===Edge Type: '.$photo_frame_canvas_print_cart['edge_type'].'===Price:'.$photo_frame_canvas_print_cart['total_price'];
+
+                $deliver_modal = new Orderdetails();
+
+                $deliver_modal->order_head_id =$modal->id;
+                $deliver_modal->qty = 1;
+                $deliver_modal->price = $photo_frame_canvas_print_cart['total_price'];
+                $deliver_modal->details = $details_message;
+
+                if(!empty($photo_frame_canvas_print_cart['image'])){
+                    $deliver_modal->image_link = $photo_frame_canvas_print_cart['image'];
+                }else{
+                    $deliver_modal->image_link = '';
+                }
+
+                $deliver_modal->status= 0;
+
+                $deliver_modal->save();
+                
+            }
+            
             
             
             // Remove Session

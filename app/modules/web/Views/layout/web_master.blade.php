@@ -74,13 +74,37 @@
                                             <div class="my_bag_container">
                                                 <a href="{{URL::to('')}}/mycart">
                                                     <span class="text">Cart</span>
-                                                    <span class="wishlist_amount">(
-                                                        @if(Session::has('product_cart'))
-                                                            {{count(Session::get('product_cart'))}}
-                                                        @else
-                                                            0
-                                                        @endif
-                                                        )</span>
+                                                    <span class="wishlist_amount">
+
+                                                    <?php
+                                                        $total_cart = 0;
+
+                                                        if(Session::has('product_cart')){
+                                                           $total_cart =  count(Session::get('product_cart'));
+                                                        }
+
+                                                        if(Session::has('photo_frame_cart')){
+                                                            $total_cart++;
+                                                        }
+
+                                                        if(Session::has('photo_frame_canvas_print_cart')){
+                                                            $total_cart++;
+                                                        }
+
+                                                        if(Session::has('photo_frame_only_printing_cart')){
+                                                            $total_cart++;
+                                                        }
+
+                                                        if(Session::has('photo_frame_only_stretching_cart')){
+                                                            $total_cart++;
+                                                        }
+
+                                                        if(Session::has('photo_frame_plain_mirror_cart')){
+                                                            $total_cart++;
+                                                        }
+                                                    ?>
+                                                        (<?=$total_cart;?>)
+                                                    </span>
                                                 </a>
                                             </div>
                                         </div>

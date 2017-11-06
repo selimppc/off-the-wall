@@ -19,12 +19,12 @@ class PhotoFrameController extends Controller{
 
 	public function photo_frame(Request $request){
 
-		// Remove Session
+		/*// Remove Session
         $request->session()->forget('product_cart');
         $request->session()->forget('photo_frame_cart');
         $request->session()->forget('photo_frame_plain_mirror_cart');
         $request->session()->forget('photo_frame_canvas_print_cart');
-        $request->session()->forget('photo_frame_only_printing_cart');
+        $request->session()->forget('photo_frame_only_printing_cart');*/
 
 		$title = "Photo Frame";
 
@@ -64,10 +64,10 @@ class PhotoFrameController extends Controller{
 	public function add_to_cart(Request $request){
 
 		// Remove Session
-        $request->session()->forget('product_cart');
+        /*$request->session()->forget('product_cart');
         $request->session()->forget('photo_frame_cart');
         $request->session()->forget('photo_frame_plain_mirror_cart');
-        $request->session()->forget('photo_frame_canvas_print_cart');
+        $request->session()->forget('photo_frame_canvas_print_cart');*/
 
 		if(isset($_POST)){
 			$request->session()->set('photo_frame_cart', $_POST);
@@ -79,15 +79,16 @@ class PhotoFrameController extends Controller{
 	public function plain_mirror_add_to_cart(Request $request){
 
 		// Remove Session
-        $request->session()->forget('product_cart');
+       /* $request->session()->forget('product_cart');
         $request->session()->forget('photo_frame_cart');
         $request->session()->forget('photo_frame_plain_mirror_cart');
-        $request->session()->forget('photo_frame_canvas_print_cart');
+        $request->session()->forget('photo_frame_canvas_print_cart');*/
 
 		$string=exec('getmac');
 		$mac=substr($string, 0, 17);
 
 		DB::table('frame_session_data')->insert([
+			'qty' => '1',
 			'type' => 'plain_mirror',
 			'width' =>  '',
 			'height' =>  '',
@@ -106,15 +107,16 @@ class PhotoFrameController extends Controller{
 	public function canvas_print_add_to_cart(Request $request){
 
 			// Remove Session
-	        $request->session()->forget('product_cart');
+	        /*$request->session()->forget('product_cart');
 	        $request->session()->forget('photo_frame_cart');
 	        $request->session()->forget('photo_frame_plain_mirror_cart');
-	        $request->session()->forget('photo_frame_canvas_print_cart');
+	        $request->session()->forget('photo_frame_canvas_print_cart');*/
 		
 			$string=exec('getmac');
 			$mac=substr($string, 0, 17);
 
 			DB::table('frame_session_data')->insert([
+				'qty' => '1',
 				'type' => 'canvas_print',
 				'width' =>  $_POST['w'],
 				'height' =>  $_POST['h'],
@@ -133,6 +135,7 @@ class PhotoFrameController extends Controller{
 			$mac=substr($string, 0, 17);
 
 			DB::table('frame_session_data')->insert([
+				'qty' => '1',
 				'type' => 'stretching',
 				'width' =>  $_POST['w'],
 				'height' =>  $_POST['h'],
@@ -150,6 +153,7 @@ class PhotoFrameController extends Controller{
 			$mac=substr($string, 0, 17);
 
 			DB::table('frame_session_data')->insert([
+				'qty' => '1',
 				'type' => 'only_printing',
 				'width' =>  $_POST['w'],
 				'height' =>  $_POST['h'],
@@ -165,11 +169,11 @@ class PhotoFrameController extends Controller{
 	public function canvas_print(Request $request){
 
 		// Remove Session
-        $request->session()->forget('product_cart');
+        /*$request->session()->forget('product_cart');
         $request->session()->forget('photo_frame_cart');
         $request->session()->forget('photo_frame_plain_mirror_cart');
         $request->session()->forget('photo_frame_canvas_print_cart');
-        $request->session()->forget('photo_frame_only_printing_cart');
+        $request->session()->forget('photo_frame_only_printing_cart');*/
 
 		$title = 'Canvas Print';
 		$discounts_value = CentralSettings::where('id','2')->first();
@@ -186,11 +190,11 @@ class PhotoFrameController extends Controller{
 	public function only_printing(Request $request){
 
 		// Remove Session
-        $request->session()->forget('product_cart');
+       /* $request->session()->forget('product_cart');
         $request->session()->forget('photo_frame_cart');
         $request->session()->forget('photo_frame_plain_mirror_cart');
         $request->session()->forget('photo_frame_canvas_print_cart');
-        $request->session()->forget('photo_frame_only_printing_cart');
+        $request->session()->forget('photo_frame_only_printing_cart');*/
 
 		$title = 'Canvas Print';
 		$discounts_value = CentralSettings::where('id','2')->first();
@@ -207,11 +211,11 @@ class PhotoFrameController extends Controller{
 	public function canvas_stretching(Request $request){
 
 		// Remove Session
-        $request->session()->forget('product_cart');
+        /*$request->session()->forget('product_cart');
         $request->session()->forget('photo_frame_cart');
         $request->session()->forget('photo_frame_plain_mirror_cart');
         $request->session()->forget('photo_frame_canvas_print_cart');
-        $request->session()->forget('photo_frame_only_printing_cart');
+        $request->session()->forget('photo_frame_only_printing_cart');*/
 
 		$title = 'Canvas Print';
 		$discounts_value = CentralSettings::where('id','2')->first();
@@ -227,11 +231,11 @@ class PhotoFrameController extends Controller{
 	public function plain_mirror(Request $request){
 
 		// Remove Session
-        $request->session()->forget('product_cart');
+       /* $request->session()->forget('product_cart');
         $request->session()->forget('photo_frame_cart');
         $request->session()->forget('photo_frame_plain_mirror_cart');
         $request->session()->forget('photo_frame_canvas_print_cart');
-        $request->session()->forget('photo_frame_only_printing_cart');
+        $request->session()->forget('photo_frame_only_printing_cart');*/
 
 		$title = 'Plain Mirror';
 

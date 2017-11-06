@@ -169,9 +169,59 @@ Route::any('order/update_cart',[
 		'uses' => 'OrderController@update_cart'
 	]);
 
+Route::any('order/update_cart_photo_frame',[
+		'as' => 'update_cart_photo_frame',
+		'uses' => 'OrderController@update_cart_photo_frame'
+	]);
+
+Route::any('order/update_cart_canvas_print',[
+		'as' => 'update_cart_canvas_print',
+		'uses' => 'OrderController@update_cart_canvas_print'
+	]);
+
+Route::any('order/update_cart_canvas_stretching_only',[
+		'as' => 'update_cart_canvas_stretching_only',
+		'uses' => 'OrderController@update_cart_canvas_stretching_only'
+	]);
+
+Route::any('order/update_cart_canvas_only_printing',[
+		'as' => 'update_cart_canvas_only_printing',
+		'uses' => 'OrderController@update_cart_canvas_only_printing'
+	]);
+
+Route::any('order/update_cart_plain_mirror',[
+		'as' => 'update_cart_plain_mirror',
+		'uses' => 'OrderController@update_cart_plain_mirror'
+	]);
+
 Route::any('order/remove_cart',[
 		'as' => 'remove_cart',
 		'uses' => 'OrderController@remove_cart'
+	]);
+
+Route::any('order/remove_cart_canvas_stretching_only',[
+		'as' => 'remove_cart_canvas_stretching_only',
+		'uses' => 'OrderController@remove_cart_canvas_stretching_only'
+	]);
+
+Route::any('order/remove_cart_canvas_print',[
+		'as' => 'remove_cart_canvas_print',
+		'uses' => 'OrderController@remove_cart_canvas_print'
+	]);
+
+Route::any('order/remove_cart_photo_frame',[
+		'as' => 'remove_cart_photo_frame',
+		'uses' => 'OrderController@remove_cart_photo_frame'
+	]);
+
+Route::any('order/remove_cart_canvas_only_print',[
+		'as' => 'remove_cart_canvas_only_print',
+		'uses' => 'OrderController@remove_cart_canvas_only_print'
+	]);
+
+Route::any('order/remove_cart_plain_mirror',[
+		'as' => 'remove_cart_plain_mirror',
+		'uses' => 'OrderController@remove_cart_plain_mirror'
 	]);
 
 Route::post('order/add_to_cart',[

@@ -34,6 +34,7 @@ echo $mac;
         if(count($canvas_print) > 0){
 
             $canvas_array = array(
+                'qty' => $canvas_print->qty,
                 'type' => $canvas_print->type,
                 'width' => $canvas_print->width,
                 'height' => $canvas_print->height,
@@ -58,7 +59,8 @@ echo $mac;
         // Only Streatching
         if(count($only_stretching) > 0){
 
-            $canvas_array = array(
+            $only_stretching_data = array(
+                'qty' => $only_stretching->qty,
                 'type' => $only_stretching->type,
                 'width' => $only_stretching->width,
                 'height' => $only_stretching->height,
@@ -67,7 +69,7 @@ echo $mac;
             );
 
             // Set Session
-            $request->session()->set('photo_frame_only_stretching_cart', $only_stretching);
+            $request->session()->set('photo_frame_only_stretching_cart', $only_stretching_data);
 
             $photo_frame_only_stretching_cart = $request->session()->get('photo_frame_only_stretching_cart');
 
@@ -84,6 +86,7 @@ echo $mac;
         if(count($only_printing) > 0){
 
             $canvas_array = array(
+                'qty' => $only_printing->qty,
                 'type' => $only_printing->type,
                 'width' => $only_printing->width,
                 'height' => $only_printing->height,
@@ -109,6 +112,7 @@ echo $mac;
         if (count($plain_mirror) > 0) {
           
             $plain_mirror_array = array(
+                'qty' => $plain_mirror->qty,
                 'type' => $plain_mirror->type,
                 'width' => $plain_mirror->width,
                 'height' => $plain_mirror->height,
@@ -142,6 +146,7 @@ echo $mac;
         $product_cart = $request->session()->get('product_cart');
 
         $photo_frame_cart = $request->session()->get('photo_frame_cart');
+
 
         return view('web::cart.cart1',[
                 'title' => $title,

@@ -65,13 +65,12 @@
 
 			<div class="cart-item-container">
 
-				@if(!empty($product_cart_r))
+				
 
 					<table class="table table-striped cart-table">
 					<thead>
 						<tr>
-							<td>Item</td>
-							<td>Matt Colour</td>
+							<td>Item</td>							
 							<td>Qty</td>
 							<td>Unit Price</td>
 							<td class="text-align-right">Line Total</td>
@@ -82,67 +81,181 @@
 					<tbody>
 						<?php
 							$total_value = 0;
-
 							$count = 0;
 						?>
-						@foreach($product_cart_r as $product_cart)
-							<?php
-								$product_id = $product_cart['product_id'];
-								$product = DB::table('product')->where('id',$product_id)->first();
+						@if(!empty($product_cart_r))
+							
+							@foreach($product_cart_r as $product_cart)
+								<?php
+									$product_id = $product_cart['product_id'];
+									$product = DB::table('product')->where('id',$product_id)->first();
 
-								$product_variation_id =  $product_cart['color'];
-								$color = DB::table('product_variation')->where('id',$product_variation_id)->first();
-							?>
+									$product_variation_id =  $product_cart['color'];
+									$color = DB::table('product_variation')->where('id',$product_variation_id)->first();
+								?>
+								<tr>
+									<form method="post" action="{{URL::to('/')}}/order/update_cart">
+
+									{{ csrf_field() }}
+
+									<td>
+										<div class="added-images">
+											<img src="{{Url::to('')}}/{{$product->thumb}}">
+										</div>
+										<div class="added-item-container">
+											<a class="product-name" href="#">
+												{{$product->title}}
+											</a>
+										</div>
+									</td>
+								
+									<td>
+										<input class="cart-quantity" type="number" min="1" name="product_quantity" value="{{$product_cart['product_qty']}}">
+									</td>
+									<td>
+										<div class="unit-price">
+											${{number_format($product_cart['product_price'],2)}}
+										</div>
+									</td>
+									<td class="text-align-right">
+										<div class="linetotal">
+											
+											<span class="line_total">
+												${{number_format($product_cart['product_qty']*$product_cart['product_price'],2)}}				
+												<?php
+													$total_value+=$product_cart['product_qty']*$product_cart['product_price'];
+												?>
+											</span>
+										</div>
+									</td>	
+									<td>
+										<div class="delete_product">
+											<input type="hidden" name="product_id" value="{{$product_id}}">
+											<input type="hidden" name="color" value="{{$product_cart['color']}}">
+											<input type="hidden" name="product_price" value="{{$product_cart['product_price']}}">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+											<input type="hidden" name="product_index" value="{{$count}}">
+											<input type="submit" name="update_product" class="product_update" value="">
+										</form>
+											<form method="post" action="{{URL::to('/')}}/order/remove_cart" style="float:left;">
+												<input type="hidden" name="_token" value="{{ csrf_token() }}">
+												<input type="hidden" name="product_index" value="{{$count}}">
+												<input type="submit" name="remove_product" class="product_remove_cross" value="">
+											</form>
+											
+										</div>
+									</td>
+								</tr>
+								<?php $count++;?>
+							@endforeach
+						@endif
+
+						@if(!empty($photo_frame_cart))
+
 							<tr>
-								<form method="post" action="{{URL::to('/')}}/order/update_cart">
+								<form method="post" action="{{URL::to('/')}}/order/update_cart_photo_frame">
+
+								{{ csrf_field() }}
 								<td>
 									<div class="added-images">
-										<img src="{{Url::to('')}}/{{$product->thumb}}">
+										<img src="{{$photo_frame_cart['thumb']}}">
 									</div>
 									<div class="added-item-container">
 										<a class="product-name" href="#">
-											{{$product->title}}
+											Custom Picture Framing
+										</a>
+									</div>
+								</td>
+
+								<td>
+									<input class="cart-quantity" type="number" min="1" name="product_quantity" value="{{$photo_frame_cart['product']['quantity']}}">
+								</td>
+
+								<td>
+									<div class="unit-price">
+										${{number_format($photo_frame_cart['product']['price'],2)}}
+									</div>
+								</td>
+
+								<td class="text-align-right">
+									<div class="linetotal">
+										
+										<span class="line_total">
+											${{number_format($photo_frame_cart['product']['price'] * $photo_frame_cart['product']['quantity'],2)}}
+
+											<?php
+												$total_value+= $photo_frame_cart['product']['price'] * $photo_frame_cart['product']['quantity'];
+											?>
+										</span>
+									</div>
+								</td>
+
+								<td>
+									<div class="delete_product">
+										
+										<input type="hidden" name="_token" value="{{ csrf_token() }}">
+										<input type="submit" name="update_product" class="product_update" value="">
+
+									</form>
+										<form method="post" action="{{URL::to('/')}}/order/remove_cart_photo_frame" style="float:left;">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+											<input type="hidden" name="product_index" value="{{$count}}">
+											<input type="submit" name="remove_product" class="product_remove_cross" value="">
+										</form>
+										
+									</div>
+								</td>
+
+							</tr>
+
+						@endif
+
+						@if(!empty($photo_frame_canvas_print_cart))
+							<tr>
+								<form method="post" action="{{URL::to('/')}}/order/update_cart_canvas_print">
+
+								{{ csrf_field() }}
+								<td>
+									<div class="added-images">
+										<img src="{{$photo_frame_canvas_print_cart['image']}}">
+									</div>
+									<div class="added-item-container">
+										<a class="product-name" href="#">
+											Canvas Print
 										</a>
 									</div>
 								</td>
 								<td>
-									<div class="unit-price">
-										@if(!empty($color))
-											{{$color->title}}
-										@else
-											N/A
-										@endif
-									</div>
-								</td>
-								<td>
-									<input class="cart-quantity" type="number" min="1" name="product_quantity" value="{{$product_cart['product_qty']}}">
+									<input class="cart-quantity" type="number" min="1" name="product_quantity_canvas_print" value="{{$photo_frame_canvas_print_cart['qty']}}">
 								</td>
 								<td>
 									<div class="unit-price">
-										${{$product_cart['product_price']}}
+										${{number_format($photo_frame_canvas_print_cart['total_price'],2)}}
 									</div>
 								</td>
 								<td class="text-align-right">
 									<div class="linetotal">
 										
 										<span class="line_total">
-											${{$product_cart['product_qty']*$product_cart['product_price']}}				
+											${{number_format($photo_frame_canvas_print_cart['total_price'] * $photo_frame_canvas_print_cart['qty'],2)}}
+
 											<?php
-												$total_value+=$product_cart['product_qty']*$product_cart['product_price'];
+												$total_value+= $photo_frame_canvas_print_cart['total_price'] * $photo_frame_canvas_print_cart['qty'];
 											?>
 										</span>
 									</div>
-								</td>	
+								</td>
 								<td>
 									<div class="delete_product">
-										<input type="hidden" name="product_id" value="{{$product_id}}">
-										<input type="hidden" name="color" value="{{$product_cart['color']}}">
-										<input type="hidden" name="product_price" value="{{$product_cart['product_price']}}">
-										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<input type="hidden" name="product_index" value="{{$count}}">
+										<input type="hidden" name="width" value="{{$photo_frame_canvas_print_cart['width']}}">
+										<input type="hidden" name="height" value="{{$photo_frame_canvas_print_cart['height']}}">
+										<input type="hidden" name="image" value="{{$photo_frame_canvas_print_cart['image']}}">
+										<input type="hidden" name="edge_type" value="{{$photo_frame_canvas_print_cart['edge_type']}}">
+										<input type="hidden" name="total_price" value="{{$photo_frame_canvas_print_cart['total_price']}}">
+										
 										<input type="submit" name="update_product" class="product_update" value="">
 									</form>
-										<form method="post" action="{{URL::to('/')}}/order/remove_cart" style="float:left;">
+										<form method="post" action="{{URL::to('/')}}/order/remove_cart_canvas_print" style="float:left;">
 											<input type="hidden" name="_token" value="{{ csrf_token() }}">
 											<input type="hidden" name="product_index" value="{{$count}}">
 											<input type="submit" name="remove_product" class="product_remove_cross" value="">
@@ -151,302 +264,169 @@
 									</div>
 								</td>
 							</tr>
-							<?php $count++;?>
-						@endforeach
-							<tr class="sub-total-tr">
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>Total:</td>
-								<td class="text-align-right">${{$total_value}}</td>
-								<td></td>
-							</tr>
-					</tbody>
-				</table>
+						@endif
 
-				@elseif(!empty($photo_frame_cart))
+						@if(!empty($photo_frame_only_printing_cart))
 
-					<table class="table table-striped cart-table">
-						<thead>
 							<tr>
-								<td>Image Frame</td>
-								<td>Frame</td>
-								<td>Quantity</td>
-								<td class="text-align-right">Frame Price</td>
-								<td class="text-align-right">Total Price</td>
-							</tr>
-						</thead>
+								<form method="post" action="{{URL::to('/')}}/order/update_cart_canvas_stretching_only">
 
-						<tbody>
-							
-								<tr>
-									<td>
-										<div class="added-images">
-											<img src="{{$photo_frame_cart['thumb']}}">
-										</div>
-									</td>
-
-									<td>
-										<div class="added-item-container">
-											
-											{{$photo_frame_cart['product']['frame']['frameMaterial']}} , 
-											{{$photo_frame_cart['product']['frame']['frameCode']}}
-											
-										</div>
-									</td>
-									<td style="padding-top: 15px!important;">
-									{{$photo_frame_cart['product']['quantity']}}
-									</td>
-									<td class="text-align-right" style="padding-top: 15px!important;">
-									AUD {{$photo_frame_cart['product']['framePrice']+$photo_frame_cart['product']['glassPrice']+$photo_frame_cart['product']['backingPrice']}}
-									</td>
-									<td class="text-align-right" style="padding-top: 15px!important;">
-									AUD {{$photo_frame_cart['product']['price']}}
-									</td>
-								
-								</tr>
-
-								<tr class="sub-total-tr">
-									<td>&nbsp;</td>
-									<td>&nbsp;</td>
-									<td>&nbsp;</td>
-									<td>Discount:</td>
-									<td class="text-align-right">AUD {{$photo_frame_cart['product']['discountedPrice']}}</td>
-									
-								</tr>
-
-								<tr class="sub-total-tr">
-									<td>&nbsp;</td>
-									<td>&nbsp;</td>
-									<td>&nbsp;</td>
-									<td>Total:</td>
-									<td class="text-align-right">AUD {{$photo_frame_cart['product']['newDiscountedPrice']}}</td>
-									
-								</tr>
-							
-						</tbody>
-					</table>
-				@elseif(!empty($photo_frame_canvas_print_cart))
-
-					<table class="table table-striped cart-table">
-						<thead>
-							<tr>
-								<td>Image Frame</td>
-								<td>Width</td>
-								<td>Height</td>
-								<td>Quantity</td>
-								<td class="text-align-right">Frame Price</td>
-								<td class="text-align-right">Total Price</td>
-							</tr>
-						</thead>
-
-						<tbody>
-							
-								<tr>
-									<td>
-										<div class="added-images">
-											<img src="{{$photo_frame_canvas_print_cart['image']}}">
-										</div>
-									</td>
-									<td>
-										{{$photo_frame_canvas_print_cart['width']}}
-									</td>
-									<td>
-										{{$photo_frame_canvas_print_cart['height']}}
-									</td>
-									<td>
-										1
-									</td>
-									<td class="text-align-right">
-										{{$photo_frame_canvas_print_cart['total_price']}}
-									</td>
-									<td class="text-align-right">
-										{{$photo_frame_canvas_print_cart['total_price']}}
-									</td>
-
-								
-								</tr>
-
-								<tr class="sub-total-tr">
-									<td>&nbsp;</td>
-									<td>&nbsp;</td>
-									<td>&nbsp;</td>
-									<td>&nbsp;</td>
-									<td>Total:</td>
-									<td class="text-align-right">${{$photo_frame_canvas_print_cart['total_price']}}</td>
-									
-								</tr>
-
-							
-							
-						</tbody>
-					</table>
-
-					<!-- Only Printing -->
-
-				@elseif(!empty($photo_frame_only_printing_cart))
-
-					<table class="table table-striped cart-table">
-						<thead>
-							<tr>
-								<td>Type</td>
-								<td>Width</td>
-								<td>Height</td>
-								<td>Quantity</td>
-								<td class="text-align-right">Frame Price</td>
-								<td class="text-align-right">Total Price</td>
-							</tr>
-						</thead>
-
-						<tbody>
-							
-								<tr>
-									<td>Canvas Stretching Only ({{$photo_frame_only_printing_cart['edge_type']}})</td>
-									<td>
-										{{$photo_frame_only_printing_cart['width']}}
-									</td>
-									<td>
-										{{$photo_frame_only_printing_cart['height']}}
-									</td>
-									<td>
-										1
-									</td>
-									<td class="text-align-right">
-										{{$photo_frame_only_printing_cart['total_price']}}
-									</td>
-									<td class="text-align-right">
-										{{$photo_frame_only_printing_cart['total_price']}}
-									</td>
-
-								
-								</tr>
-
-								<tr class="sub-total-tr">
-									<td>&nbsp;</td>
-									<td>&nbsp;</td>
-									<td>&nbsp;</td>
-									<td>&nbsp;</td>
-									<td>Total:</td>
-									<td class="text-align-right">${{$photo_frame_only_printing_cart['total_price']}}</td>
-									
-								</tr>
-
-							
-							
-						</tbody>
-					</table>
-
-
-			   <!-- Only Streaching -->		
-
-			   @elseif(!empty($photo_frame_only_stretching_cart))
-
-				<table class="table table-striped cart-table">
-
-					<thead>
-						<tr>
-							<td>Type</td>
-							<td>Width</td>
-							<td>Height</td>
-							<td>Quantity</td>
-							<td class="text-align-right">Frame Price</td>
-							<td class="text-align-right">Total Price</td>
-						</tr>
-					</thead>
-
-					<tbody>
-						<tr>
-							<td>Canvas Printing Only</td>
-							<td>
-								{{$photo_frame_only_stretching_cart->width}}
-							</td>
-							<td>
-								{{$photo_frame_only_stretching_cart->height}}
-							</td>
-							<td>
-								1
-							</td>
-							<td class="text-align-right">
-								{{$photo_frame_only_stretching_cart->total_price}}
-							</td>
-							<td class="text-align-right">
-								{{$photo_frame_only_stretching_cart->total_price}}
-							</td>
-						</tr>
-					</tbody>
-					
-				</table>
-
-
-				@elseif(!empty($photo_frame_plain_mirror_cart))
-
-					<table class="table table-striped cart-table">
-						<thead>
-							<tr>
-								<td>Mirror Size</td>
-								<td>Frame</td>								
-								<td>Backing</td>
-								<td>Quantity</td>
-								<td class="text-align-right">Frame Price</td>
-								<td class="text-align-right">Backing Price</td>
-								<td class="text-align-right">Mirror Price</td>
-								<td class="text-align-right">Total Price</td>
-							</tr>
-						</thead>
-
-						<tbody>
-							<tr>
+								{{ csrf_field() }}
 								<td>
-									Width :: {{$photo_frame_plain_mirror_cart['width']}}<br/>
-									Height :: {{$photo_frame_plain_mirror_cart['height']}}
+									<div class="added-item-container">
+										<a class="product-name" href="#">
+											Canvas Stretching Only ({{$photo_frame_only_printing_cart['edge_type']}})
+										</a>
+									</div>
 								</td>
 								<td>
-									{{$photo_frame_plain_mirror_cart['frame_code']}}	
+									<input class="cart-quantity" type="number" min="1" name="product_quantity" value="{{$photo_frame_only_printing_cart['qty']}}">
 								</td>
 								<td>
-									{{$photo_frame_plain_mirror_cart['backing_type']}}	
-								</td>
-								<td>
-									1
+									<div class="unit-price">										
+										${{number_format($photo_frame_only_printing_cart['total_price'],2)}}
+									</div>
 								</td>
 								<td class="text-align-right">
-									{{$photo_frame_plain_mirror_cart['frame_price']}}	
-								</td>
-								<td class="text-align-right">
-									AU {{$photo_frame_plain_mirror_cart['backing_type_price']}}	
-								</td>
-								<td class="text-align-right">
-									AU 
-									<?php
-									 $frame_price=str_replace("AU ","",$photo_frame_plain_mirror_cart['frame_price']);
-
-									 echo $photo_frame_plain_mirror_cart['total_price'] - ($frame_price + $photo_frame_plain_mirror_cart['backing_type_price']);
-									?>
+									<div class="linetotal">
 										
+										<span class="line_total">
+											${{number_format($photo_frame_only_printing_cart['total_price']*$photo_frame_only_printing_cart['qty'],2)}}
+											<?php
+												$total_value+=$photo_frame_only_printing_cart['total_price']*$photo_frame_only_printing_cart['qty'];
+											?>
+										</span>
+									</div>
+								</td>
+								<td>
+									<div class="delete_product">
+										
+										<input type="hidden" name="_token" value="{{ csrf_token() }}">
+										<input type="submit" name="update_product" class="product_update" value="">
+									</form>
+										<form method="post" action="{{URL::to('/')}}/order/remove_cart_canvas_stretching_only" style="float:left;">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+											<input type="hidden" name="product_index" value="{{$count}}">
+											<input type="submit" name="remove_product" class="product_remove_cross" value="">
+										</form>
+										
+									</div>
+								</td>
+							</tr>
+
+						@endif
+
+
+						@if(!empty($photo_frame_only_stretching_cart))
+
+
+							<tr>
+								<form method="post" action="{{URL::to('/')}}/order/update_cart_canvas_only_printing">
+
+								{{ csrf_field() }}
+								<td>
+									<div class="added-item-container">
+										<a class="product-name" href="#">
+											Canvas Only Printing 
+										</a>
+									</div>
+								</td>
+								<td>
+									<input class="cart-quantity" type="number" min="1" name="product_quantity" value="{{$photo_frame_only_stretching_cart['qty']}}">
+								</td>
+								<td>
+									<div class="unit-price">
+										${{number_format($photo_frame_only_stretching_cart['total_price'],2)}}
+									</div>
 								</td>
 								<td class="text-align-right">
-									AU {{$photo_frame_plain_mirror_cart['total_price']}}	
+									<div class="linetotal">
+										
+										<span class="line_total">
+											${{number_format($photo_frame_only_stretching_cart['total_price'] * $photo_frame_only_stretching_cart['qty'],2)}}
+											<?php
+												$total_value+=$photo_frame_only_stretching_cart['total_price'] * $photo_frame_only_stretching_cart['qty'];
+											?>
+										</span>
+									</div>
+								</td>
+								<td>
+									<div class="delete_product">
+										
+										<input type="hidden" name="_token" value="{{ csrf_token() }}">
+										<input type="submit" name="update_product" class="product_update" value="">
+									</form>
+										<form method="post" action="{{URL::to('/')}}/order/remove_cart_canvas_only_print" style="float:left;">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+											<input type="hidden" name="product_index" value="{{$count}}">
+											<input type="submit" name="remove_product" class="product_remove_cross" value="">
+										</form>
+										
+									</div>
 								</td>
 							</tr>
 
-							<tr class="sub-total-tr">
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>&nbsp;</td>
-								<td>Total:</td>
-								<td class="text-align-right">${{$photo_frame_plain_mirror_cart['total_price']}}</td>
-								
+						@endif
+
+						@if(!empty($photo_frame_plain_mirror_cart))
+							<tr>
+								<form method="post" action="{{URL::to('/')}}/order/update_cart_plain_mirror">
+
+								{{ csrf_field() }}
+								<td>
+									<div class="added-item-container">
+										<a class="product-name" href="#">
+											Plain Mirror
+										</a>
+									</div>
+								</td>
+								<td>
+									<input class="cart-quantity" type="number" min="1" name="product_quantity" value="{{$photo_frame_plain_mirror_cart['qty']}}">
+								</td>
+								<td>
+									<div class="unit-price">
+										${{number_format($photo_frame_plain_mirror_cart['total_price'],2)}}
+									</div>
+								</td>
+								<td class="text-align-right">
+									<div class="linetotal">
+										
+										<span class="line_total">
+											${{number_format($photo_frame_plain_mirror_cart['total_price']*$photo_frame_plain_mirror_cart['qty'],2)}}
+
+											<?php
+												$total_value+=$photo_frame_plain_mirror_cart['total_price']*$photo_frame_plain_mirror_cart['qty'];
+											?>
+										</span>
+									</div>
+								</td>
+								<td>
+									<div class="delete_product">										
+										<input type="hidden" name="_token" value="{{ csrf_token() }}">
+										<input type="submit" name="update_product" class="product_update" value="">
+									</form>
+										<form method="post" action="{{URL::to('/')}}/order/remove_cart_plain_mirror" style="float:left;">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+											<input type="hidden" name="product_index" value="{{$count}}">
+											<input type="submit" name="remove_product" class="product_remove_cross" value="">
+										</form>
+										
+									</div>
+								</td>
 							</tr>
-						</tbody>
+						@endif
 
-					</table>	
+						<tr class="sub-total-tr">
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>Total:</td>
+							<td class="text-align-right">${{number_format($total_value,2)}}</td>
+							<td></td>
+						</tr>
 
-				@else
-					<div class="empty_cart">Your Cart is empty</div>
-				@endif
+					</tbody>
+				</table>
+	
 				
 			</div>
 
