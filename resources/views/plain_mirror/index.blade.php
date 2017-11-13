@@ -37,6 +37,32 @@
                 </div>
             @endif
 
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="sort_by_container">
+                        {!! Form::open(['route' => 'admin-plain-frame-index','method' => 'GET']) !!}
+
+                            <div class="col-md-2">
+                                <br/>
+                                Search by
+                            </div>
+
+                            <div class="col-md-3">
+                                 Category
+                                {!! Form::select('frame_color', $frame_color_id,isset($id_frame_color) ? $id_frame_color : Input::old('frame_color'),['class' => 'form-control','id'=>'frame_color','']) !!}
+
+                            </div>
+
+                            <div class="col-md-3">
+                                <br/>
+                                {!! Form::submit('Search', ['class' => 'btn btn-success']) !!}
+                            </div>
+
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>            
+
 
             <div class="panel-body">
                 <div class="adv-table">

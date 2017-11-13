@@ -15,16 +15,36 @@ use App\PlainMirrorFrame;
 
 class AdminPlainMirrorFrameController extends Controller{
 
-	public function index()
+	public function index(Request $request)
 	{
 
         $data = PlainMirrorFrame::orderBy('id', 'DESC')->paginate(30);
 
         $pageTitle = "Plain Mirror Frame";
+
+        //set null id(s)
+        $id_frame_color = null;
+
+        //if post method
+       if($_GET){
+            $frame_color = $request->get('frame_color');
+
+            if(!empty($frame_color)){
+
+                $data = PlainMirrorFrame::where('frame_color',$frame_color)->orderBy('id', 'DESC')->paginate(30);
+
+                $id_frame_color = $frame_color;
+
+            }
+       }
+
+        $frame_color_id = [''=>'Please select Frame color']+ PlainMirrorFrame::orderBy('frame_color')->distinct()->lists('frame_color','frame_color')->all();
         
         return view('plain_mirror.index', [
                     'data' => $data,
-                    'pageTitle'=> $pageTitle
+                    'pageTitle'=> $pageTitle,
+                    'frame_color_id' => $frame_color_id,
+                    'id_frame_color' => $id_frame_color
         ]);
 	}
 

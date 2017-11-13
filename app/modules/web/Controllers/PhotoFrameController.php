@@ -262,9 +262,20 @@ class PhotoFrameController extends Controller{
 
 		$frame_r = PlainMirrorFrame::where('status','active')->get();
 
+		$frame_color_array = array();
+
+		if(count($frame_r) > 0){
+			foreach($frame_r as $frame){
+				array_push($frame_color_array,trim($frame->frame_color));
+			}
+		}
+    	
+    	sort($frame_color_array);
+
 		return view('web::photo_frame.plain_mirror.main_frame_it',[
                 'title' => $title,
-                'frame_r' => $frame_r
+                'frame_r' => $frame_r,
+                'frame_color_array' => array_unique($frame_color_array)
             ]); 
 
 	}

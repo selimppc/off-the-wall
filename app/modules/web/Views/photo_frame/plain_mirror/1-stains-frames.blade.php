@@ -1,7 +1,7 @@
 @if(count($frame_r) > 0)
     @foreach($frame_r as $frame)
 
-        <div class="frame" data-filtr="rate-{{$frame->frame_rate}} code-{{$frame->frame_code}}" style="text-align: left; margin-bottom: 10px;border-bottom:1px dotted #ccc; min-height: 155px;">
+        <div class="frame" data-filtr="rate-{{$frame->frame_rate}} code-{{$frame->frame_code}} {{$frame->frame_color}}" style="text-align: left; margin-bottom: 10px;border-bottom:1px dotted #ccc; min-height: 155px;">
             <span class="hide code">{{$frame->frame_code}}</span>
             <span class="hide rebate">{{$frame->frame_rebate}}</span>
             <span class="hide width">{{$frame->frame_width}}</span>

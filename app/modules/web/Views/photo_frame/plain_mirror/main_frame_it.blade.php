@@ -460,10 +460,28 @@ print_r($_SESSION);
                         <div id="frames">
                             <p>
 
+                                <strong>List frames by Color:</strong>
+                                <select class="info filtr_4" name="iframe_cat_id" id="iframe_cat_id" onchange="selectframelist2()">
+                                    <option value="all" >All</option>
+
+                                    <?php
+                                        if(!empty($frame_color_array)){
+                                            foreach($frame_color_array as $frame_color){
+                                    ?>                                    
+                                                <option value="{{$frame_color}}">{{$frame_color}}</option>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
+
+                                </select>
+                                <br />
+                                <br />
+
                                 <strong> List Frames by Price Rate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                                 <!--                            <select id="frate" name="frate" class="rate_s" onchange="selectframelist2()">-->
                                 <select id="frate" name="frate" class="rate_s filtr_4" onchange="selectframelist2()">
-                                    <option value="all">all</option>
+                                    <option value="all">All</option>
                                     <option value="rate-1">1</option>
                                     <option value="rate-2">2</option>
                                     <option value="rate-3">3</option>
