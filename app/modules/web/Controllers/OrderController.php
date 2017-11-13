@@ -126,6 +126,7 @@ class OrderController extends Controller
 			$product_id = (int) $_POST['product_id'];
 			$product_qty = (int) $_POST['quantity'];
 			$product_price = (int) $_POST['price'];
+            $weight = $_POST['weight'];
 
             if(isset($_POST['color'])){
                 $color = (int) $_POST['color'];
@@ -141,7 +142,8 @@ class OrderController extends Controller
 	                array('product_id' => $product_id,
 	                        'product_qty' => $product_qty,
 	                        'product_price' => $product_price,
-                            'color' => $color
+                            'color' => $color,
+                            'weight' => $weight
 	                ) 
 	            );
 
@@ -276,18 +278,13 @@ class OrderController extends Controller
 
         if(isset($_POST)){
 
-            $canvas_array = array(
-                'qty' => $_POST['product_quantity_canvas_print'],
-                'type' => 'canvas_print',
-                'width' => $_POST['width'],
-                'height' => $_POST['height'],
-                'image' => $_POST['image'],
-                'edge_type' => $_POST['edge_type'],
-                'total_price' => $_POST['total_price']
-            );
+            $photo_frame_canvas_print_cart = $request->session()->get('photo_frame_canvas_print_cart');
 
+            $photo_frame_canvas_print_cart['qty'] = $_POST['product_quantity_canvas_print'];
+
+            
             // Set Session
-            $request->session()->set('photo_frame_canvas_print_cart', $canvas_array);
+            $request->session()->set('photo_frame_canvas_print_cart', $photo_frame_canvas_print_cart);
 
             return redirect('mycart');
         }
@@ -352,7 +349,6 @@ class OrderController extends Controller
     public function customersavebilling(Request $request){
 
         $input = $request->all();
-       
 
          DB::beginTransaction();
         try {
@@ -361,6 +357,7 @@ class OrderController extends Controller
             DB::commit();
             $lastInsertedId= $customer->id;
             $request->session()->set('billing_id', $lastInsertedId);
+            $request->session()->set('shipping_method', $input['shipping_method']);
             Session::flash('flash_message', 'Successfully added!');
             
         }catch (\Exception $e) {
@@ -372,7 +369,7 @@ class OrderController extends Controller
             print_r($e->getMessage());
             exit();
 
-            return redirect()->route('order-billing-address');   
+            return redirect()->route('order-billing-address','');   
         }
         
         return redirect()->route('order-delivery-detail');
@@ -423,6 +420,7 @@ class OrderController extends Controller
         $title ="mycart | ";
 
         $product_cart = $request->session()->get('product_cart');
+        $shipping_method = $request->session()->get('shipping_method');
         
         $user_id = $request->session()->get('billing_id');
         $deliver_id = $request->session()->get('deliver_id');
@@ -446,6 +444,7 @@ class OrderController extends Controller
 
         return view('web::cart.finalcart',[
                 'title' => $title,
+                'shipping_method' => $shipping_method,
                 'product_cart_r' => $product_cart,
                 'user_data' => $user_data,
                 'delivery_data' => $delivery_data,
@@ -526,6 +525,7 @@ class OrderController extends Controller
         
         $user_id = $request->session()->get('billing_id');
         $deliver_id = $request->session()->get('deliver_id');
+        $shipping_method = $request->session()->get('shipping_method');
 
         DB::beginTransaction();
         try {
@@ -542,6 +542,8 @@ class OrderController extends Controller
 
             $modal->invoice_id = 'INV-'.$invoice_number;
             $modal->user_id = $user_id;
+            $modal->shipping_type = $shipping_method;
+            $modal->shipping_value = isset($_POST['shipping_value'])?$_POST['shipping_value']:'';
             $modal->status ='open';
 
             /*if(count($product_cart_r) > 0 ){
@@ -598,6 +600,7 @@ class OrderController extends Controller
                 $deliver_modal = new Orderdetails();
 
                 $deliver_modal->order_head_id =$modal->id;
+                $deliver_modal->product_id =-1; // for photo frame
                 $deliver_modal->qty = $photo_frame_cart['product']['quantity'];
                 $deliver_modal->price = $photo_frame_cart['product']['framePrice'];
                 $deliver_modal->details = $details_message;
@@ -622,7 +625,8 @@ class OrderController extends Controller
                 $deliver_modal = new Orderdetails();
 
                 $deliver_modal->order_head_id =$modal->id;
-                $deliver_modal->qty = 1;
+                $deliver_modal->product_id =-2; // for canvas print
+                $deliver_modal->qty = $photo_frame_canvas_print_cart['qty'];
                 $deliver_modal->price = $photo_frame_canvas_print_cart['total_price'];
                 $deliver_modal->details = $details_message;
 
@@ -646,7 +650,8 @@ class OrderController extends Controller
                 $deliver_modal = new Orderdetails();
 
                 $deliver_modal->order_head_id =$modal->id;
-                $deliver_modal->qty = 1;
+                $deliver_modal->product_id =-3; // for streatching only
+                $deliver_modal->qty = $photo_frame_only_printing_cart['qty'];
                 $deliver_modal->price = $photo_frame_only_printing_cart['total_price'];
                 $deliver_modal->details = $details_message;
 
@@ -665,7 +670,8 @@ class OrderController extends Controller
                 $deliver_modal = new Orderdetails();
 
                 $deliver_modal->order_head_id =$modal->id;
-                $deliver_modal->qty = 1;
+                $deliver_modal->product_id =-4; // for printing only
+                $deliver_modal->qty = $photo_frame_only_stretching_cart->qty;
                 $deliver_modal->price = $photo_frame_only_stretching_cart->total_price;
                 $deliver_modal->details = $details_message;
 
@@ -690,7 +696,8 @@ class OrderController extends Controller
                 $deliver_modal = new Orderdetails();
 
                 $deliver_modal->order_head_id =$modal->id;
-                $deliver_modal->qty = 1;
+                $deliver_modal->product_id =-5; // for plain mirror
+                $deliver_modal->qty = $photo_frame_plain_mirror_cart['qty'];
                 $deliver_modal->price = $photo_frame_plain_mirror_cart['total_price'];
                 $deliver_modal->details = $details_message;
 
@@ -706,31 +713,6 @@ class OrderController extends Controller
 
             }
 
-
-            // canvas print
-            if(count($photo_frame_canvas_print_cart) > 0){
-
-                $details_message = 'Width: '.$photo_frame_canvas_print_cart['width'].'===Height: '.$photo_frame_canvas_print_cart['height'].'===Edge Type: '.$photo_frame_canvas_print_cart['edge_type'].'===Price:'.$photo_frame_canvas_print_cart['total_price'];
-
-                $deliver_modal = new Orderdetails();
-
-                $deliver_modal->order_head_id =$modal->id;
-                $deliver_modal->qty = 1;
-                $deliver_modal->price = $photo_frame_canvas_print_cart['total_price'];
-                $deliver_modal->details = $details_message;
-
-                if(!empty($photo_frame_canvas_print_cart['image'])){
-                    $deliver_modal->image_link = $photo_frame_canvas_print_cart['image'];
-                }else{
-                    $deliver_modal->image_link = '';
-                }
-
-                $deliver_modal->status= 0;
-
-                $deliver_modal->save();
-                
-            }
-            
             
             
             // Remove Session

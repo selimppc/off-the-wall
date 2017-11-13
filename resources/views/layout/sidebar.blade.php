@@ -34,12 +34,12 @@
         <li><a  href={{URL::to('order_paid/index')}}>Current Order</a></li>
         <li><a  href={{URL::to('order_paid/approved')}}>Approved order</a></li>
         <li><a  href={{URL::to('order_paid/delivered')}}>Delivered order</a></li>
-
-        <li><a  href={{URL::to('order_paid/photo-frame')}}>Photo Frame order</a></li>
+        
+        <!-- <li><a  href={{URL::to('order_paid/photo-frame')}}>Photo Frame order</a></li>
         <li><a  href={{URL::to('order_paid/canvas-print')}}>Canvas Print order</a></li>
         <li><a  href={{URL::to('order_paid/only-print')}}>Only Printing order</a></li>
         <li><a  href={{URL::to('order_paid/canvas-stretching')}}>Canvas Stretching Only</a></li>
-        <li><a  href={{URL::to('order_paid/plain-mirror')}}>Plain Mirror order</a></li>
+        <li><a  href={{URL::to('order_paid/plain-mirror')}}>Plain Mirror order</a></li> -->
     </ul>
 </li>
 

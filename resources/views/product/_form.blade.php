@@ -84,6 +84,11 @@
 <div class="col-md-6" style="padding-right: 0;">
 
         <div class="form-group">
+            {!! Form::label('Weight', 'Weight:', ['class' => 'control-label']) !!}
+            {!! Form::text('weight', null, ['id'=>'weight', 'class' => 'form-control']) !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::label('Sort Order', 'Sort Order:', ['class' => 'control-label']) !!}
             {!! Form::text('sort_order', null, ['id'=>'sort_order', 'class' => 'form-control']) !!}
         </div>

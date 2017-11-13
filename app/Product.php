@@ -39,8 +39,8 @@ class Product extends Model
         'meta_title',
         'delivery_info',
         'meta_keyword',
-        'meta_desc'
-
+        'meta_desc',
+        'weight'
         
     ];
 

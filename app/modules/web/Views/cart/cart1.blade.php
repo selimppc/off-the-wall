@@ -211,6 +211,7 @@
 						@endif
 
 						@if(!empty($photo_frame_canvas_print_cart))
+
 							<tr>
 								<form method="post" action="{{URL::to('/')}}/order/update_cart_canvas_print">
 
@@ -424,6 +425,20 @@
 							<td></td>
 						</tr>
 
+
+						<tr>
+							<td colspan="5">
+								<div style="padding: 10px;">
+									<input type="radio" name="shipping_method" checked="" id="delivery_fastway" class="shipping_method" value="fastway">
+									<label style="color: #546f7a;" for="delivery_fastway">Delivered (By FastWay)</label>
+									<br>
+									    
+									<input type="radio" name="shipping_method" id="localpickup_id" class="shipping_method" value="localpickup">	
+									<label style="color: #546f7a;" for="localpickup_id">Local Pick up ( By appoinment Only)</label>
+								</div>
+							</td>
+						</tr>
+
 					</tbody>
 				</table>
 	
@@ -435,29 +450,9 @@
 				<div class="row">
 					<a href="{{URL::to('')}}" class="cart-continue-shopping">Continue Shopping</a>
 
-					@if(Session::has('product_cart') && count(Session::get('product_cart')) > 0)
-						<a href="{{URL::to('')}}/order/billingaddress" class="cart-checkout">Checkout</a>	
-					@elseif(Session::has('photo_frame_cart') && count(Session::get('photo_frame_cart')) > 0)
+					<a style="display: none;" id="checkout_localpickup" href="{{URL::to('')}}/order/billingaddress?shipping-method=localpickup" class="cart-checkout">Checkout</a>
 
-						<a href="{{URL::to('')}}/order/billingaddress" class="cart-checkout">Checkout</a>
-
-					@elseif(Session::has('photo_frame_canvas_print_cart') && count(Session::get('photo_frame_canvas_print_cart')) > 0)	
-					
-						<a href="{{URL::to('')}}/order/billingaddress" class="cart-checkout">Checkout</a>
-
-					@elseif(Session::has('photo_frame_only_printing_cart') && count(Session::get('photo_frame_only_printing_cart')) > 0)	
-					
-						<a href="{{URL::to('')}}/order/billingaddress" class="cart-checkout">Checkout</a>	
-
-					@elseif(Session::has('photo_frame_only_stretching_cart') && count(Session::get('photo_frame_only_stretching_cart')) > 0)	
-					
-						<a href="{{URL::to('')}}/order/billingaddress" class="cart-checkout">Checkout</a>		
-
-					@elseif(Session::has('photo_frame_plain_mirror_cart') && count(Session::get('photo_frame_plain_mirror_cart')) > 0)	
-					
-						<a href="{{URL::to('')}}/order/billingaddress" class="cart-checkout">Checkout</a>		
-
-					@endif
+					<a id="checkout_fastway" href="{{URL::to('')}}/order/billingaddress?shipping-method=fastway" class="cart-checkout">Checkout</a>
 
 
 					
@@ -469,5 +464,22 @@
 
 
 	</div>
+
+	<script type="text/javascript">
+		
+		$('.shipping_method').on("click",function(){
+		   
+		   var shipping_method = $(this).val();
+
+		   if(shipping_method == 'fastway'){
+		   		$('#checkout_localpickup').hide();
+		   		$('#checkout_fastway').show();
+		   }else{
+		   		$('#checkout_localpickup').show();
+		   		$('#checkout_fastway').hide();
+		   }
+
+		});
+	</script>
 
 @stop

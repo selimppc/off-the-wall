@@ -130,7 +130,7 @@
 								
 							</div>
 							
-
+								<input type="hidden" name="shipping_method" value="<?=isset($_GET['shipping-method'])?$_GET['shipping-method']:''?>">
 							
 
 							<div class="form-group">

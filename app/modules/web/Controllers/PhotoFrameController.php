@@ -70,8 +70,13 @@ class PhotoFrameController extends Controller{
         $request->session()->forget('photo_frame_canvas_print_cart');*/
 
 		if(isset($_POST)){
+
+			// for freight calculation
+
+			$_POST['product']['weight'] = '0.5';
 			$request->session()->set('photo_frame_cart', $_POST);
 			$request->session()->set('photo_frame_type', 'photo_frame');
+
 		}
 		
 	}
@@ -89,6 +94,7 @@ class PhotoFrameController extends Controller{
 
 		DB::table('frame_session_data')->insert([
 			'qty' => '1',
+			'weight' => '0.5',
 			'type' => 'plain_mirror',
 			'width' =>  '',
 			'height' =>  '',
@@ -117,6 +123,7 @@ class PhotoFrameController extends Controller{
 
 			DB::table('frame_session_data')->insert([
 				'qty' => '1',
+				'weight' => '0.5',
 				'type' => 'canvas_print',
 				'width' =>  $_POST['w'],
 				'height' =>  $_POST['h'],
@@ -136,6 +143,7 @@ class PhotoFrameController extends Controller{
 
 			DB::table('frame_session_data')->insert([
 				'qty' => '1',
+				'weight' => '0.5',
 				'type' => 'stretching',
 				'width' =>  $_POST['w'],
 				'height' =>  $_POST['h'],
@@ -154,6 +162,7 @@ class PhotoFrameController extends Controller{
 
 			DB::table('frame_session_data')->insert([
 				'qty' => '1',
+				'weight' => '0.5',
 				'type' => 'only_printing',
 				'width' =>  $_POST['w'],
 				'height' =>  $_POST['h'],

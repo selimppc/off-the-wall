@@ -158,6 +158,7 @@
 					<div class="buy_now_button">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						<input type="hidden" name="product_id" value="{{$product->id}}">
+						<input type="hidden" name="weight" value="{{$product->weight}}">
 						<input type="submit" name="submit" value="Buy Now">
 					</div>
 

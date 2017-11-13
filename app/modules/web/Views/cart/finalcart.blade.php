@@ -1,3 +1,7 @@
+<?php
+	use App\Helpers\Fastway;
+?>
+
 @extends('web::layout.web_master')
 
 @section('content')
@@ -80,7 +84,8 @@
 					<tbody>
 						<?php
 							$total_value = 0;
-
+							$total_weight = 0;
+							$total_qty = 0;
 							$count = 0;
 						?>
 						@if(!empty($product_cart_r))
@@ -91,6 +96,15 @@
 
 									$product_variation_id =  $product_cart['color'];
 									$color = DB::table('product_variation')->where('id',$product_variation_id)->first();
+
+									if(!empty($product->weight)){
+										$total_weight+=$product->weight;
+									}else{
+										$total_weight+=0.5;
+									}
+
+									$total_qty+=$product_cart['product_qty'];
+								
 								?>
 								<tr>
 									
@@ -130,6 +144,11 @@
 						@endif
 
 						@if(!empty($photo_frame_cart))
+
+							<?php
+								$total_weight+=$photo_frame_cart['product']['weight'];
+								$total_qty+=$photo_frame_cart['product']['quantity'];
+							?>
 
 							<tr>
 								<td>
@@ -171,7 +190,10 @@
 						@endif
 
 						@if(!empty($photo_frame_canvas_print_cart))
-
+							<?php
+								$total_weight+=$photo_frame_canvas_print_cart['weight'];
+								$total_qty+=$photo_frame_canvas_print_cart['qty'];
+							?>
 							<tr>
 								<td>
 									<div class="added-images">
@@ -214,6 +236,11 @@
 
 						@if(!empty($photo_frame_only_printing_cart))
 
+							<?php
+								$total_weight+=$photo_frame_only_printing_cart['weight'];
+								$total_qty+=$photo_frame_only_printing_cart['qty'];
+							?>
+
 							<tr>
 								<td>
 									<div class="added-item-container">
@@ -255,6 +282,10 @@
 
 						@if(!empty($photo_frame_only_stretching_cart))
 
+							<?php
+								$total_weight+=$photo_frame_only_stretching_cart['weight'];
+								$total_qty+=$photo_frame_only_stretching_cart['qty'];
+							?>
 							<tr>
 								<td>
 									<div class="added-item-container">
@@ -294,6 +325,11 @@
 
 						@if(!empty($photo_frame_plain_mirror_cart))
 
+							<?php
+								$total_weight+=$photo_frame_plain_mirror_cart['weight'];
+								$total_qty+=$photo_frame_plain_mirror_cart['qty'];
+							?>
+
 							<tr>
 								<td>
 									<div class="added-item-container">
@@ -332,8 +368,56 @@
 						<tr class="sub-total-tr">
 							<td>&nbsp;</td>
 							<td>&nbsp;</td>
-							<td>Total:</td>
+							<td>Sub Total:</td>
 							<td class="text-align-right">${{number_format($total_value,2)}}</td>
+							
+						</tr>
+
+						<tr class="sub-total-tr">
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>Shipping Charge:</td>
+							<td class="text-align-right">
+								<?php
+
+									if($shipping_method == 'fastway'){
+
+										$shipping_cost = Fastway::freight_calculation($delivery_data->suburb,$delivery_data->postcode,$total_weight,'');
+
+										if(isset($shipping_cost['shipping_value'])){
+											if($total_qty > 3 && $total_qty < 11){
+												$shipping_data = $shipping_cost['shipping_value'] + 2.5; 	
+											}elseif ($total_qty > 10 && $total_qty < 31) {
+												$shipping_data = $shipping_cost['shipping_value'] + 7.5; 
+											}elseif ($total_qty > 30) {
+												$shipping_data = $shipping_cost['shipping_value'] + 10; 
+											}else{
+												$shipping_data = $shipping_cost['shipping_value'];
+											}
+											#echo $shipping_data = $shipping_cost['shipping_value'];
+										}else{
+											$shipping_data = 0;
+											$shipping_cost['error'];
+										}
+
+									}else{
+
+										$shipping_data = 0.00;
+
+									}
+									
+
+								?>
+								$<span id="shipping_value_return">{{$shipping_data}}</span>
+							</td>
+							
+						</tr>
+
+						<tr class="sub-total-tr">
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>Total:</td>
+							<td class="text-align-right">${{number_format($total_value + $shipping_data,2)}}</td>
 							
 						</tr>
 
@@ -383,11 +467,7 @@
 							<input type="hidden" name="upload" value="1">
 							<input type="hidden" name="business" value="offthewallframing@gmail.com">
 							<input type="hidden" name="currency_code" value="AUD">
-							<!-- <input type="hidden" name="invoice" value="10" > -->
-
-							<input type="hidden" name="shipping" value="0.00">
-							<input type="hidden" name="shipping2" value="20.00">
-
+							
 							<?php
 								$total_value = 0;
 
@@ -472,7 +552,11 @@
 
 							@endif
 
+							<input type="hidden" name="shipping" value="0.00">
+<input type="hidden" name="shipping2" value="2.00">
 							<input type="hidden" name="return" value="{{URL::to('')}}/order/thank-you">
+
+							<input type="hidden" name="handling_cart" value="{{$shipping_data}}">
 					
 							<!-- <input style="float:right;" class="paynowbutton" type="image" src="{{URL::to('')}}/web/images/paynow.png" border="0" name="submit" width="120" alt="Make payments with PayPal - it's fast, free and secure!"> -->
 						
@@ -498,13 +582,13 @@
 		$("#paynowbutton_btn").on('click',function(e){
 			
 			$('.loading').show();
-            var value = '';
+            var shipping_value = $('#shipping_value_return').html();
             var site_url = $('#site_url').attr("href");
             $.ajax({
                 url: site_url+'/order/saveorder',
                 type: 'POST',
                 dataType: 'json',
-                data: {_token: '{!! csrf_token() !!}',value:value,},
+                data: {_token: '{!! csrf_token() !!}',shipping_value:shipping_value,},
                 success: function(response)
                 {
                     $('#submit_payment').submit();

@@ -35,6 +35,7 @@ echo $mac;
 
             $canvas_array = array(
                 'qty' => $canvas_print->qty,
+                'weight' => $canvas_print->weight,
                 'type' => $canvas_print->type,
                 'width' => $canvas_print->width,
                 'height' => $canvas_print->height,
@@ -61,6 +62,7 @@ echo $mac;
 
             $only_stretching_data = array(
                 'qty' => $only_stretching->qty,
+                'weight' => $only_stretching->weight,
                 'type' => $only_stretching->type,
                 'width' => $only_stretching->width,
                 'height' => $only_stretching->height,
@@ -87,6 +89,7 @@ echo $mac;
 
             $canvas_array = array(
                 'qty' => $only_printing->qty,
+                'weight' => $only_printing->weight,
                 'type' => $only_printing->type,
                 'width' => $only_printing->width,
                 'height' => $only_printing->height,
@@ -113,6 +116,7 @@ echo $mac;
           
             $plain_mirror_array = array(
                 'qty' => $plain_mirror->qty,
+                'weight' => $plain_mirror->weight,
                 'type' => $plain_mirror->type,
                 'width' => $plain_mirror->width,
                 'height' => $plain_mirror->height,

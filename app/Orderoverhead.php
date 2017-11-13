@@ -14,6 +14,8 @@ class Orderoverhead extends Model
     protected $fillable = [
         'invoice_id',
         'user_id',
+        'shipping_type',
+        'shipping_value',
         'total_discount_price',
         'vat',
         'net_amount',
