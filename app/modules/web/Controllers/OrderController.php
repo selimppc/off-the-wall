@@ -602,7 +602,7 @@ class OrderController extends Controller
                 $deliver_modal->order_head_id =$modal->id;
                 $deliver_modal->product_id =-1; // for photo frame
                 $deliver_modal->qty = $photo_frame_cart['product']['quantity'];
-                $deliver_modal->price = $photo_frame_cart['product']['framePrice'];
+                $deliver_modal->price = $photo_frame_cart['product']['price'];
                 $deliver_modal->details = $details_message;
 
                 if(!empty($photo_frame_cart['thumb'])){

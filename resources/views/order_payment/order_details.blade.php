@@ -504,9 +504,17 @@
 					<td colspan="3" style="border-bottom: 1px solid #ddd;padding:5px; " >
 						&nbsp;
 					</td>
-					<td style="border-bottom: 1px solid #ddd;padding:5px; "><strong>Shipping free</strong></td>
-					<td style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; ">$ 0.00</td>
+					<td style="border-bottom: 1px solid #ddd;padding:5px; "><strong>Shipping type</strong></td>
+					<td style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; ">{{$order_data[0]->shipping_type}}</td>
 				</tr>
+				<tr>
+					<td colspan="3" style="border-bottom: 1px solid #ddd;padding:5px; " >
+						&nbsp;
+					</td>
+					<td style="border-bottom: 1px solid #ddd;padding:5px; "><strong>Shipping value</strong></td>
+					<td style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; ">$ {{$order_data[0]->shipping_value}}</td>
+				</tr>
+
 				<tr>
 					<td colspan="3" style="border-bottom: 1px solid #ddd;padding:5px; " >
 						&nbsp;
@@ -519,7 +527,7 @@
 						&nbsp;
 					</td>
 					<td style="border-bottom: 1px solid #ddd;padding:5px; "><strong>Total</strong></td>
-					<td style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; ">$ {{$total}}</td>
+					<td style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; ">$ {{$total + $order_data[0]->shipping_value}}</td>
 				</tr>
 
 			</tbody>

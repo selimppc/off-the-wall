@@ -107,6 +107,7 @@
 												{{$product->title}}
 											</a>
 										</div>
+
 									</td>
 								
 									<td>
@@ -164,6 +165,27 @@
 										<a class="product-name" href="#">
 											Custom Picture Framing
 										</a>
+
+										<div style="width: 100%;float: left;font-weight: 700;
+    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#details_{{$count}}">
+												Details
+										</div>
+
+										<div id="details_{{$count}}" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
+										
+												<?php
+													echo 'ImageWidth :: '.$photo_frame_cart['product']['imageWidth'].'<br/>';
+													echo 'ImageHeight :: '.$photo_frame_cart['product']['imageHeight'].'<br/>';
+													echo 'FrameCode :: '.$photo_frame_cart['product']['frame']['frameCode'].'<br/>';
+													echo 'FrameDesc :: '.$photo_frame_cart['product']['frame']['frameDesc'].'<br/>';
+													echo 'FrameMaterial :: '.$photo_frame_cart['product']['frame']['frameMaterial'].'<br/>';
+													echo 'Glass :: '.$photo_frame_cart['product']['glass'].'<br/>';
+													echo 'Backing :: '.$photo_frame_cart['product']['backing'].'<br/>';
+
+												?>
+
+										</div>
+
 									</div>
 								</td>
 
@@ -224,6 +246,22 @@
 										<a class="product-name" href="#">
 											Canvas Print
 										</a>
+
+										<div style="width: 100%;float: left;font-weight: 700;
+    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#details_canvas_print">
+												Details
+										</div>
+
+										<div id="details_canvas_print" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
+
+											<?php
+												echo 'width :: '. $photo_frame_canvas_print_cart['width'].'<br/>';
+												echo 'height :: '. $photo_frame_canvas_print_cart['height'].'<br/>';
+												echo 'edge_type :: '. $photo_frame_canvas_print_cart['edge_type'].'<br/>';
+
+											?>
+										</div>
+
 									</div>
 								</td>
 								<td>
@@ -278,6 +316,22 @@
 										<a class="product-name" href="#">
 											Canvas Stretching Only ({{$photo_frame_only_printing_cart['edge_type']}})
 										</a>
+
+										<div style="width: 100%;float: left;font-weight: 700;
+    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#details_canvas_stretching_only">
+											Details
+										</div>
+
+										<div id="details_canvas_stretching_only" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
+
+											<?php
+												echo 'width :: '. $photo_frame_only_printing_cart['width'].'<br/>';
+												echo 'height :: '. $photo_frame_only_printing_cart['height'].'<br/>';
+												echo 'edge_type :: '. $photo_frame_only_printing_cart['edge_type'].'<br/>';
+
+											?>
+										</div>
+
 									</div>
 								</td>
 								<td>
@@ -330,6 +384,21 @@
 										<a class="product-name" href="#">
 											Canvas Only Printing 
 										</a>
+
+										<div style="width: 100%;float: left;font-weight: 700;
+    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#details_canvas_stretching_only">
+											Details
+										</div>
+
+										<div id="details_canvas_stretching_only" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
+
+											<?php
+												echo 'width :: '. $photo_frame_only_stretching_cart['width'].'<br/>';
+												echo 'height :: '. $photo_frame_only_stretching_cart['height'].'<br/>';
+												
+											?>
+										</div>
+
 									</div>
 								</td>
 								<td>
@@ -379,6 +448,22 @@
 										<a class="product-name" href="#">
 											Plain Mirror
 										</a>
+
+										<div style="width: 100%;float: left;font-weight: 700;
+    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#details_plain_mirror">
+											Details
+										</div>
+
+										<div id="details_plain_mirror" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
+
+											<?php
+												echo 'product_type :: '. $photo_frame_plain_mirror_cart['product_type'].'<br/>';
+												echo 'frame_code :: '. $photo_frame_plain_mirror_cart['frame_code'].'<br/>';
+												echo 'backing_type :: '. $photo_frame_plain_mirror_cart['backing_type'].'<br/>';
+												
+												
+											?>
+										</div>
 									</div>
 								</td>
 								<td>

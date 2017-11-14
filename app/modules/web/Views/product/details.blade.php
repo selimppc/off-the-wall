@@ -88,15 +88,15 @@
 
 							<div class="price">
 								<input checked id="price1" type="radio" name="price" value="{{$product->sell_rate}}">
-								<label for="price1">Pick up<br/> ${{$product->sell_rate}}</label>
+								<label for="price1">${{$product->sell_rate}}</label>
 							</div>
 
-							@if(!empty($product->cost_price))
+							<!-- @if(!empty($product->cost_price))
 								<div class="price">
 									<input id="price2" type="radio" name="price" value="{{$product->cost_price}}">
 									<label for="price2">Delivered<br/> ${{$product->cost_price}}</label>
 								</div>
-							@endif
+							@endif -->
 
 						@else
 
@@ -109,15 +109,15 @@
 
 							<div class="price">
 								<input  checked id="price1" type="radio" name="price" value="{{$product->sell_rate}}">
-								<label for="price1">Pick up<br/> ${{$product->sell_rate}}</label>
+								<label for="price1">Now<br/> ${{$product->sell_rate}}</label>
 							</div>
 
-							@if(!empty($product->cost_price))
+							<!-- @if(!empty($product->cost_price))
 								<div class="price">
 									<input id="price2" type="radio" name="price" value="{{$product->cost_price}}">
 									<label for="price2">Delivered<br/> ${{$product->cost_price}}</label>
 								</div>
-							@endif
+							@endif -->
 
 
 						@endif
@@ -127,7 +127,7 @@
 						<label>Quantity</label>
 						<select name="quantity">
 							<?php
-								if(count($product->stock_unit_quantity) > 0):
+								if($product->stock_unit_quantity > 0):
 									for($i=1;$i<= $product->stock_unit_quantity;$i++){
 							?>
 										<option value="{{$i}}">{{$i}}</option>
@@ -154,14 +154,15 @@
 					@endif
 
 					
+					@if($product->stock_unit_quantity > 0)
 
-					<div class="buy_now_button">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						<input type="hidden" name="product_id" value="{{$product->id}}">
-						<input type="hidden" name="weight" value="{{$product->weight}}">
-						<input type="submit" name="submit" value="Buy Now">
-					</div>
-
+						<div class="buy_now_button">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<input type="hidden" name="product_id" value="{{$product->id}}">
+							<input type="hidden" name="weight" value="{{$product->weight}}">
+							<input type="submit" name="submit" value="Buy Now">
+						</div>
+					@endif
 					
 
 					</form>
