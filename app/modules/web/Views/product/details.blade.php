@@ -17,10 +17,10 @@
 						PRINT
 				</a> -->
 
-				<a href="#" class="image_gallery_container">
+				<a href="mailto:?Subject={{$product->title}}" class="image_gallery_container">
 					<img alt="{{$product->meta_title}}" title="{{$product->title}}" src="{{URL::to('')}}/web/images/ask.png">
 					<br/>
-						EMAIL
+						EMAIL TO A FRIEND
 				</a>
 			</div>
 			<div class="col-md-4 col-sm-12 col-xs-12">
@@ -102,15 +102,25 @@
 
 							@if(!empty($product->before_price))
 								<div class="price">
-									<input  id="price1" type="radio" name="price" value="{{$product->before_price}}">
+									<!-- <input  id="price1" type="radio" name="price" value="{{$product->before_price}}"> -->
 									<label for="price1">Before<br/> ${{$product->before_price}}</label>
 								</div>
+
+								<div class="price">
+									<input  checked id="price1" type="radio" name="price" value="{{$product->sell_rate}}">
+									<label for="price1">Now<br/> ${{$product->sell_rate}}</label>
+								</div>
+
+							@else
+							
+								<div class="price">
+									<input  checked id="price1" type="radio" name="price" value="{{$product->sell_rate}}">
+									<label for="price1">${{$product->sell_rate}}</label>
+								</div>
+
 							@endif
 
-							<div class="price">
-								<input  checked id="price1" type="radio" name="price" value="{{$product->sell_rate}}">
-								<label for="price1">Now<br/> ${{$product->sell_rate}}</label>
-							</div>
+							
 
 							<!-- @if(!empty($product->cost_price))
 								<div class="price">
@@ -142,7 +152,13 @@
 					@if(!empty($product_variation_r))
 						<div class="quantity float-right">
 							<div class="width50">
-								<label>Matt Colour</label>
+								<label>
+									@if($product->product_group_id == 13)
+										Matt Colour
+									@else
+										Colour
+									@endif
+								</label>
 								<select name="color">
 									@foreach($product_variation_r as $product_variation)
 										<option value="{{$product_variation->id}}">{{$product_variation->title}}</option>

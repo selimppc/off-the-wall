@@ -117,15 +117,16 @@
 					  function initMap() {
 					    var mapDiv = document.getElementById('map');
 
-					    var uluru = {lat: -33.9495855, lng: 151.1367293};
+					    var uluru = {lat: -33.949607, lng: 151.139075};
 					    var map = new google.maps.Map(mapDiv, {
-					      center: {lat: -33.9495855, lng: 151.1367293},
-					      zoom: 16,
+					      center: {lat: -33.949607, lng: 151.139075},
+					      zoom: 20,
 					      center: uluru
 					    });
 					    var marker = new google.maps.Marker({
 				          position: uluru,
 				          map: map,
+				          
 				          title: '425 Princess Highway, Rockdale NSW 2216'
 				        });
 					  }

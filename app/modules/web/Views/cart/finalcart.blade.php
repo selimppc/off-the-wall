@@ -145,47 +145,51 @@
 
 						@if(!empty($photo_frame_cart))
 
-							<?php
-								$total_weight+=$photo_frame_cart['product']['weight'];
-								$total_qty+=$photo_frame_cart['product']['quantity'];
-							?>
+							@foreach($photo_frame_cart as $frame_cart)
+								<?php
 
-							<tr>
-								<td>
-									<div class="added-images">
-										<img src="{{$photo_frame_cart['thumb']}}">
-									</div>
+									$total_weight+=0.5;
+									$total_qty+=$frame_cart['product']['quantity'];
+								?>
 
-									<div class="added-item-container">
-										<a class="product-name" href="#">
-											Custom Picture Framing
-										</a>
-									</div>
-								</td>
+								<tr>
+									<td>
+										<div class="added-images">
+											<img src="{{$frame_cart['thumb']}}">
+										</div>
 
-								<td style="padding-top: 5px!important;">
-								{{$photo_frame_cart['product']['quantity']}}
-								</td>
+										<div class="added-item-container">
+											<a class="product-name" href="#">
+												Custom Picture Framing
+											</a>
+										</div>
+									</td>
+
+									<td style="padding-top: 5px!important;">
+									{{$frame_cart['product']['quantity']}}
+									</td>
+									
+									<td>
+										<div class="unit-price">
+											${{$frame_cart['product']['price']}}
+										</div>
+									</td>
+
+									<td class="text-align-right">
+										<div class="linetotal">
+											
+											<span class="line_total">
+												${{number_format($frame_cart['product']['price'] * $frame_cart['product']['quantity'],2)}}	
+												<?php
+													$total_value+= $frame_cart['product']['price'] * $frame_cart['product']['quantity'];
+												?>
+											</span>
+										</div>
+									</td>
 								
-								<td>
-									<div class="unit-price">
-										${{$photo_frame_cart['product']['price']}}
-									</div>
-								</td>
+								</tr>
 
-								<td class="text-align-right">
-									<div class="linetotal">
-										
-										<span class="line_total">
-											${{number_format($photo_frame_cart['product']['price'] * $photo_frame_cart['product']['quantity'],2)}}	
-											<?php
-												$total_value+= $photo_frame_cart['product']['price'] * $photo_frame_cart['product']['quantity'];
-											?>
-										</span>
-									</div>
-								</td>
-							
-							</tr>
+							@endforeach
 
 						@endif
 
@@ -491,15 +495,19 @@
 
 							@if(count($photo_frame_cart) > 0)
 
-								<input type="hidden" name="item_name_{{$count}}" value="{{$photo_frame_cart['product']['frame']['frameMaterial']}} , 
-											{{$photo_frame_cart['product']['frame']['frameCode']}}">
-								<input type="hidden" name="amount_{{$count}}" value="{{$photo_frame_cart['product']['newDiscountedPrice']}}">
+								@foreach($photo_frame_cart as $frame_cart)
 
-								<input type="hidden" name="quantity_{{$count}}" value="{{$photo_frame_cart['product']['quantity']}}">
+									<input type="hidden" name="item_name_{{$count}}" value="{{$frame_cart['product']['frame']['frameMaterial']}} , 
+											{{$frame_cart['product']['frame']['frameCode']}}">
+									<input type="hidden" name="amount_{{$count}}" value="{{$frame_cart['product']['newDiscountedPrice']}}">
 
-								<?php
-									$count++;
-								?>
+									<input type="hidden" name="quantity_{{$count}}" value="{{$frame_cart['product']['quantity']}}">
+
+									<?php
+										$count++;
+									?>
+
+								@endforeach
 
 							@endif
 

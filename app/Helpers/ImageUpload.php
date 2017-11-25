@@ -50,4 +50,19 @@ class ImageUpload
             }
         }
     }
+
+
+    public static function copy_image_from_url($image_url,$path){
+
+        //Get the file
+        $content = file_get_contents($image_url);
+        //Store in the filesystem.
+
+        $fp = fopen($path, "w");
+        fwrite($fp, $content);
+        fclose($fp);
+
+        return true;       
+
+    }
 }

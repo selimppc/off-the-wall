@@ -73,8 +73,19 @@ class PhotoFrameController extends Controller{
 
 			// for freight calculation
 
-			$_POST['product']['weight'] = '0.5';
-			$request->session()->set('photo_frame_cart', $_POST);
+			$product_cart1 = $request->session()->get('photo_frame_cart');
+
+			$product_cart_2 = array($_POST);
+
+			if($request->session()->has('photo_frame_cart')){				
+				$result = array_merge($product_cart1, $product_cart_2);
+			}else{
+				$result = $product_cart_2;
+			}
+
+			$request->session()->set('photo_frame_cart', $result);
+			
+			/*$request->session()->set('photo_frame_cart', $_POST);*/
 			$request->session()->set('photo_frame_type', 'photo_frame');
 
 		}

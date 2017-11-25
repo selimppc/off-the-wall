@@ -381,13 +381,13 @@ print_r($_SESSION);
                                                                                 <td align="left" class="info" colspan="2">
                                                                                     <select id="backing_type" name="backing_type" class="info">
                                                                                         <option data-price="0" value="na">3mm MDF (Included)</option>
-                                                                                        <option data-price="50" value="sa3">3mm Self-Adhesive Foamcore
+                                                                                        <option data-price="0" value="sa3">3mm Self-Adhesive Foamcore
                                                                                         </option>
-                                                                                        <option data-price="70" value="nsa3">3mm Non-Adhesive Foamcore
+                                                                                        <option data-price="0" value="nsa3">3mm Non-Adhesive Foamcore
                                                                                         </option>
-                                                                                        <option data-price="42" value="sa5">5mm Self-Adhesive Foamcore
+                                                                                        <option data-price="0" value="sa5">5mm Self-Adhesive Foamcore
                                                                                         </option>
-                                                                                        <option data-price="30" value="nsa5">5mm Non-Adhesive Foamcore
+                                                                                        <option data-price="0" value="nsa5">5mm Non-Adhesive Foamcore
                                                                                         </option>
                                                                                     </select>
                                                                                 </td>

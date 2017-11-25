@@ -16,6 +16,7 @@ class Orderdetails extends Model
         'price',
         'status',
         'details',
-        'image_link'
+        'image_link',
+        'original_image_link'
     ];
 }

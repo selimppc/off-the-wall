@@ -106,6 +106,37 @@
 											<a class="product-name" href="#">
 												{{$product->title}}
 											</a>
+											<div style="width: 100%;float: left;font-weight: 700;
+		    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#details_{{$count}}">
+														Details
+											</div>
+
+											<div id="details_{{$count}}" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
+
+													@if(!empty($product->product_code))
+														Product Code :: {{$product->product_code}}<br/>
+													@endif
+
+													@if(!empty($product->size))
+														Sizes :: {{$product->size}}<br/>
+													@endif
+
+													@if(!empty($product->other_size))
+														Other sizes :: {{$product->other_size}}<br/>
+													@endif
+
+													@if(!empty($color))
+
+														@if($product->product_group_id == 13)
+															Matt Color
+														@else
+															Color
+														@endif
+														 :: {{$color->title}}
+													@endif
+
+											</div>
+
 										</div>
 
 									</td>
@@ -151,84 +182,100 @@
 							@endforeach
 						@endif
 
+						
 						@if(!empty($photo_frame_cart))
 
-							<tr>
-								<form method="post" action="{{URL::to('/')}}/order/update_cart_photo_frame">
+							@foreach($photo_frame_cart as $frame_cart)
 
-								{{ csrf_field() }}
-								<td>
-									<div class="added-images">
-										<img src="{{$photo_frame_cart['thumb']}}">
-									</div>
-									<div class="added-item-container">
-										<a class="product-name" href="#">
-											Custom Picture Framing
-										</a>
 
-										<div style="width: 100%;float: left;font-weight: 700;
-    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#details_{{$count}}">
-												Details
-										</div>
+								<tr>
 
-										<div id="details_{{$count}}" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
-										
-												<?php
-													echo 'ImageWidth :: '.$photo_frame_cart['product']['imageWidth'].'<br/>';
-													echo 'ImageHeight :: '.$photo_frame_cart['product']['imageHeight'].'<br/>';
-													echo 'FrameCode :: '.$photo_frame_cart['product']['frame']['frameCode'].'<br/>';
-													echo 'FrameDesc :: '.$photo_frame_cart['product']['frame']['frameDesc'].'<br/>';
-													echo 'FrameMaterial :: '.$photo_frame_cart['product']['frame']['frameMaterial'].'<br/>';
-													echo 'Glass :: '.$photo_frame_cart['product']['glass'].'<br/>';
-													echo 'Backing :: '.$photo_frame_cart['product']['backing'].'<br/>';
+									<form method="post" action="{{URL::to('/')}}/order/update_cart_photo_frame">
 
-												?>
+									{{ csrf_field() }}
 
-										</div>
+										<td>
 
-									</div>
-								</td>
+											<div class="added-images">
+												<img src="{{$frame_cart['thumb']}}">
+											</div>
 
-								<td>
-									<input class="cart-quantity" type="number" min="1" name="product_quantity" value="{{$photo_frame_cart['product']['quantity']}}">
-								</td>
+											<div class="added-item-container">
+												<a class="product-name" href="#">
+													Custom Picture Framing
+												</a>
 
-								<td>
-									<div class="unit-price">
-										${{number_format($photo_frame_cart['product']['price'],2)}}
-									</div>
-								</td>
+												<div style="width: 100%;float: left;font-weight: 700;
+		    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#details_{{$count}}">
+														Details
+												</div>
 
-								<td class="text-align-right">
-									<div class="linetotal">
-										
-										<span class="line_total">
-											${{number_format($photo_frame_cart['product']['price'] * $photo_frame_cart['product']['quantity'],2)}}
+												<div id="details_{{$count}}" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
+												
+														<?php
+															echo 'ImageWidth :: '.$frame_cart['product']['imageWidth'].'<br/>';
+															echo 'ImageHeight :: '.$frame_cart['product']['imageHeight'].'<br/>';
+															echo 'FrameCode :: '.$frame_cart['product']['frame']['frameCode'].'<br/>';
+															echo 'FrameDesc :: '.$frame_cart['product']['frame']['frameDesc'].'<br/>';
+															echo 'FrameMaterial :: '.$frame_cart['product']['frame']['frameMaterial'].'<br/>';
+															echo 'Glass :: '.$frame_cart['product']['glass'].'<br/>';
+															echo 'Backing :: '.$frame_cart['product']['backing'].'<br/>';
 
-											<?php
-												$total_value+= $photo_frame_cart['product']['price'] * $photo_frame_cart['product']['quantity'];
-											?>
-										</span>
-									</div>
-								</td>
+														?>
 
-								<td>
-									<div class="delete_product">
-										
-										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<input type="submit" name="update_product" class="product_update" value="">
+												</div>
 
-									</form>
-										<form method="post" action="{{URL::to('/')}}/order/remove_cart_photo_frame" style="float:left;">
-											<input type="hidden" name="_token" value="{{ csrf_token() }}">
-											<input type="hidden" name="product_index" value="{{$count}}">
-											<input type="submit" name="remove_product" class="product_remove_cross" value="">
-										</form>
-										
-									</div>
-								</td>
+											</div>
 
-							</tr>
+										</td>
+
+										<td>
+											<input class="cart-quantity" type="number" min="1" name="product_quantity" value="{{$frame_cart['product']['quantity']}}">
+										</td>
+
+										<td>
+											<div class="unit-price">
+												${{number_format($frame_cart['product']['price'],2)}}
+											</div>
+										</td>
+
+										<td class="text-align-right">
+											<div class="linetotal">
+												
+												<span class="line_total">
+													${{number_format($frame_cart['product']['price'] * $frame_cart['product']['quantity'],2)}}
+
+													<?php
+														$total_value+= $frame_cart['product']['price'] * $frame_cart['product']['quantity'];
+													?>
+												</span>
+											</div>
+										</td>
+
+										<td>
+											<div class="delete_product">
+												
+												<input type="hidden" name="_token" value="{{ csrf_token() }}">
+												<input type="hidden" name="product_index" value="{{$count}}">
+												<input type="submit" name="update_product" class="product_update" value="">
+
+											</form>
+												<form method="post" action="{{URL::to('/')}}/order/remove_cart_photo_frame" style="float:left;">
+													<input type="hidden" name="_token" value="{{ csrf_token() }}">
+													<input type="hidden" name="product_index" value="{{$count}}">
+													<input type="submit" name="remove_product" class="product_remove_cross" value="">
+												</form>
+												
+											</div>
+										</td>
+
+								</tr>
+
+								<?php
+									$count++;
+								?>
+
+							@endforeach
 
 						@endif
 
