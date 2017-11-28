@@ -33,6 +33,32 @@ echo $mac;
 
         if(count($canvas_print) > 0){
 
+            $product_cart1 = $request->session()->get('photo_frame_canvas_print_cart');
+
+            $product_cart_2 = array( 
+                array(
+                    'qty' => $canvas_print->qty,
+                    'weight' => $canvas_print->weight,
+                    'type' => $canvas_print->type,
+                    'width' => $canvas_print->width,
+                    'height' => $canvas_print->height,
+                    'image' => $canvas_print->image,
+                    'edge_type' => $canvas_print->edge_type,
+                    'total_price' => $canvas_print->total_price
+                ) 
+            );
+
+
+            if($request->session()->has('photo_frame_canvas_print_cart')){
+
+                $photo_frame_canvas_print_cart = array_merge($product_cart1, $product_cart_2);
+            }else{
+                $photo_frame_canvas_print_cart = $product_cart_2;
+            }
+
+            $request->session()->set('photo_frame_canvas_print_cart', $photo_frame_canvas_print_cart);
+            
+/*
             $canvas_array = array(
                 'qty' => $canvas_print->qty,
                 'weight' => $canvas_print->weight,
@@ -47,7 +73,7 @@ echo $mac;
             // Set Session
             $request->session()->set('photo_frame_canvas_print_cart', $canvas_array);
 
-            $photo_frame_canvas_print_cart = $request->session()->get('photo_frame_canvas_print_cart');
+            $photo_frame_canvas_print_cart = $request->session()->get('photo_frame_canvas_print_cart');*/
 
             // Delete Data
             DB::table('frame_session_data')->where('mac_address', $mac)->where('type','canvas_print')->delete(); 

@@ -1,6 +1,22 @@
 @extends('web::layout.web_master')
 
 @section('content')
+
+	<div style="width: 98%;display: inline-block;margin-bottom: -40px;margin-left: 1%;">
+								
+		@if(Session::has('flash_message_success'))
+			<div class="btn btn-success pull-right" style="width:100%;">
+				{!!Session::get('flash_message_success')!!}
+			</div>
+		@endif
+		
+		@if(Session::has('flash_message_error'))
+			<div class="btn btn-danger pull-right" style="width:100%;">
+				{!!Session::get('flash_message_error')!!}
+			</div>
+		@endif
+	</div>
+
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="product-details-container">
 			<div class="col-md-4 col-sm-12 col-xs-12">
@@ -17,11 +33,68 @@
 						PRINT
 				</a> -->
 
-				<a href="mailto:?Subject={{$product->title}}" class="image_gallery_container">
+				<a data-toggle="modal" data-target="#myModal" class="image_gallery_container">
 					<img alt="{{$product->meta_title}}" title="{{$product->title}}" src="{{URL::to('')}}/web/images/ask.png">
 					<br/>
 						EMAIL TO A FRIEND
 				</a>
+
+
+
+
+				<!-- Modal -->
+				<div id="myModal" class="modal fade" role="dialog">
+				  <div class="modal-dialog">
+
+				    <!-- Modal content-->
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        <h4 class="modal-title">Email to a friend</h4>
+				      </div>
+				      <div class="modal-body" style="display: inline-block;width: 100%;">
+				        
+				        	{!! Form::open(['route' => 'email-to-a-friend-store']) !!}
+
+				        		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+				        		<div class="form-group">
+						            <label for="email" class="control-label" style="color: #000;">Email:</label>
+						            <small class="required">(Required)</small>
+						            {!! Form::email('email', null, ['id'=>'email', 'class' => 'form-control','required']) !!}
+						        </div>
+
+						        <div class="form-group">
+						            <label for="subject" class="control-label" style="color: #000;">Subject:</label>
+						            <small class="required">(Required)</small>
+						            {!! Form::text('subject', null, ['id'=>'subject', 'class' => 'form-control','required']) !!}
+						        </div>
+
+						        <div class="form-group">
+							        <label for="message" class="control-label" style="color: #000;">Message:</label>
+
+							        <?php
+							        	$message_email_to_a_friend = 'Product Name :: '.$product->title;
+							        ?>
+							        {!! Form::textarea('message', $message_email_to_a_friend, ['id'=>'message', 'class' => 'form-control', 'cols'=>'30' , 'rows'=>'5']) !!}
+							    </div>
+
+							    <div class="pull-right">
+
+							    	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				        			{!! Form::submit('Send', ['class' => 'btn btn-success']) !!}
+
+				        		</div>
+
+				        	{!! Form::close() !!}
+				      </div>
+
+				      
+				    </div>
+
+				  </div>
+				</div>
+
 			</div>
 			<div class="col-md-4 col-sm-12 col-xs-12">
 				<div class="product-header">

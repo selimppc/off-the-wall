@@ -194,46 +194,48 @@
 						@endif
 
 						@if(!empty($photo_frame_canvas_print_cart))
+							@foreach($photo_frame_canvas_print_cart as $canvas_print_cart)
 							<?php
-								$total_weight+=$photo_frame_canvas_print_cart['weight'];
-								$total_qty+=$photo_frame_canvas_print_cart['qty'];
+								$total_weight+=0.5;
+								$total_qty+=$canvas_print_cart['qty'];
 							?>
-							<tr>
-								<td>
-									<div class="added-images">
-										<img src="{{$photo_frame_canvas_print_cart['image']}}">
-									</div>
-									<div class="added-item-container">
-										<a class="product-name" href="#">
-											Canvas Print
-										</a>
-									</div>
-								</td>								
-								<td style="padding-top: 5px!important;">
-									{{$photo_frame_canvas_print_cart['qty']}}
-								</td>
-								<td>
-									<div class="unit-price">
-										${{number_format($photo_frame_canvas_print_cart['total_price'],2)}}
-									</div>	
-								</td>
+								<tr>
+									<td>
+										<div class="added-images">
+											<img src="{{$canvas_print_cart['image']}}">
+										</div>
+										<div class="added-item-container">
+											<a class="product-name" href="#">
+												Canvas Print
+											</a>
+										</div>
+									</td>								
+									<td style="padding-top: 5px!important;">
+										{{$canvas_print_cart['qty']}}
+									</td>
+									<td>
+										<div class="unit-price">
+											${{number_format($canvas_print_cart['total_price'],2)}}
+										</div>	
+									</td>
 
-								<td class="text-align-right">
-									<div class="linetotal">
-										
-										<span class="line_total">
-											${{number_format($photo_frame_canvas_print_cart['total_price'] * $photo_frame_canvas_print_cart['qty'],2)}}	
+									<td class="text-align-right">
+										<div class="linetotal">
+											
+											<span class="line_total">
+												${{number_format($canvas_print_cart['total_price'] * $canvas_print_cart['qty'],2)}}	
 
-											<?php
-												$total_value+= $photo_frame_canvas_print_cart['total_price'] * $photo_frame_canvas_print_cart['qty'];
-											?>
+												<?php
+													$total_value+= $canvas_print_cart['total_price'] * $canvas_print_cart['qty'];
+												?>
 
-										</span>
-									</div>
-								</td>
+											</span>
+										</div>
+									</td>
 
-							
-							</tr>
+								
+								</tr>
+							@endforeach
 
 						@endif
 
@@ -513,14 +515,17 @@
 
 							@if(count($photo_frame_canvas_print_cart) > 0)
 
-								<input type="hidden" name="item_name_{{$count}}" value="Canvas Print">
-								<input type="hidden" name="amount_{{$count}}" value="{{$photo_frame_canvas_print_cart['total_price']}}">
-								<input type="hidden" name="quantity_{{$count}}" value="{{$photo_frame_canvas_print_cart['qty']}}">
+								@foreach($photo_frame_canvas_print_cart as $canvas_print_cart)
 
-								<?php
-									$count++;
-								?>
+									<input type="hidden" name="item_name_{{$count}}" value="Canvas Print">
+									<input type="hidden" name="amount_{{$count}}" value="{{$canvas_print_cart['total_price']}}">
+									<input type="hidden" name="quantity_{{$count}}" value="{{$canvas_print_cart['qty']}}">
 
+									<?php
+										$count++;
+									?>
+
+								@endforeach
 							@endif
 
 							@if(count($photo_frame_only_printing_cart) > 0)

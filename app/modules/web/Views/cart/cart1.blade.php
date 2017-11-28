@@ -281,75 +281,89 @@
 
 						@if(!empty($photo_frame_canvas_print_cart))
 
-							<tr>
-								<form method="post" action="{{URL::to('/')}}/order/update_cart_canvas_print">
+							<?php
+								$canvas_print_cart_count = 0;
+							?>
 
-								{{ csrf_field() }}
-								<td>
-									<div class="added-images">
-										<img src="{{$photo_frame_canvas_print_cart['image']}}">
-									</div>
-									<div class="added-item-container">
-										<a class="product-name" href="#">
-											Canvas Print
-										</a>
+							@foreach($photo_frame_canvas_print_cart as $canvas_print_cart)
 
-										<div style="width: 100%;float: left;font-weight: 700;
-    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#details_canvas_print">
-												Details
+								<tr>
+									<form method="post" action="{{URL::to('/')}}/order/update_cart_canvas_print">
+
+									{{ csrf_field() }}
+									<td>
+										<div class="added-images">
+											<img src="{{$canvas_print_cart['image']}}">
 										</div>
+										<div class="added-item-container">
+											<a class="product-name" href="#">
+												Canvas Print
+											</a>
 
-										<div id="details_canvas_print" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
+											<div style="width: 100%;float: left;font-weight: 700;
+	    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#{{$count}}">
+													Details
+											</div>
 
-											<?php
-												echo 'width :: '. $photo_frame_canvas_print_cart['width'].'<br/>';
-												echo 'height :: '. $photo_frame_canvas_print_cart['height'].'<br/>';
-												echo 'edge_type :: '. $photo_frame_canvas_print_cart['edge_type'].'<br/>';
+											<div id="{{$count}}" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
 
-											?>
+												<?php
+													echo 'width :: '. $canvas_print_cart['width'].'<br/>';
+													echo 'height :: '. $canvas_print_cart['height'].'<br/>';
+													echo 'edge_type :: '. $canvas_print_cart['edge_type'].'<br/>';
+
+												?>
+											</div>
+
 										</div>
+									</td>
+									<td>
+										<input class="cart-quantity" type="number" min="1" name="product_quantity_canvas_print" value="{{$canvas_print_cart['qty']}}">
+									</td>
+									<td>
+										<div class="unit-price">
+											${{number_format($canvas_print_cart['total_price'],2)}}
+										</div>
+									</td>
+									<td class="text-align-right">
+										<div class="linetotal">
+											
+											<span class="line_total">
+												${{number_format($canvas_print_cart['total_price'] * $canvas_print_cart['qty'],2)}}
 
-									</div>
-								</td>
-								<td>
-									<input class="cart-quantity" type="number" min="1" name="product_quantity_canvas_print" value="{{$photo_frame_canvas_print_cart['qty']}}">
-								</td>
-								<td>
-									<div class="unit-price">
-										${{number_format($photo_frame_canvas_print_cart['total_price'],2)}}
-									</div>
-								</td>
-								<td class="text-align-right">
-									<div class="linetotal">
-										
-										<span class="line_total">
-											${{number_format($photo_frame_canvas_print_cart['total_price'] * $photo_frame_canvas_print_cart['qty'],2)}}
+												<?php
+													$total_value+= $canvas_print_cart['total_price'] * $canvas_print_cart['qty'];
+												?>
+											</span>
+										</div>
+									</td>
+									<td>
+										<div class="delete_product">
+											<input type="hidden" name="width" value="{{$canvas_print_cart['width']}}">
+											<input type="hidden" name="height" value="{{$canvas_print_cart['height']}}">
+											<input type="hidden" name="image" value="{{$canvas_print_cart['image']}}">
+											<input type="hidden" name="edge_type" value="{{$canvas_print_cart['edge_type']}}">
+											<input type="hidden" name="total_price" value="{{$canvas_print_cart['total_price']}}">
 
-											<?php
-												$total_value+= $photo_frame_canvas_print_cart['total_price'] * $photo_frame_canvas_print_cart['qty'];
-											?>
-										</span>
-									</div>
-								</td>
-								<td>
-									<div class="delete_product">
-										<input type="hidden" name="width" value="{{$photo_frame_canvas_print_cart['width']}}">
-										<input type="hidden" name="height" value="{{$photo_frame_canvas_print_cart['height']}}">
-										<input type="hidden" name="image" value="{{$photo_frame_canvas_print_cart['image']}}">
-										<input type="hidden" name="edge_type" value="{{$photo_frame_canvas_print_cart['edge_type']}}">
-										<input type="hidden" name="total_price" value="{{$photo_frame_canvas_print_cart['total_price']}}">
-										
-										<input type="submit" name="update_product" class="product_update" value="">
-									</form>
-										<form method="post" action="{{URL::to('/')}}/order/remove_cart_canvas_print" style="float:left;">
-											<input type="hidden" name="_token" value="{{ csrf_token() }}">
-											<input type="hidden" name="product_index" value="{{$count}}">
-											<input type="submit" name="remove_product" class="product_remove_cross" value="">
+											<input type="hidden" name="product_index" value="{{$canvas_print_cart_count}}">
+											
+											<input type="submit" name="update_product" class="product_update" value="">
 										</form>
-										
-									</div>
-								</td>
-							</tr>
+											<form method="post" action="{{URL::to('/')}}/order/remove_cart_canvas_print" style="float:left;">
+												<input type="hidden" name="_token" value="{{ csrf_token() }}">
+												<input type="hidden" name="product_index" value="{{$canvas_print_cart_count}}">
+												
+												<input type="submit" name="remove_product" class="product_remove_cross" value="">
+											</form>
+											
+										</div>
+									</td>
+								</tr>
+
+								<?php
+									$canvas_print_cart_count++;
+								?>
+							@endforeach
 						@endif
 
 						@if(!empty($photo_frame_only_printing_cart))

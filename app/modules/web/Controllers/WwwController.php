@@ -168,7 +168,7 @@ class WwwController extends Controller
         
         $mail_data = "Name ".$name. "<br/><br/>Email ".$email. "<br/><br/>Subject".$subject. "<br/><br/> Phone".$phone. "<br/><br/> Message".$message;
         
-        $to = 'mithun.cse521@gmail.com';
+        $to = 'offthewall.frames@hotmail.com';
         $subject = 'Off The Wall Framing | Contact';
         // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
@@ -187,6 +187,39 @@ class WwwController extends Controller
         
     }
     
+
+
+    public function emailtofriendstore(Request $request){
+
+        $input = $request->all();
+
+        $email = Input::get('email');
+        $subject = Input::get('subject');
+        $message = Input::get('message');          
+        
+        
+        $mail_data = $message;
+        
+        $to = $email;
+        $subject = 'Off The Wall Framing | '.$subject;
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        // More headers
+        $headers .= 'From: <info@offthewallframing.com.au>' . "\r\n";
+
+        if(mail($to,$subject,$mail_data,$headers)){
+            Session::flash('flash_message_success', "Thank you for sending this product to your friend");
+        }else{
+            Session::flash('flash_message_error', "Your message not send");
+        }
+        
+        return redirect()->back();
+
+    }
+
+
 
      public function delivery(){
         $slug = 'delivery-installation';

@@ -279,6 +279,11 @@ Route::any('customerreviews-store',[
 		'uses' => 'CustomerreviewsController@customerreviewsstore'
 	]);
 
+Route::any('email-to-a-friend-store',[
+		'as' => 'email-to-a-friend-store',
+		'uses' => 'WwwController@emailtofriendstore'
+	]);
+
 Route::any('{main_slug}/{sub_slug}',[
 		'as' => 'product_category',
 		'uses' => 'ProductCategoryController@couple'
