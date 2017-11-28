@@ -285,47 +285,54 @@
 
 						@endif
 
-
+						<!-- Only Printing -->
 						@if(!empty($photo_frame_only_stretching_cart))
 
-							<?php
-								$total_weight+=$photo_frame_only_stretching_cart['weight'];
-								$total_qty+=$photo_frame_only_stretching_cart['qty'];
-							?>
-							<tr>
-								<td>
-									<div class="added-item-container">
-										<a class="product-name" href="#">
-											Canvas Printing Only
-										</a>
-									</div>									
-								</td>
-								<td style="padding-top: 5px!important;">
-									{{$photo_frame_only_stretching_cart['qty']}}
-								</td>
+							@foreach($photo_frame_only_stretching_cart as $only_stretching)
 
-								<td>
-									<div class="unit-price">
-										${{number_format($photo_frame_only_stretching_cart['total_price'],2)}}
-									</div>	
-								</td>
+								<?php
+									$total_weight+=$only_stretching['weight'];
+									$total_qty+=$only_stretching['qty'];
+								?>
+								<tr>
+									<td>
+										<div class="added-images">
+											<img src="{{$only_stretching['image']}}">
+										</div>
+										<div class="added-item-container">
+											<a class="product-name" href="#">
+												Canvas Printing Only
+											</a>
+										</div>									
+									</td>
+									<td style="padding-top: 5px!important;">
+										{{$only_stretching['qty']}}
+									</td>
 
-								<td class="text-align-right">
-									<div class="linetotal">
-										
-										<span class="line_total">
-											${{number_format($photo_frame_only_stretching_cart['total_price'] * $photo_frame_only_stretching_cart['qty'],2)}}	
+									<td>
+										<div class="unit-price">
+											${{number_format($only_stretching['total_price'],2)}}
+										</div>	
+									</td>
 
-											<?php
-												$total_value+=$photo_frame_only_stretching_cart['total_price'] * $photo_frame_only_stretching_cart['qty'];
-											?>
+									<td class="text-align-right">
+										<div class="linetotal">
+											
+											<span class="line_total">
+												${{number_format($only_stretching['total_price'] * $only_stretching['qty'],2)}}	
 
-										</span>
-									</div>
-								</td>
+												<?php
+													$total_value+=$only_stretching['total_price'] * $only_stretching['qty'];
+												?>
 
-																
-							</tr>
+											</span>
+										</div>
+									</td>
+
+																	
+								</tr>
+
+							@endforeach
 
 						@endif
 
@@ -540,15 +547,20 @@
 
 							@endif
 
+							<!-- Only Printing -->
 							@if(count($photo_frame_only_stretching_cart) > 0)
 
-								<input type="hidden" name="item_name_{{$count}}" value="Canvas Only Printing ">
-								<input type="hidden" name="amount_{{$count}}" value="{{$photo_frame_only_stretching_cart->total_price}}">
-								<input type="hidden" name="quantity_{{$count}}" value="{{$photo_frame_only_stretching_cart->qty}}">
+								@foreach($photo_frame_only_stretching_cart as $only_stretching)
 
-								<?php
-									$count++;
-								?>
+									<input type="hidden" name="item_name_{{$count}}" value="Canvas Only Printing ">
+									<input type="hidden" name="amount_{{$count}}" value="{{$only_stretching['total_price']}}">
+									<input type="hidden" name="quantity_{{$count}}" value="{{$only_stretching['qty']}}">
+
+									<?php
+										$count++;
+									?>
+
+								@endforeach
 
 							@endif
 

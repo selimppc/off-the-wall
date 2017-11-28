@@ -57,24 +57,7 @@ echo $mac;
             }
 
             $request->session()->set('photo_frame_canvas_print_cart', $photo_frame_canvas_print_cart);
-            
-/*
-            $canvas_array = array(
-                'qty' => $canvas_print->qty,
-                'weight' => $canvas_print->weight,
-                'type' => $canvas_print->type,
-                'width' => $canvas_print->width,
-                'height' => $canvas_print->height,
-                'image' => $canvas_print->image,
-                'edge_type' => $canvas_print->edge_type,
-                'total_price' => $canvas_print->total_price
-            );
-
-            // Set Session
-            $request->session()->set('photo_frame_canvas_print_cart', $canvas_array);
-
-            $photo_frame_canvas_print_cart = $request->session()->get('photo_frame_canvas_print_cart');*/
-
+ 
             // Delete Data
             DB::table('frame_session_data')->where('mac_address', $mac)->where('type','canvas_print')->delete(); 
           
@@ -83,23 +66,33 @@ echo $mac;
             $photo_frame_canvas_print_cart = $request->session()->get('photo_frame_canvas_print_cart');
         }
 
-        // Only Streatching
+        // Only Printing
         if(count($only_stretching) > 0){
 
-            $only_stretching_data = array(
-                'qty' => $only_stretching->qty,
-                'weight' => $only_stretching->weight,
-                'type' => $only_stretching->type,
-                'width' => $only_stretching->width,
-                'height' => $only_stretching->height,
-                'image' => $only_stretching->image,
-                'total_price' => $only_stretching->total_price
+            $product_cart1 = $request->session()->get('photo_frame_only_stretching_cart');
+
+            $product_cart_2 = array( 
+                array(
+                    'qty' => $only_stretching->qty,
+                    'weight' => $only_stretching->weight,
+                    'type' => $only_stretching->type,
+                    'width' => $only_stretching->width,
+                    'height' => $only_stretching->height,
+                    'image' => $only_stretching->image,
+                    'total_price' => $only_stretching->total_price
+                )
             );
 
-            // Set Session
-            $request->session()->set('photo_frame_only_stretching_cart', $only_stretching_data);
 
-            $photo_frame_only_stretching_cart = $request->session()->get('photo_frame_only_stretching_cart');
+            if($request->session()->has('photo_frame_only_stretching_cart')){
+
+                $photo_frame_only_stretching_cart = array_merge($product_cart1, $product_cart_2);
+            }else{
+                $photo_frame_only_stretching_cart = $product_cart_2;
+            }
+
+
+            $request->session()->set('photo_frame_only_stretching_cart', $photo_frame_only_stretching_cart);
 
             // Delete Data
             DB::table('frame_session_data')->where('mac_address', $mac)->where('type','only_printing')->delete(); 
@@ -111,6 +104,7 @@ echo $mac;
 
 
 
+        // Only Streaching
         if(count($only_printing) > 0){
 
             $canvas_array = array(

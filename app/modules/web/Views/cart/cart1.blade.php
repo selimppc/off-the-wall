@@ -373,6 +373,7 @@
 
 								{{ csrf_field() }}
 								<td>
+
 									<div class="added-item-container">
 										<a class="product-name" href="#">
 											Canvas Stretching Only ({{$photo_frame_only_printing_cart['edge_type']}})
@@ -432,70 +433,85 @@
 
 						@endif
 
-
+						<!-- Only Printing -->
 						@if(!empty($photo_frame_only_stretching_cart))
 
+							<?php
+								$only_printing_count = 0;
+							?>
 
-							<tr>
-								<form method="post" action="{{URL::to('/')}}/order/update_cart_canvas_only_printing">
+							@foreach($photo_frame_only_stretching_cart as $only_stretching)
 
-								{{ csrf_field() }}
-								<td>
-									<div class="added-item-container">
-										<a class="product-name" href="#">
-											Canvas Only Printing 
-										</a>
+								<tr>
+									<form method="post" action="{{URL::to('/')}}/order/update_cart_canvas_only_printing">
 
-										<div style="width: 100%;float: left;font-weight: 700;
-    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#details_canvas_stretching_only">
-											Details
+									{{ csrf_field() }}
+									<td>
+										<div class="added-images">
+											<img src="{{$only_stretching['image']}}">
 										</div>
+										<div class="added-item-container">
+											<a class="product-name" href="#">
+												Canvas Only Printing 
+											</a>
 
-										<div id="details_canvas_stretching_only" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
+											<div style="width: 100%;float: left;font-weight: 700;
+	    color: #ff7722;cursor: pointer;font-size: 12px;" data-toggle="collapse" data-target="#details_canvas_stretching_only_{{$only_printing_count}}">
+												Details
+											</div>
 
-											<?php
-												echo 'width :: '. $photo_frame_only_stretching_cart['width'].'<br/>';
-												echo 'height :: '. $photo_frame_only_stretching_cart['height'].'<br/>';
-												
-											?>
+											<div id="details_canvas_stretching_only_{{$only_printing_count}}" class="collapse" style="width: 100%;float: left;margin-top: 10px;margin-bottom: 10px;">
+
+												<?php
+													echo 'width :: '. $only_stretching['width'].'<br/>';
+													echo 'height :: '. $only_stretching['height'].'<br/>';
+													
+												?>
+											</div>
+
 										</div>
-
-									</div>
-								</td>
-								<td>
-									<input class="cart-quantity" type="number" min="1" name="product_quantity" value="{{$photo_frame_only_stretching_cart['qty']}}">
-								</td>
-								<td>
-									<div class="unit-price">
-										${{number_format($photo_frame_only_stretching_cart['total_price'],2)}}
-									</div>
-								</td>
-								<td class="text-align-right">
-									<div class="linetotal">
-										
-										<span class="line_total">
-											${{number_format($photo_frame_only_stretching_cart['total_price'] * $photo_frame_only_stretching_cart['qty'],2)}}
-											<?php
-												$total_value+=$photo_frame_only_stretching_cart['total_price'] * $photo_frame_only_stretching_cart['qty'];
-											?>
-										</span>
-									</div>
-								</td>
-								<td>
-									<div class="delete_product">
-										
-										<input type="hidden" name="_token" value="{{ csrf_token() }}">
-										<input type="submit" name="update_product" class="product_update" value="">
-									</form>
-										<form method="post" action="{{URL::to('/')}}/order/remove_cart_canvas_only_print" style="float:left;">
+									</td>
+									<td>
+										<input class="cart-quantity" type="number" min="1" name="product_quantity" value="{{$only_stretching['qty']}}">
+									</td>
+									<td>
+										<div class="unit-price">
+											${{number_format($only_stretching['total_price'],2)}}
+										</div>
+									</td>
+									<td class="text-align-right">
+										<div class="linetotal">
+											
+											<span class="line_total">
+												${{number_format($only_stretching['total_price'] * $only_stretching['qty'],2)}}
+												<?php
+													$total_value+=$only_stretching['total_price'] * $only_stretching['qty'];
+												?>
+											</span>
+										</div>
+									</td>
+									<td>
+										<div class="delete_product">
+											
 											<input type="hidden" name="_token" value="{{ csrf_token() }}">
-											<input type="hidden" name="product_index" value="{{$count}}">
-											<input type="submit" name="remove_product" class="product_remove_cross" value="">
+											<input type="hidden" name="product_index" value="{{$only_printing_count}}">
+											<input type="submit" name="update_product" class="product_update" value="">
 										</form>
-										
-									</div>
-								</td>
-							</tr>
+											<form method="post" action="{{URL::to('/')}}/order/remove_cart_canvas_only_print" style="float:left;">
+												<input type="hidden" name="_token" value="{{ csrf_token() }}">
+												<input type="hidden" name="product_index" value="{{$only_printing_count}}">
+												<input type="submit" name="remove_product" class="product_remove_cross" value="">
+											</form>
+											
+										</div>
+									</td>
+								</tr>
+
+								<?php
+									$only_printing_count++;
+								?>
+
+							@endforeach
 
 						@endif
 

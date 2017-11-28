@@ -215,9 +215,13 @@ class OrderController extends Controller
     public function remove_cart_canvas_only_print(Request $request){
 
         if(isset($_POST)){
-            
-            $request->session()->forget('photo_frame_only_stretching_cart');
 
+            $product_index= (int) $_POST['product_index'];
+            $product_cart1 = $request->session()->get('photo_frame_only_stretching_cart');
+            unset($product_cart1[$product_index]);
+            $set_array_value = array_values($product_cart1);
+            $request->session()->set('photo_frame_only_stretching_cart', $set_array_value);
+            
             return redirect('mycart');
         }
     }
@@ -324,9 +328,11 @@ class OrderController extends Controller
 
         if(isset($_POST)){
 
+            $product_index= (int) $_POST['product_index'];
+
             $photo_frame_only_stretching_cart = $request->session()->get('photo_frame_only_stretching_cart');
 
-            $photo_frame_only_stretching_cart['qty'] = $_POST['product_quantity'];
+            $photo_frame_only_stretching_cart[$product_index]['qty'] = $_POST['product_quantity'];
 
             // Set Session
             $request->session()->set('photo_frame_only_stretching_cart', $photo_frame_only_stretching_cart);
@@ -725,27 +731,43 @@ class OrderController extends Controller
 
             // canvas print only
             if (count($photo_frame_only_stretching_cart) > 0) {
-                
-                $details_message = 'Width: '.$photo_frame_only_stretching_cart->width.'===Height: '.$photo_frame_only_stretching_cart->height.'===Price:'.$photo_frame_only_stretching_cart->total_price;
+                $photo_only_printing_count = 1;
+                foreach($photo_frame_only_stretching_cart as $only_stretching)
+                {
 
-                $deliver_modal = new Orderdetails();
+                    $details_message = 'Width: '.$only_stretching['width'].'===Height: '.$only_stretching['height'].'===Price:'.$only_stretching['total_price'];
 
-                $deliver_modal->order_head_id =$modal->id;
-                $deliver_modal->product_id =-4; // for printing only
-                $deliver_modal->qty = $photo_frame_only_stretching_cart->qty;
-                $deliver_modal->price = $photo_frame_only_stretching_cart->total_price;
-                $deliver_modal->details = $details_message;
+                    $deliver_modal = new Orderdetails();
 
-                if(!empty($photo_frame_only_stretching_cart->image)){
-                    $deliver_modal->image_link = $photo_frame_only_stretching_cart->image;
-                }else{
-                    $deliver_modal->image_link = '';
+                    $deliver_modal->order_head_id =$modal->id;
+                    $deliver_modal->product_id =-4; // for printing only
+                    $deliver_modal->qty = $only_stretching['qty'];
+                    $deliver_modal->price = $only_stretching['total_price'];
+                    $deliver_modal->details = $details_message;
+
+                    if(!empty($only_stretching['image'])){
+                        
+                        $path_original = 'uploads/only_printing/'.$photo_only_printing_count.'_'.time().'.jpg';
+                        $saveimage = ImageUpload::copy_image_from_url($only_stretching['image'],$path_original);
+                        $deliver_modal->image_link = $path_original;
+
+                        $deliver_modal->original_image_link = $path_original;
+
+                    }else{
+                        $deliver_modal->image_link = '';
+                        $deliver_modal->original_image_link = '';
+                    }
+
+
+
+                    $deliver_modal->status= 0;
+
+                    $deliver_modal->save();    
+
+                    $photo_only_printing_count++;
                 }
-
-
-                $deliver_modal->status= 0;
-
-                $deliver_modal->save();
+                
+                
 
             }
 

@@ -15,4 +15,12 @@
         display: inline-block;letter-spacing: .5px;" class="customize-your-photo-frame">
     canvas prints & stretching
     </a>
+    <br/>
+    <a href="{{URL::to('')}}/only-printing" style="color: #fff;
+        font-size: 12px;background: #018b8d;padding: 10px 43px;
+        border-radius: 5px;box-shadow: 1px 10px 5px #888888;
+        text-decoration: none;text-transform: uppercase; margin-top: 10px;
+        display: inline-block;letter-spacing: .5px;" class="customize-your-photo-frame">
+        Custom Canvas Printing 
+    </a>
 </div>
