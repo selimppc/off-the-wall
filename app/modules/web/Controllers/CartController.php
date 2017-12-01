@@ -107,20 +107,30 @@ echo $mac;
         // Only Streaching
         if(count($only_printing) > 0){
 
-            $canvas_array = array(
-                'qty' => $only_printing->qty,
-                'weight' => $only_printing->weight,
-                'type' => $only_printing->type,
-                'width' => $only_printing->width,
-                'height' => $only_printing->height,
-                'edge_type' => $only_printing->edge_type,
-                'total_price' => $only_printing->total_price
+            $product_cart1 = $request->session()->get('photo_frame_only_printing_cart');
+
+            $product_cart_2 = array( 
+                array(
+                    'qty' => $only_printing->qty,
+                    'weight' => $only_printing->weight,
+                    'type' => $only_printing->type,
+                    'width' => $only_printing->width,
+                    'height' => $only_printing->height,
+                    'edge_type' => $only_printing->edge_type,
+                    'total_price' => $only_printing->total_price
+                )
             );
 
-            // Set Session
-            $request->session()->set('photo_frame_only_printing_cart', $canvas_array);
+           
+           if($request->session()->has('photo_frame_only_printing_cart')){
 
-            $photo_frame_only_printing_cart = $request->session()->get('photo_frame_only_printing_cart');
+                $photo_frame_only_printing_cart = array_merge($product_cart1, $product_cart_2);
+            }else{
+                $photo_frame_only_printing_cart = $product_cart_2;
+            }
+
+            // Set Session
+            $request->session()->set('photo_frame_only_printing_cart', $photo_frame_only_printing_cart);
 
             // Delete Data
             DB::table('frame_session_data')->where('mac_address', $mac)->where('type','stretching')->delete(); 
@@ -134,25 +144,34 @@ echo $mac;
 
         if (count($plain_mirror) > 0) {
           
-            $plain_mirror_array = array(
-                'qty' => $plain_mirror->qty,
-                'weight' => $plain_mirror->weight,
-                'type' => $plain_mirror->type,
-                'width' => $plain_mirror->width,
-                'height' => $plain_mirror->height,
-                'image' => $plain_mirror->image,
-                'total_price' => $plain_mirror->total_price,
-                'product_type' => $plain_mirror->product_type,
-                'frame_code' => $plain_mirror->frame_code,
-                'frame_price' => $plain_mirror->frame_price,
-                'backing_type' => $plain_mirror->backing_type,
-                'backing_type_price' => $plain_mirror->backing_type_price
+            $product_cart1 = $request->session()->get('photo_frame_plain_mirror_cart');
+
+            $product_cart_2 = array( 
+                array(
+                    'qty' => $plain_mirror->qty,
+                    'weight' => $plain_mirror->weight,
+                    'type' => $plain_mirror->type,
+                    'width' => $plain_mirror->width,
+                    'height' => $plain_mirror->height,
+                    'image' => $plain_mirror->image,
+                    'total_price' => $plain_mirror->total_price,
+                    'product_type' => $plain_mirror->product_type,
+                    'frame_code' => $plain_mirror->frame_code,
+                    'frame_price' => $plain_mirror->frame_price,
+                    'backing_type' => $plain_mirror->backing_type,
+                    'backing_type_price' => $plain_mirror->backing_type_price
+                )
             );
 
-            // Set Session
-            $request->session()->set('photo_frame_plain_mirror_cart', $plain_mirror_array);
+            if($request->session()->has('photo_frame_plain_mirror_cart')){
 
-            $photo_frame_plain_mirror_cart = $request->session()->get('photo_frame_plain_mirror_cart');
+                $photo_frame_plain_mirror_cart = array_merge($product_cart1, $product_cart_2);
+            }else{
+                $photo_frame_plain_mirror_cart = $product_cart_2;
+            }
+
+            // Set Session
+            $request->session()->set('photo_frame_plain_mirror_cart', $photo_frame_plain_mirror_cart);
 
             // Delete Data
             DB::table('frame_session_data')->where('mac_address', $mac)->where('type','plain_mirror')->delete(); 

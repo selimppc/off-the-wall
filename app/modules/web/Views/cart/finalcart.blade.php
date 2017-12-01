@@ -242,27 +242,29 @@
 
 						@if(!empty($photo_frame_only_printing_cart))
 
+							@foreach($photo_frame_only_printing_cart as $only_printing_cart)
+
 							<?php
-								$total_weight+=$photo_frame_only_printing_cart['weight'];
-								$total_qty+=$photo_frame_only_printing_cart['qty'];
+								$total_weight+=0.5;
+								$total_qty+=$only_printing_cart['qty'];
 							?>
 
 							<tr>
 								<td>
 									<div class="added-item-container">
 										<a class="product-name" href="#">
-											Canvas Stretching Only ({{$photo_frame_only_printing_cart['edge_type']}})
+											Canvas Stretching Only ({{$only_printing_cart['edge_type']}})
 										</a>
 									</div>
 								</td>
 								
 								<td style="padding-top: 5px!important;">
-									{{$photo_frame_only_printing_cart['qty']}}
+									{{$only_printing_cart['qty']}}
 								</td>
 
 								<td>
 									<div class="unit-price">
-										${{number_format($photo_frame_only_printing_cart['total_price'],2)}}
+										${{number_format($only_printing_cart['total_price'],2)}}
 									</div>	
 								</td>
 
@@ -270,10 +272,10 @@
 									<div class="linetotal">
 										
 										<span class="line_total">
-											${{number_format($photo_frame_only_printing_cart['total_price'] * $photo_frame_only_printing_cart['qty'],2)}}
+											${{number_format($only_printing_cart['total_price'] * $only_printing_cart['qty'],2)}}
 
 											<?php
-												$total_value+=$photo_frame_only_printing_cart['total_price']*$photo_frame_only_printing_cart['qty'];
+												$total_value+=$only_printing_cart['total_price']*$only_printing_cart['qty'];
 											?>
 
 										</span>
@@ -282,6 +284,8 @@
 
 							
 							</tr>
+
+							@endforeach
 
 						@endif
 
@@ -337,44 +341,49 @@
 						@endif
 
 						@if(!empty($photo_frame_plain_mirror_cart))
-
+							@foreach($photo_frame_plain_mirror_cart as $plain_mirror_cart)
 							<?php
-								$total_weight+=$photo_frame_plain_mirror_cart['weight'];
-								$total_qty+=$photo_frame_plain_mirror_cart['qty'];
+								$total_weight+=0.5;
+								$total_qty+=$plain_mirror_cart['qty'];
 							?>
 
-							<tr>
-								<td>
-									<div class="added-item-container">
-										<a class="product-name" href="#">
-											Plain Mirror 
-										</a>
-									</div>									
-								</td>
-								<td style="padding-top: 5px!important;">
-									{{$photo_frame_plain_mirror_cart['qty']}}	
-								</td>
-								<td>
-									<div class="unit-price">
-										${{number_format($photo_frame_plain_mirror_cart['total_price'],2)}}
-									</div>	
-								</td>
+								<tr>
+									<td>
+										<div class="added-images">
+											<img src="{{$plain_mirror_cart['image']}}">
+										</div>
+										<div class="added-item-container">
+											<a class="product-name" href="#">
+												Plain Mirror 
+											</a>
+										</div>									
+									</td>
+									<td style="padding-top: 5px!important;">
+										{{$plain_mirror_cart['qty']}}	
+									</td>
+									<td>
+										<div class="unit-price">
+											${{number_format($plain_mirror_cart['total_price'],2)}}
+										</div>	
+									</td>
 
-								<td class="text-align-right">
-									<div class="linetotal">
-										
-										<span class="line_total">
-											${{number_format($photo_frame_plain_mirror_cart['total_price'] * $photo_frame_plain_mirror_cart['qty'],2)}}	
+									<td class="text-align-right">
+										<div class="linetotal">
+											
+											<span class="line_total">
+												${{number_format($plain_mirror_cart['total_price'] * $plain_mirror_cart['qty'],2)}}	
 
-											<?php
-												$total_value+=$photo_frame_plain_mirror_cart['total_price']*$photo_frame_plain_mirror_cart['qty'];
-											?>
+												<?php
+													$total_value+=$plain_mirror_cart['total_price']*$plain_mirror_cart['qty'];
+												?>
 
-										</span>
-									</div>
-								</td>
-								
-							</tr>
+											</span>
+										</div>
+									</td>
+									
+								</tr>
+
+							@endforeach
 
 						@endif
 
@@ -508,7 +517,7 @@
 
 									<input type="hidden" name="item_name_{{$count}}" value="{{$frame_cart['product']['frame']['frameMaterial']}} , 
 											{{$frame_cart['product']['frame']['frameCode']}}">
-									<input type="hidden" name="amount_{{$count}}" value="{{$frame_cart['product']['newDiscountedPrice']}}">
+									<input type="hidden" name="amount_{{$count}}" value="{{$frame_cart['product']['price']}}">
 
 									<input type="hidden" name="quantity_{{$count}}" value="{{$frame_cart['product']['quantity']}}">
 
@@ -537,13 +546,17 @@
 
 							@if(count($photo_frame_only_printing_cart) > 0)
 
-								<input type="hidden" name="item_name_{{$count}}" value="Canvas Stretching Only ">
-								<input type="hidden" name="amount_{{$count}}" value="{{$photo_frame_only_printing_cart['total_price']}}">
-								<input type="hidden" name="quantity_{{$count}}" value="{{$photo_frame_only_printing_cart['qty']}}">
+								@foreach($photo_frame_only_printing_cart as $only_printing_cart)
 
-								<?php
-									$count++;
-								?>
+									<input type="hidden" name="item_name_{{$count}}" value="Canvas Stretching Only ">
+									<input type="hidden" name="amount_{{$count}}" value="{{$only_printing_cart['total_price']}}">
+									<input type="hidden" name="quantity_{{$count}}" value="{{$only_printing_cart['qty']}}">
+
+									<?php
+										$count++;
+									?>
+
+								@endforeach
 
 							@endif
 
@@ -566,14 +579,18 @@
 
 							@if(count($photo_frame_plain_mirror_cart) > 0)
 
-								<input type="hidden" name="item_name_{{$count}}" value="Plain MIrror({{$photo_frame_plain_mirror_cart['frame_code']}})">
-								<input type="hidden" name="amount_{{$count}}" value="{{$photo_frame_plain_mirror_cart['total_price']}}">
+								@foreach($photo_frame_plain_mirror_cart as $plain_mirror_cart)
 
-								<input type="hidden" name="quantity_{{$count}}" value="{{$photo_frame_plain_mirror_cart['qty']}}">
+									<input type="hidden" name="item_name_{{$count}}" value="Plain MIrror({{$plain_mirror_cart['frame_code']}})">
+									<input type="hidden" name="amount_{{$count}}" value="{{$plain_mirror_cart['total_price']}}">
 
-								<?php
-									$count++;
-								?>
+									<input type="hidden" name="quantity_{{$count}}" value="{{$plain_mirror_cart['qty']}}">
+
+									<?php
+										$count++;
+									?>
+
+								@endforeach
 
 							@endif
 

@@ -206,7 +206,11 @@ class OrderController extends Controller
 
         if(isset($_POST)){
             
-            $request->session()->forget('photo_frame_only_printing_cart');
+            $product_index= (int) $_POST['product_index'];
+            $product_cart1 = $request->session()->get('photo_frame_only_printing_cart');
+            unset($product_cart1[$product_index]);
+            $set_array_value = array_values($product_cart1);
+            $request->session()->set('photo_frame_only_printing_cart', $set_array_value);
 
             return redirect('mycart');
         }
@@ -229,9 +233,13 @@ class OrderController extends Controller
     public function remove_cart_plain_mirror(Request $request){
 
         if(isset($_POST)){
-            
-            $request->session()->forget('photo_frame_plain_mirror_cart');
 
+            $product_index= (int) $_POST['product_index'];
+            $product_cart1 = $request->session()->get('photo_frame_plain_mirror_cart');
+            unset($product_cart1[$product_index]);
+            $set_array_value = array_values($product_cart1);
+            $request->session()->set('photo_frame_plain_mirror_cart', $set_array_value);
+            
             return redirect('mycart');
         }
     }
@@ -312,9 +320,11 @@ class OrderController extends Controller
 
         if(isset($_POST)){
 
+            $product_index= (int) $_POST['product_index'];
+
             $photo_frame_only_printing_cart = $request->session()->get('photo_frame_only_printing_cart');
 
-            $photo_frame_only_printing_cart['qty'] = $_POST['product_quantity'];
+            $photo_frame_only_printing_cart[$product_index]['qty'] = $_POST['product_quantity'];
 
             // Set Session
             $request->session()->set('photo_frame_only_printing_cart', $photo_frame_only_printing_cart);
@@ -346,8 +356,11 @@ class OrderController extends Controller
 
         if(isset($_POST)){
 
+            $product_index= (int) $_POST['product_index'];
+
             $photo_frame_plain_mirror_cart = $request->session()->get('photo_frame_plain_mirror_cart');
-            $photo_frame_plain_mirror_cart['qty'] = $_POST['product_quantity'];
+
+            $photo_frame_plain_mirror_cart[$product_index]['qty'] = $_POST['product_quantity'];
 
             // Set Session
             $request->session()->set('photo_frame_plain_mirror_cart', $photo_frame_plain_mirror_cart);
@@ -711,21 +724,26 @@ class OrderController extends Controller
 
             // canvas stetching
             if (count($photo_frame_only_printing_cart) > 0) {
-                
-                $details_message = 'Width: '.$photo_frame_only_printing_cart['width'].'===Height: '.$photo_frame_only_printing_cart['height'].'===Edge Type: '.$photo_frame_only_printing_cart['edge_type'].'===Price:'.$photo_frame_only_printing_cart['total_price'];
 
-                $deliver_modal = new Orderdetails();
+                foreach($photo_frame_only_printing_cart as $only_printing_cart)
+                {
 
-                $deliver_modal->order_head_id =$modal->id;
-                $deliver_modal->product_id =-3; // for streatching only
-                $deliver_modal->qty = $photo_frame_only_printing_cart['qty'];
-                $deliver_modal->price = $photo_frame_only_printing_cart['total_price'];
-                $deliver_modal->details = $details_message;
+                    $details_message = 'Width: '.$only_printing_cart['width'].'===Height: '.$only_printing_cart['height'].'===Edge Type: '.$only_printing_cart['edge_type'].'===Price:'.$only_printing_cart['total_price'];
+
+                    $deliver_modal = new Orderdetails();
+
+                    $deliver_modal->order_head_id =$modal->id;
+                    $deliver_modal->product_id =-3; // for streatching only
+                    $deliver_modal->qty = $only_printing_cart['qty'];
+                    $deliver_modal->price = $only_printing_cart['total_price'];
+                    $deliver_modal->details = $details_message;
 
 
-                $deliver_modal->status= 0;
+                    $deliver_modal->status= 0;
 
-                $deliver_modal->save();
+                    $deliver_modal->save();
+
+                }                               
 
             }
 
@@ -774,25 +792,44 @@ class OrderController extends Controller
             // plain mirror
             if(count($photo_frame_plain_mirror_cart) > 0){
 
-                $details_message = 'Width: '.$photo_frame_plain_mirror_cart['width'].'===Height: '.$photo_frame_plain_mirror_cart['height'].'===Total Price: '.$photo_frame_plain_mirror_cart['total_price'].'===Product Type: '.$photo_frame_plain_mirror_cart['product_type'].'===Frame Code: '.$photo_frame_plain_mirror_cart['frame_code'].'===Frame Price: '.$photo_frame_plain_mirror_cart['frame_price'].'===Backing Type: '.$photo_frame_plain_mirror_cart['backing_type'].'===Backing Type Price: '.$photo_frame_plain_mirror_cart['backing_type_price'];
+                $plain_mirror_count = 0;
+                foreach($photo_frame_plain_mirror_cart as $plain_mirror_cart)
+                {
 
-                $deliver_modal = new Orderdetails();
+                    $details_message = 'Width: '.$plain_mirror_cart['width'].'===Height: '.$plain_mirror_cart['height'].'===Total Price: '.$plain_mirror_cart['total_price'].'===Product Type: '.$plain_mirror_cart['product_type'].'===Frame Code: '.$plain_mirror_cart['frame_code'].'===Frame Price: '.$plain_mirror_cart['frame_price'].'===Backing Type: '.$plain_mirror_cart['backing_type'].'===Backing Type Price: '.$plain_mirror_cart['backing_type_price'];
 
-                $deliver_modal->order_head_id =$modal->id;
-                $deliver_modal->product_id =-5; // for plain mirror
-                $deliver_modal->qty = $photo_frame_plain_mirror_cart['qty'];
-                $deliver_modal->price = $photo_frame_plain_mirror_cart['total_price'];
-                $deliver_modal->details = $details_message;
+                    $deliver_modal = new Orderdetails();
 
-                if(!empty($photo_frame_plain_mirror_cart['image'])){
-                    $deliver_modal->image_link = $photo_frame_plain_mirror_cart['image'];
-                }else{
-                    $deliver_modal->image_link = '';
+                    $deliver_modal->order_head_id =$modal->id;
+                    $deliver_modal->product_id =-5; // for plain mirror
+                    $deliver_modal->qty = $plain_mirror_cart['qty'];
+                    $deliver_modal->price = $plain_mirror_cart['total_price'];
+                    $deliver_modal->details = $details_message;
+
+
+                    if(!empty($plain_mirror_cart['image'])){
+                        
+                        $path_original = 'uploads/plain_mirror/'.$plain_mirror_count.'_'.time().'.jpg';
+                        $saveimage = ImageUpload::copy_image_from_url($plain_mirror_cart['image'],$path_original);
+                        $deliver_modal->image_link = $path_original;
+
+                        $deliver_modal->original_image_link = $path_original;
+
+                    }else{
+                        $deliver_modal->image_link = '';
+                        $deliver_modal->original_image_link = '';
+                    }
+
+
+                    $deliver_modal->status= 0;
+
+                    $deliver_modal->save();                    
+
+                    $plain_mirror_count++;
+
                 }
 
-                $deliver_modal->status= 0;
-
-                $deliver_modal->save();                    
+                
 
             }
 

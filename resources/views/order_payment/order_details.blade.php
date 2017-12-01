@@ -106,7 +106,7 @@
 												<a download="{{URL::to('')}}/{{$orderdetails->original_image_link}}" target="_blank" href="{{URL::to('')}}/{{$orderdetails->original_image_link}}">
 													<img style="width: 50px; height: 50px;" src="{{URL::to('')}}/{{$orderdetails->image_link}}">
 												</a>
-											@else
+											@elseif(isset($product->image) && count($product->image) > 0)
 												<img style="width: 50px; height: 50px;" src="{{URL::to('')}}/{{$product->image}}">
 											@endif	
 
@@ -199,6 +199,8 @@
 														echo isset($order_details_data['0'])?$order_details_data['0']:'';
 
 														echo isset($order_details_data['1'])?$order_details_data['1']:'';
+
+														echo isset($order_details_data['2'])?$order_details_data['2']:'';
 												}
 
 												// Canvas Printing Only
@@ -300,7 +302,299 @@
 
 <!-- print the product -->
 
+<!-- print the product -->
+<div class="print_wrap" style="display:none;width:100%;float:left;">
+	<div id="print_verification_letter">
 
+		<table border="0" cellspacing="0" cellpadding="0" style="font-size:14px;width:100%;font-family:'arial';color:#000;line-height:20px;">
+
+			<tr>
+				<td colspan="8" style="font-size: 30px;">OFF THE WALL</td>
+			</tr>
+
+			<tr>
+				<td colspan="8">&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td colspan="8">&nbsp;</td>
+			</tr>
+
+			<tr>
+				<td valign="top" colspan="2">
+					<h4 class="text-light">Prepared by</h4>
+					<address>
+						<strong>OFF THE WALL</strong><br>
+						Sydney<br>
+						Australia<br>
+						
+					</address>
+				</td>
+
+				<td valign="top" colspan="2">
+					<h4 class="text-light">Prepared for</h4>
+					<address>
+						<strong>Billing Address</strong><br/><br/>
+						<strong>{{$customer_data->first_name}} {{$customer_data->last_name}}</strong>
+						<br/>
+						{{$customer_data->address}}<br>
+						{{$customer_data->suburb}}<br>
+						{{$customer_data->state}}, {{$customer_data->postcode}}<br>
+						{{$customer_data->country}}<br/>
+						<abbr title="Phone">P:</abbr> {{$customer_data->telephone}}<br/>
+						{{$customer_data->email}}
+					</address>
+				</td>
+
+				<td valign="top" colspan="2">
+					<h4 class="text-light">Delivery Address</h4>
+					<address>
+						
+						<strong>{{$delivery_data->first_name}} {{$delivery_data->last_name}}</strong><br/>
+						{{$delivery_data->address}}<br>
+						{{$delivery_data->suburb}}<br>
+						{{$delivery_data->state}}, {{$delivery_data->postcode}} <br>
+						{{$delivery_data->country}}<br/>
+						<abbr title="Phone">P:</abbr> {{$delivery_data->telephone}}<br/>
+						{{$delivery_data->email}}
+					</address>
+				</td>
+
+				<td valign="top" colspan="2">
+					<div class="well" style="min-height: 20px;padding: 19px;margin-bottom: 20px;background-color: #f5f5f5;border: 1px solid #e3e3e3;  border-radius: 4px;-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);">
+						<div class="clearfix">
+							<div style="width: 50%;float: left;" class="pull-left"> INVOICE NO : </div>
+							<div style="width: 50%;float: left;" class="pull-right"> {{$order_data[0]->invoice_id}} </div>
+						</div>
+						<div class="clearfix">
+							<div style="width: 50%;float: left;" class="pull-left"> INVOICE DATE : </div>
+							<div style="width: 50%;float: left;" class="pull-right"> {{date_format($order_data[0]->created_at, 'd/m/Y')}} </div>
+						</div>
+						<br/><br/>
+					</div>
+				</td>
+			</tr>
+
+		</table>
+		<br/><br/><br/>
+
+		<table border="0" cellspacing="0" cellpadding="0" style="font-size:14px;width:100%;font-family:'arial';color:#000;line-height:20px;">
+
+			<thead>
+				<tr>
+					<th style="border-bottom: 2px solid #ddd;padding:5px;text-align: left; ">Product Name</th>
+					<th style="border-bottom: 2px solid #ddd;padding:5px;text-align: left; ">Details</th>
+					<th style="border-bottom: 2px solid #ddd;padding:5px;text-align: left; ">Qty</th>								
+					<th style="border-bottom: 2px solid #ddd;padding:5px;text-align: right; ">Price</th>
+					<th style="border-bottom: 2px solid #ddd;padding:5px;text-align: right; ">Total</th>
+					
+				</tr>
+			</thead>
+
+			<tbody>
+
+				@if(!empty($order_data[0]->relOrderDetail))
+					<?php $total = 0; ?>
+					@foreach($order_data[0]->relOrderDetail as $orderdetails)
+
+						<?php
+							$product_id = $orderdetails->product_id;
+							$product = DB::table('product')->where('id',$product_id)->first();	
+
+						?>
+
+						<tr>
+							<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px; ">
+								@if(count($orderdetails->image_link) > 0)
+									<a download="{{URL::to('')}}/{{$orderdetails->original_image_link}}" target="_blank" href="{{URL::to('')}}/{{$orderdetails->original_image_link}}">
+										<img style="width: 50px; height: 50px;" src="{{URL::to('')}}/{{$orderdetails->image_link}}">
+									</a>
+								@elseif(isset($product->image) && count($product->image) > 0)
+									<img style="width: 50px; height: 50px;" src="{{URL::to('')}}/{{$product->image}}">
+								@endif	
+
+								<br/>
+								<?php
+
+									if(count($product) > 0){
+										echo $product->title;
+									}
+
+									if($orderdetails->product_id == -1){
+										echo 'Photo Frame';
+									}
+
+									if($orderdetails->product_id == -2){
+										echo 'Canvas Print';
+									}
+
+									if($orderdetails->product_id == -3){
+										echo 'Canvas Stetching Only';
+									}
+
+									if($orderdetails->product_id == -4){
+										echo 'Canvas Printing Only';
+									}
+
+									if($orderdetails->product_id == -5){
+										echo 'Plain mirror';
+									}
+								?>
+
+							</td>
+
+
+							<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px; ">
+
+								<?php
+									// Photo Frame
+									if($orderdetails->product_id == -1){
+										$order_details_data = explode("===",$orderdetails->details);
+
+										echo isset($order_details_data['0'])?$order_details_data['0'] .' , ':'';
+										echo isset($order_details_data['1'])?$order_details_data['1'] .' , ':'';
+										
+										echo isset($order_details_data['14'])?$order_details_data['14'].' , ':''; 
+										echo isset($order_details_data['15'])?$order_details_data['15'].' , ':'';
+
+										// mat data show
+										echo isset($order_details_data['18'])?str_replace("Mat 1","Top Mat",$order_details_data['18']).' , ':''; 
+										echo isset($order_details_data['19'])?$order_details_data['19'].' , ':'';
+										echo isset($order_details_data['20'])?$order_details_data['20'].' , ':'';
+										echo isset($order_details_data['21'])?$order_details_data['21'].' , ':'';
+										echo isset($order_details_data['22'])?$order_details_data['22'].' , ':'';
+										echo isset($order_details_data['23'])?$order_details_data['23'].' , ':'';
+										echo isset($order_details_data['26'])?str_replace("Mat 2","Bottom Mat",$order_details_data['26']).' , ':'';
+										echo isset($order_details_data['27'])?$order_details_data['27'].' , ':'';
+										echo isset($order_details_data['28'])?$order_details_data['28'].' , ':'';
+										echo isset($order_details_data['29'])?$order_details_data['29'].' , ':'';
+										echo isset($order_details_data['30'])?$order_details_data['30'].' , ':'';
+										echo isset($order_details_data['31'])?$order_details_data['31'].' , ':'';
+
+										// glasss
+										echo isset($order_details_data['38'])?$order_details_data['38'].' , ':'';
+
+										// backing
+										echo isset($order_details_data['39'])?$order_details_data['39'].' , ':'';
+
+										// paper
+										echo isset($order_details_data['2'])?$order_details_data['2'].' , ':'';
+
+
+
+									}
+
+									// Canvas Print
+									if($orderdetails->product_id == -2){
+										$order_details_data = explode("===",$orderdetails->details);
+
+										echo isset($order_details_data['0'])?$order_details_data['0'] . ' , ':'';
+
+										echo isset($order_details_data['1'])?$order_details_data['1'] . ' , ':'';
+
+										echo isset($order_details_data['2'])?$order_details_data['2']:'';
+									}
+
+									// Canvas Stetching Only
+									if($orderdetails->product_id == -3){
+										$order_details_data = explode("===",$orderdetails->details);
+
+											echo isset($order_details_data['0'])?$order_details_data['0']:'';
+
+											echo isset($order_details_data['1'])?$order_details_data['1']:'';
+
+											echo isset($order_details_data['2'])?$order_details_data['2']:'';
+									}
+
+									// Canvas Printing Only
+									if($orderdetails->product_id == -4){
+
+										$order_details_data = explode("===",$orderdetails->details);
+
+										echo isset($order_details_data['0'])?$order_details_data['0'].' , ':'';
+										echo isset($order_details_data['1'])?$order_details_data['1'].' , ':'';
+										echo isset($order_details_data['2'])?$order_details_data['2']:'';
+									}
+
+									// Plain mirror
+									if($orderdetails->product_id == -5){
+										$order_details_data = explode("===",$orderdetails->details);
+
+										echo isset($order_details_data['0'])?$order_details_data['0'] . ' , ':'';
+										echo isset($order_details_data['1'])?$order_details_data['1']. ' , ':'';
+										echo isset($order_details_data['4'])?$order_details_data['4'].' , ':'';
+										echo isset($order_details_data['6'])?$order_details_data['6']:'';
+									}
+								?>
+
+							</td>
+
+							<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px; ">	
+								{{$orderdetails->qty}}
+							</td>
+
+							<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; ">
+								{{$orderdetails->price}}
+							</td>
+
+							<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; ">
+								<?php
+									$total+= $orderdetails->qty * $orderdetails->price;
+								?>
+								{{$orderdetails->price*$orderdetails->qty}}
+							</td>
+
+						</tr>
+
+					@endforeach
+
+				@endif
+
+				<tr>
+					<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px; " colspan="2" >
+						&nbsp;
+					</td>
+					<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; " colspan="2"><strong>Subtotal</strong></td>
+					<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; ">$ {{$total}}</td>
+				</tr>
+
+				<tr>
+					<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; " colspan="2" >
+						&nbsp;
+					</td>
+					<td colspan="2" valign="top" style="border-bottom: 1px solid #ddd;padding:5px; text-align: right;"><strong>Shipping type</strong></td>
+					<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; ">{{$order_data[0]->shipping_type}}</td>
+				</tr>
+
+				<tr>
+					<td colspan="2" valign="top" style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; " >
+						&nbsp;
+					</td>
+					<td colspan="2" valign="top" style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; "><strong>Shipping value</strong></td>
+					<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; ">$ {{$order_data[0]->shipping_value}}</td>
+				</tr>
+				<tr>
+					<td colspan="2" valign="top" style="border-bottom: 1px solid #ddd;padding:5px; text-align: right;" >
+						&nbsp;
+					</td>
+					<td  colspan="2" valign="top" style="border-bottom: 1px solid #ddd;padding:5px; text-align: right;"><strong>GST</strong></td>
+					<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px; text-align: right;">$ 0.00</td>
+				</tr>
+				<tr>
+					<td colspan="2" valign="top" style="border-bottom: 1px solid #ddd;padding:5px; text-align: right;" >
+						&nbsp;
+					</td>
+					<td colspan="2" valign="top" style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; "><strong>Total</strong></td>
+					<td valign="top" style="border-bottom: 1px solid #ddd;padding:5px;text-align: right; ">$ {{$total + $order_data[0]->shipping_value}}</td>
+				</tr>
+
+			</tbody>
+
+		</table>
+
+	</div>
+
+</div>
 
 <script>
 	

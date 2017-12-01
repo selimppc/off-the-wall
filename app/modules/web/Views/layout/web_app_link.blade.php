@@ -8,6 +8,15 @@
         display: inline-block;letter-spacing: .5px;" class="customize-your-photo-frame">
     Custom Picture Framing
     </a><br/>
+    <a href="{{URL::to('')}}/plain-mirror" style="color: #fff;
+        font-size: 12px;background: #018b8d;padding: 10px 75px;
+        border-radius: 5px;box-shadow: 1px 10px 5px #888888;
+        text-decoration: none;text-transform: uppercase; margin-top: 10px;
+        display: inline-block;letter-spacing: .5px;" class="customize-your-photo-frame">
+    custom mirror
+    </a>
+
+    <br/>
     <a href="{{URL::to('')}}/canvas-print" style="color: #fff;
         font-size: 12px;background: #018b8d;padding: 10px 30px;
         border-radius: 5px;box-shadow: 1px 10px 5px #888888;
@@ -15,6 +24,7 @@
         display: inline-block;letter-spacing: .5px;" class="customize-your-photo-frame">
     canvas prints & stretching
     </a>
+
     <br/>
     <a href="{{URL::to('')}}/only-printing" style="color: #fff;
         font-size: 12px;background: #018b8d;padding: 10px 43px;
@@ -22,5 +32,13 @@
         text-decoration: none;text-transform: uppercase; margin-top: 10px;
         display: inline-block;letter-spacing: .5px;" class="customize-your-photo-frame">
         Custom Canvas Printing 
+    </a>
+    <br/>
+    <a href="{{URL::to('')}}/canvas-stretching" style="color: #fff;
+        font-size: 12px;background: #018b8d;padding: 10px 33px;
+        border-radius: 5px;box-shadow: 1px 10px 5px #888888;
+        text-decoration: none;text-transform: uppercase; margin-top: 10px;
+        display: inline-block;letter-spacing: .5px;" class="customize-your-photo-frame">
+        Custom Canvas Stretching
     </a>
 </div>
