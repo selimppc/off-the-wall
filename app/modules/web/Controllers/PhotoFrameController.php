@@ -17,6 +17,39 @@ use Illuminate\Support\Facades\DB;
 
 class PhotoFrameController extends Controller{
 
+	public function photo_frame_2(Request $request)
+	{
+		$title = "Csutom Photo Frame";	
+
+		$frame_category = FrameCategory::where('status','active')->orderBy('sort_order','ASC')->get();
+
+		$data = ImageSize::where('status','active')->orderBy('sort_order', 'ASC')->get();
+
+		$mat_data = Mat::where('status','active')->get();
+
+		$glass_backing_data = GlassBacking::where('status','active')->get();
+
+		$printing_data = Printing::where('status','active')->get();
+
+		$product_description = Article::where('status','active')->where('id','46')->first();
+
+		$how_to_order = Article::where('status','active')->where('id','47')->first();
+
+		$shipping_rule = Article::where('status','active')->where('id','48')->first();
+
+		return view('web::custom_photo_frame.index',[
+                'title' => $title,
+                'frame_category' => $frame_category,
+                'data' => $data,
+                'mat_data' => $mat_data,
+                'glass_backing_data' => $glass_backing_data,
+                'printing_data' => $printing_data,
+                'product_description' => $product_description,
+                'how_to_order' => $how_to_order,
+                'shipping_rule' => $shipping_rule
+            ]);
+	}
+
 	public function photo_frame(Request $request){
 
 		/*// Remove Session

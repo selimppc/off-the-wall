@@ -152,6 +152,7 @@ return [
 
         //Modularize
         App\Modules\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -209,6 +210,7 @@ return [
         'HTML'      => Illuminate\Html\HtmlFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
         'ImageResize'     => App\Helpers\ImageResize::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

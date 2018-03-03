@@ -24,6 +24,12 @@ Route::any('custom-picture-frame',[
 		'uses' => 'PhotoFrameController@photo_frame'
 	]);
 
+Route::any('custom-picture-framing-online',[
+		'as' => 'custom-picture-framing-online',
+		'uses' => 'PhotoFrameController@photo_frame_2'
+	]);
+
+
 Route::any('canvas-print',[
 		'as' => 'canvas-print',
 		'uses' => 'PhotoFrameController@canvas_print'
