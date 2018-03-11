@@ -29,7 +29,7 @@
       <div class="dashed-break"></div>
     </div>
   </div>
-  <div class="clearfix" style="display: none;">
+  <div class="clearfix">
     <div class="col-xs-12" style="background: #fff;margin-top: 20px;padding-top: 8px;">
       <div class="panel-heading toggle-collapse inline-block" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="true" style="padding-left: 5px;">
     <span class="panel-title">
@@ -47,8 +47,8 @@
                     <thead>
                       <tr>
                         <td class="col-xs-4"></td>
-                        <td class="col-xs-4">Product Summary</td>
-                        <td class="col-xs-4">Price Breakdown</td>
+                        <td class="col-xs-4">Frame Details</td>
+                        <td class="col-xs-4">Price Summary</td>
                       </tr>
                     </thead>
                     <tbody>
@@ -117,7 +117,7 @@
                         <td id="offtwl__glance-outer-size">---</td>
                         <td>---</td>
                       </tr>
-                      <tr id="offtwl__glance-hanging-system-row">
+                      <tr style="display: none;" id="offtwl__glance-hanging-system-row">
                         <td>Hanging System</td>
                         <td>
                           <a href="#" data-toggle="modal" data-target="#more-info-modal">More
@@ -126,7 +126,7 @@
                         </td>
                         <td>---</td>
                       </tr>
-                      <tr id="offtwl__glance-discount-row">
+                      <tr style="display: none;" id="offtwl__glance-discount-row">
                         <td>
                           <strong>Less:</strong>
                           Discount

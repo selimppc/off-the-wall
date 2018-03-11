@@ -3,21 +3,25 @@
     <div class="divis-inner">
       <h3 class="offtwl__cardbox-title">Mat Boards</h3>
       <div data-for="offtwl__how-many-mats">
-        <label class="mtd-radio offtwl__how-many-mats-radio">
-          <input type="radio" name="offtwl__how-many-mats" value="1" data-offtwl__calculation-item/>
-          <span class="offtwl__outer-el"><span class="inner"></span></span>
-          Single
-        </label>
-        <label class="mtd-radio offtwl__how-many-mats-radio">
-          <input type="radio" name="offtwl__how-many-mats" value="2" data-offtwl__calculation-item/>
-          <span class="offtwl__outer-el"><span class="inner"></span></span>
-          Double
-        </label>
+
         <label class="mtd-radio offtwl__how-many-mats-radio">
           <input type="radio" name="offtwl__how-many-mats" value="0" checked="checked" data-offtwl__calculation-item/>
           <span class="offtwl__outer-el"><span class="inner"></span></span>
           None
         </label>
+
+        <label class="mtd-radio offtwl__how-many-mats-radio">
+          <input type="radio" name="offtwl__how-many-mats" value="1" data-offtwl__calculation-item/>
+          <span class="offtwl__outer-el"><span class="inner"></span></span>
+          Single
+        </label>
+
+        <label class="mtd-radio offtwl__how-many-mats-radio">
+          <input type="radio" name="offtwl__how-many-mats" value="2" data-offtwl__calculation-item/>
+          <span class="offtwl__outer-el"><span class="inner"></span></span>
+          Double
+        </label>
+        
       </div>
     </div>
   </div>
@@ -60,7 +64,7 @@
       @if(!empty($mat_data))
         @foreach($mat_data as $mat)
 
-          <div class="offtwl__matboard-sqr" style="background-color:#{{$mat->color}}" data-name="{{$mat->name}}" data-code="{{$mat->code}}" data-color-code="{{$mat->color}}" data-offtwl__mat-obj="mat1" title="{{$mat->name}}"></div>
+          <div class="offtwl__matboard-sqr" style="background-color:#{{$mat->color}}" data-name="{{$mat->name}}" data-code="{{$mat->code}}" data-color-code="{{$mat->color}}" data-offtwl__mat-obj="mat1" data-slider-value="1" data-selected="false" title="{{$mat->name}}"></div>
 
         @endforeach
       @endif
@@ -89,7 +93,7 @@
         @if(!empty($mat_data))
           @foreach($mat_data as $mat)
 
-            <div class="offtwl__matboard-sqr" style="background-color:#{{$mat->color}}" data-name="{{$mat->name}}" data-code="{{$mat->code}}" data-color-code="{{$mat->color}}" data-offtwl__mat-obj="mat2" title="{{$mat->name}}"></div>
+            <div class="offtwl__matboard-sqr" style="background-color:#{{$mat->color}}" data-name="{{$mat->name}}" data-code="{{$mat->code}}" data-color-code="{{$mat->color}}" data-offtwl__mat-obj="mat2" data-slider-value="1" data-selected="false" title="{{$mat->name}}"></div>
 
           @endforeach
         @endif

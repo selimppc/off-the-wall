@@ -72,7 +72,7 @@
 
                   @foreach($category->relFrame as $frame)
 
-                  <div class="offtwl__thumb-frame-container" data-frame-code="{{$frame->frame_code}}" data-frame-id="812" data-frame-material="{{$category->title}}" data-frame-width="{{$frame->frame_width}}" data-frame-depth="{{$frame->frame_depth}}" data-frame-rebate="{{$frame->frame_rebate}}" data-frame-rate="{{$frame->frame_rate}}" data-frame-min="{{$frame->frame_min}}" data-frame-max="{{$frame->frame_max}}" data-frame-desc="{{$frame->frame_code}}" data-frame-tile="{{$frame->thumb_link}}" data-frame-description="">
+                  <div class="offtwl__thumb-frame-container" data-frame-code="{{$frame->frame_code}}"  data-frame-material="Wood" data-frame-width="{{$frame->frame_width}}" data-frame-depth="{{$frame->frame_depth}}" data-frame-rebate="{{$frame->frame_rebate}}" data-frame-rate="{{$frame->frame_rate}}" data-frame-min="{{$frame->frame_min}}" data-frame-max="{{$frame->frame_max}}" data-frame-desc="{{$category->title}}" data-frame-tile="{{$frame->thumb_link}}" data-frame-description="">
                   <img data-original="{{$frame->image_link}}" src="{{$frame->image_link}}" alt="{{$frame->frame_code}}" class="offtwl__frame-thumb lazy"/>
                   <div class="offtwl__frame-tag-container">
                     <span class="offtwl__frame-tag--name">{{$frame->frame_code}}</span>

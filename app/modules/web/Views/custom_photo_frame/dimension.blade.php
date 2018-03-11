@@ -52,7 +52,7 @@
                       <div id="offtwl__dimensions-input-holder">
                         <div class="offtwl__presets-type-holder mb-10">
                           <select name="preset-type" id="preset-type-list" class="form-control">
-                            <option value="-">Default Sizes</option>
+                            <option value="-">Standard Sizes</option>
 
                             @if(!empty($data))
                               @foreach($data as $values)
