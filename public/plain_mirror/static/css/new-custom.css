@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+}
+#print {
+    position: relative;
+}
+#print #offtwl__draw_frame {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    z-index: 2;
+
+}
+.frame img.dropshadow {
+    max-height: 135px;
+}
+#offtwl__framedimg {
+    display: block;
+    /*max-width: 90%;*/
+    /*max-height: 600px;*/
+    margin: 0 auto;
+    vertical-align: top;
+    /*box-shadow: 0 10px 20px -10px black;*/
+    font-family: 'Open sans', Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 600;
+    background-color: #fff;
+}
+#offtwl__framedimg.activated {
+    visibility: hidden;
+    opacity: 0;
+    position: relative;
+}
+#tabs {
+    overflow: hidden;
+    padding-bottom: 40px;
+}
+
+#slip {
+    /*position: static !important;*/
+    /*width: auto !important;*/
+    /*height: auto !important;*/
+}
+#offtwl__prodzerror {
+    display: none !important;
+}
+#offtwl__prodzinfo {
+    display: table !important;
+}
+#offtwl__prodzinfo select {
+    display: inline-block;
+    padding: 8px;
+    border: 1px solid #c3c3c3;
+}
+.offtwl__ {
+
+}
+#offtwl__prodzinfo td, #offtwl__prodzinfo th {
+    padding: 5px 10px;
+    vertical-align: middle;
+}
+table {
+    border-collapse: collapse;
+}
+.details-table td,
+.details-table th {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}

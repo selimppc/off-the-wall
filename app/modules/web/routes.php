@@ -24,6 +24,31 @@ Route::any('custom-picture-frame',[
 		'uses' => 'PhotoFrameController@photo_frame'
 	]);
 
+Route::any('canvas-print-and-streatch',[
+		'as' => 'canvas-print-and-streatch',
+		'uses' => 'PhotoFrameController@canvas_print_and_streatch'
+	]);
+
+Route::any('custom-plain-mirror',[
+		'as' => 'custom-plain-mirror',
+		'uses' => 'PhotoFrameController@custom_plain_mirror'
+	]);
+
+Route::any('custom-plain-mirror-frame-it',[
+		'as' => 'custom_plain_mirror_frame_it',
+		'uses' => 'PhotoFrameController@custom_plain_mirror_frame_it'
+	]);
+
+Route::any('canvas-stretching-only',[
+		'as' => 'canvas-stretching-only',
+		'uses' => 'PhotoFrameController@canvas_print_only'
+	]);
+
+Route::any('canvas-printing-only',[
+		'as' => 'canvas-printing-only',
+		'uses' => 'PhotoFrameController@canvas_stretching_only'
+	]);
+
 Route::any('custom-picture-framing-online',[
 		'as' => 'custom-picture-framing-online',
 		'uses' => 'PhotoFrameController@photo_frame_2'

@@ -253,7 +253,7 @@
 								<td>
 									<div class="added-item-container">
 										<a class="product-name" href="#">
-											Canvas Stretching Only ({{$only_printing_cart['edge_type']}})
+											Canvas Printing Only ({{$only_printing_cart['edge_type']}})
 										</a>
 									</div>
 								</td>
@@ -305,7 +305,7 @@
 										</div>
 										<div class="added-item-container">
 											<a class="product-name" href="#">
-												Canvas Printing Only
+												Canvas Stretching Only
 											</a>
 										</div>									
 									</td>

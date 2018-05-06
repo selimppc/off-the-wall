@@ -50,6 +50,61 @@ class PhotoFrameController extends Controller{
             ]);
 	}
 
+	public function canvas_print_and_streatch(Request $request){
+
+		$discounts_value = CentralSettings::where('id','2')->first();
+		$canvas_edge_r = CanvasEdge::where('status','active')->orderBy('sort_order','asc')->get();
+
+		return view('web::canvas_print_and_streatch.index',[
+				'discounts_value' => $discounts_value,
+				'canvas_edge_r' => $canvas_edge_r
+			]);
+	}
+
+	public function custom_plain_mirror(Request $request){
+
+
+		return view('web::custom_plain_mirror.index');
+	}
+
+	public function custom_plain_mirror_frame_it(Request $request){
+
+		$frame_r = PlainMirrorFrame::where('status','active')->get();
+
+		$frame_color_array = array();
+
+		if(count($frame_r) > 0){
+			foreach($frame_r as $frame){
+				array_push($frame_color_array,trim($frame->frame_color));
+			}
+		}
+    	
+    	$frame_color_array = array_unique($frame_color_array);
+    	sort($frame_color_array);
+
+    	$mat_data = Mat::where('status','active')->get();
+
+		return view('web::custom_plain_mirror.frame_it',[
+				'frame_r' => $frame_r,
+				'frame_color_array' => $frame_color_array,
+				'mat_data' => $mat_data
+			]);
+	}
+
+	public function canvas_print_only(Request $request){
+
+		return view('web::canvas_print_only.index');
+	}
+
+	public function canvas_stretching_only(Request $request){
+
+		$canvas_edge_r = CanvasEdge::where('status','active')->orderBy('sort_order','asc')->get();
+
+		return view('web::canvas_stretching_only.index',[
+				'canvas_edge_r' => $canvas_edge_r
+			]);
+	}
+
 	public function photo_frame(Request $request){
 
 		/*// Remove Session

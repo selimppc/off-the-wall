@@ -210,7 +210,7 @@ class ArticleController extends Controller
         $image=Input::file('featured_image');
 
         $tittle = Input::get('title');
-        $slug = str_slug($tittle);
+        $slug = Input::get('slug');
         $input['slug'] = $slug;
 
             if(count($image)>0 ) {
